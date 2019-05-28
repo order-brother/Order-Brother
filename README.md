@@ -1,24 +1,38 @@
-# README
+Order Brother!
+===
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
 
-Things you may want to cover:
+* Ruby version 2.6.0
+* Rails versino 5.2.3
+* PostgreSQL 11.3
 
-* Ruby version
+## Usage
 
-* System dependencies
+### Install Dependency
 
-* Configuration
+```
+$ bundle install
+```
 
-* Database creation
+### Prepare Database
 
-* Database initialization
+If you didn't have database.
 
-* How to run the test suite
+```
+$ rake db:create
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+And run migration to create tables.
 
-* Deployment instructions
+```
+$ rake db:migrate
+```
 
-* ...
+### Rails
+
+Start Rails server
+
+```
+$ rails s
+```
