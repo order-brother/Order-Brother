@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :phone
       t.string :email
       t.string :role
-      t.arry :favorite_store
+      t.text :favorite_store, array: true, default: []
 
       t.timestamps
     end
