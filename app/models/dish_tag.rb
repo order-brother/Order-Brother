@@ -1,0 +1,2 @@
+class DishTag < ApplicationRecord
+end
