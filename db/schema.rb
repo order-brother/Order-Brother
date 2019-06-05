@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_162910) do
+ActiveRecord::Schema.define(version: 2019_06_05_170058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(version: 2019_06_05_162910) do
     t.index ["user_id"], name: "index_stores_on_user_id"
   end
 
+  create_table "transaction_items", force: :cascade do |t|
+    t.bigint "transaction_id"
+    t.bigint "dish_id"
+    t.integer "dish_count", null: false
+    t.decimal "item_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_transaction_items_on_dish_id"
+    t.index ["transaction_id"], name: "index_transaction_items_on_transaction_id"
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.decimal "total_price", null: false
     t.text "description"
@@ -89,6 +100,8 @@ ActiveRecord::Schema.define(version: 2019_06_05_162910) do
 
   add_foreign_key "dishes", "stores"
   add_foreign_key "stores", "users"
+  add_foreign_key "transaction_items", "dishes"
+  add_foreign_key "transaction_items", "transactions"
   add_foreign_key "transactions", "stores"
   add_foreign_key "transactions", "users"
 end
