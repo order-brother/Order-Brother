@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_170058) do
+ActiveRecord::Schema.define(version: 2019_06_06_020846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,11 +41,18 @@ ActiveRecord::Schema.define(version: 2019_06_05_170058) do
     t.index ["store_id"], name: "index_dishes_on_store_id"
   end
 
-  create_table "store_tag", force: :cascade do |t|
+  create_table "store_tags", force: :cascade do |t|
     t.string "category", limit: 20, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category"], name: "index_store_tag_on_category", unique: true
+  end
+
+  create_table "store_tags_stores", id: false, force: :cascade do |t|
+    t.bigint "store_id"
+    t.bigint "store_tag_id"
+    t.index ["store_id"], name: "index_store_tags_stores_on_store_id"
+    t.index ["store_tag_id"], name: "index_store_tags_stores_on_store_tag_id"
   end
 
   create_table "stores", force: :cascade do |t|
