@@ -3,6 +3,6 @@ FactoryBot.define do
     dish { nil }
     dish_count { 1 }
     item_price { "9.99" }
-    transact { nil }
+    transacttion_record { nil }
   end
 end

@@ -4,6 +4,6 @@
 # Examples:
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-User.create(title: "mr.", name: "steve", password: "111111", phone: "0923111111", email: "example@gmail.com", role: "admin", favorite_store: [1, 2])
-Dish.create(name: 'rice', price: 0.5e3, prepare_time: '00:10:00', state: 1, store_id: 1)
+# User.create(title: "mr.", name: "steve", password: "111111", phone: "0923111111", email: "example@gmail.com", role: "admin", favorite_store: [1, 2])
+# Dish.create(name: 'rice', price: 0.5e3, prepare_time: '00:10:00', state: 1, store_id: 1)
 #   Character.create(name: 'Luke', movie: movies.first)

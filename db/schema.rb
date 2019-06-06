@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_06_020846) do
+ActiveRecord::Schema.define(version: 2019_06_06_034909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_020846) do
   create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
-    t.time "prepare_time"
+    t.integer "prepare_time"
     t.integer "state"
     t.bigint "store_id"
     t.datetime "created_at", null: false
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_020846) do
     t.string "category", limit: 20, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category"], name: "index_store_tag_on_category", unique: true
+    t.index ["category"], name: "index_store_tags_on_category", unique: true
   end
 
   create_table "store_tags_stores", id: false, force: :cascade do |t|
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_06_06_020846) do
     t.datetime "read_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "transaction_number"
     t.index ["store_id"], name: "index_transactions_on_store_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
