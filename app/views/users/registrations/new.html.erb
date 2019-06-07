@@ -4,7 +4,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :phone, "電話(必填)" %><br />
+    <%= f.label :phone, "電話(十位數字) *必填" %><br />
     <%= f.text_field :phone, autofocus: true %>
   </div>
 
@@ -14,20 +14,20 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :password, "密碼" %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(長度最少<%= @minimum_password_length %>個字)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "再次確認密碼" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "註冊" %>
   </div>
 <% end %>
 

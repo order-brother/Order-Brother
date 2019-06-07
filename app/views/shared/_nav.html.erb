@@ -1,8 +1,8 @@
-<nav class="top-nav">
+<nav class="top-nav nav">
   <ul>
-    <li><%= link_to  "Home page", root_path %></li>
+    <li><%= link_to  "首頁", root_path %></li>
     <% if user_signed_in? %>
-      <li>Hi, <%= current_user.email %></li>
+      <li>使用者：<%= current_user.phone %> 你好！</li>
       <li><%= link_to "登出", destroy_user_session_path, method: 'delete', data: { confirm: '確定登出？' } %></li>
     <% else %>
       <li><%= link_to "登入", new_user_session_path %></li>
