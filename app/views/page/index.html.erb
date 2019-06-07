@@ -1,68 +1,175 @@
 <div class="container-fluid">
     <div class="row">
-        <nav class="topnav col-md-12 d-flex justify-content-end align-items-center">
-            <li><button type="button" class="btn btn-sm btn-outline-secondary" href="#category">分類</button></li>
-            <li><button type="button" class="btn btn-sm btn-outline-secondary" href="#featured">精選</button></li>
-            <li><button type="button" class="btn btn-sm btn-outline-secondary" href="#support_me">幫我挑</button></li>
+        <nav class="p-2 topnav col-md-12 d-flex justify-content-end align-items-center">
+            <li><button type="button" class="m-1 btn btn-sm btn-outline-secondary" href="#category">分類</button></li>
+            <li><button type="button" class="m-1 btn btn-sm btn-outline-secondary" href="#featured">精選</button></li>
+            <li><button type="button" class="m-1 btn btn-sm btn-outline-secondary" href="#support_me">幫我挑</button></li>
             <li>
-                <div class="card-body row no-gutters align-items-center">
-                    <div class="col-auto">
-                        <i class="fas fa-search h4 text-body"></i>
+                <div class="input-group">
+                    <input class=" form-control form-control-sm form-control-borderless" type="search" placeholder="Search topics or keywords">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="submit" data-toggle="dropdown">Search</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
                     </div>
-                    <!--end of col-->
-                    <div class="col">
-                        <input class="form-control form-control-sm form-control-borderless" type="search" placeholder="Search topics or keywords">
-                    </div>
-                    <!--end of col-->
-                    <div class="col-auto">
-                        <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button>
-                    </div>
-                    <!--end of col-->
                 </div>
             </li>
+            <li><button type="button" class="m-1 btn btn-sm btn-outline-secondary" href="#support_me">登入</button></li>
         </nav>
+
         <aside class="CheckboxList col-md-3">
-            <p>category....</p>
-            <div>543</div>
-            <div>543</div>
-            <div>543</div>
-        </aside>
-        <main class="col-md-9 row">
-            <div class="col-md-8">
-                    <button type="button" class="btn btn-sm btn-outline-secondary" href="#support_me">tag</button>
+            <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#category">哩底兜?</button>
+            <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#featured">pick up time?</button>
+            <button class="btn mt-3 btn-sm col-md-12" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
+                類別
+            </button>
+            <div class="collapse" id="collapse">
+                <div class="card-body">
+                    <ul class="col-md-12 justify-content-center align-items-center">
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">中式料理</label> 
+                        </li>
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">日式料理</label>
+                        </li>
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">韓式料理</label> 
+                        </li>
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">越南料理</label>
+                        </li>
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">西方料理</label> 
+                        </li>
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">義式料理</label>
+                        </li> 
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">元氣早餐</label> 
+                        </li>
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">漢堡</label>
+                        </li>
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">牛排</label> 
+                        </li>
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">飲料</label>
+                        </li>
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">甜品和甜食</label> 
+                        </li>
+                        <li class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2">辦公室最愛</label>
+                        </li> 
+                    </ul>
+                </div>
             </div>
-            <section class="col-md-4">
-                    <button type="button" class="btn btn-sm btn-outline-secondary" href="#support_me">排序</button>
-            </section>
+        </aside>
+
+        <main class="col-md-9 row justify-content-center align-items-center">
+            <div class="tag-arear col-md-12 row">
+                <div class="tag-arear-show col-md-10">
+                    <button type="button" class=" btn btn-sm btn-outline-secondary" href="#support_me">tag</button>
+                    <button type="button" class=" btn btn-sm btn-outline-secondary" href="#support_me">tag</button>
+                    <button type="button" class=" btn btn-sm btn-outline-secondary" href="#support_me">tag</button>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group-append">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">排序</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <section class="RestaurantsPageLayout col-md-12 row">
                 <div class="card RestaurantsPageLayout-Item col-md-4">
-                <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
+                    <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">RestaurantsPageLayout text...</p>
-                        
                     </div>
                 </div>
                 <div class="card RestaurantsPageLayout-Item col-md-4">
-                <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
+                    <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">RestaurantsPageLayout text...</p>
-                        
                     </div>
                 </div>
                 <div class="card RestaurantsPageLayout-Item col-md-4">
-                <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
+                    <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">RestaurantsPageLayout text...</p>
-                       
                     </div>
                 </div>
+                <!-- <div class="card RestaurantsPageLayout-Item col-md-4">
+                    <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">RestaurantsPageLayout text...</p>
+                    </div>
+                </div>
+                <div class="card RestaurantsPageLayout-Item col-md-4">
+                    <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">RestaurantsPageLayout text...</p>
+                    </div>
+                </div>
+                <div class="card RestaurantsPageLayout-Item col-md-4">
+                    <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">RestaurantsPageLayout text...</p>
+                    </div>
+                </div>
+                <div class="card RestaurantsPageLayout-Item col-md-4">
+                    <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">RestaurantsPageLayout text...</p>
+                    </div>
+                </div>
+                <div class="card RestaurantsPageLayout-Item col-md-4">
+                    <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">RestaurantsPageLayout text...</p>
+                    </div>
+                </div>
+                <div class="card RestaurantsPageLayout-Item col-md-4">
+                    <img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">RestaurantsPageLayout text...</p>
+                    </div>
+                </div> -->
             </section>
         </main>
+
         <footer class="col-md-12">
-            Orderbrother
+        © 2019 Orderbrother
         </footer>
     </div>
 </div>
