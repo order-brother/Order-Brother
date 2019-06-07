@@ -4,8 +4,9 @@ class CreateStores < ActiveRecord::Migration[5.2]
       t.string :name
       t.text :description
       t.string :location
+      t.string :latitude
       t.string :tel
-      t.string :business_hour
+      t.references :user, foreign_key: true
 
       t.timestamps
     end
