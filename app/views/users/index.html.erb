@@ -1,0 +1,17 @@
+<h1>使用者列表</h1>
+<div class="user-list container">
+  <% @users.each do |user| %>
+    <div class="user-card card">
+      <div class="card-avatar">
+        <img src="https://picsum.photos/300/200/?random1" alt="圖片說明">
+      </div>
+      <div class="info">
+        <div class="user-detail">
+          <h2><%= user.name %><%= user.title %></h2>
+          <p>信箱：<%= user.email %></p>
+          <p>電話：<%= user.phone %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
