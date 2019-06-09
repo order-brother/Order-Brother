@@ -10,9 +10,106 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_06_06_034909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "business_hours", force: :cascade do |t|
+    t.integer "date"
+    t.time "start_at"
+    t.time "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "dish_tags", force: :cascade do |t|
+    t.string "category", limit: 20, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category"], name: "index_dish_tags_on_category", unique: true
+  end
+
+  create_table "dishes", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.integer "prepare_time"
+    t.integer "state"
+    t.bigint "store_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_dishes_on_store_id"
+  end
+
+  create_table "store_tags", force: :cascade do |t|
+    t.string "category", limit: 20, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category"], name: "index_store_tags_on_category", unique: true
+  end
+
+  create_table "store_tags_stores", id: false, force: :cascade do |t|
+    t.bigint "store_id"
+    t.bigint "store_tag_id"
+    t.index ["store_id"], name: "index_store_tags_stores_on_store_id"
+    t.index ["store_tag_id"], name: "index_store_tags_stores_on_store_tag_id"
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "location"
+    t.string "latitude"
+    t.string "tel"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stores_on_user_id"
+  end
+
+  create_table "transaction_items", force: :cascade do |t|
+    t.bigint "transaction_id"
+    t.bigint "dish_id"
+    t.integer "dish_count", null: false
+    t.decimal "item_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_transaction_items_on_dish_id"
+    t.index ["transaction_id"], name: "index_transaction_items_on_transaction_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.decimal "total_price", null: false
+    t.text "description"
+    t.string "pick_up_time", null: false
+    t.integer "state"
+    t.bigint "user_id"
+    t.bigint "store_id"
+    t.boolean "like"
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "transaction_number"
+    t.index ["store_id"], name: "index_transactions_on_store_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "title"
+    t.string "name"
+    t.string "password"
+    t.string "phone"
+    t.string "email"
+    t.string "role"
+    t.text "favorite_store", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "dishes", "stores"
+  add_foreign_key "stores", "users"
+  add_foreign_key "transaction_items", "dishes"
+  add_foreign_key "transaction_items", "transactions"
+  add_foreign_key "transactions", "stores"
+  add_foreign_key "transactions", "users"
 end
