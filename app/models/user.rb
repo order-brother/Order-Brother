@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :transactions
 
   def login
-    @login || self.phone || self.email
+    @login || self.phone
   end
 
   def self.find_for_database_authentication(warden_conditions)
@@ -25,5 +25,10 @@ class User < ApplicationRecord
     elsif conditions.has_key?(:phone) || conditions.has_key?(:email)
       where(conditions.to_h).first
     end
+  end
+
+  # Allow user sign up without email
+  def email_required?
+    false
   end
 end
