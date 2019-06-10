@@ -1,0 +1,52 @@
+.container-fluid{
+    .row{
+        nav.topnav{
+            border-bottom: 1px solid rgba(0,0,0,.08);
+            li{
+                display: inline-block;
+                a{
+                    text-decoration: none;
+                }
+            }
+        }
+        
+        aside.CheckboxList{
+            ul{
+                display:block;
+                li{
+                    display:block;
+                }
+            }
+        }
+        main{   
+            min-height: 42rem;
+            .tag-arear{
+                min-height: 6.25rem;
+                .tag-arear-show{
+                    font-size: 0;
+                    button{margin: .5rem .5rem .5rem 0;}
+                }
+            }
+            .col-md-2{
+                .input-group-append{
+                    button{
+                        margin: .5rem;
+                    }
+                }
+            }
+            .RestaurantsPageLayout{
+                .RestaurantsPageLayout-Item{
+                    margin-bottom: .5rem;
+                    min-height: 15rem;
+                    max-height: 30rem;
+                }
+            }
+        }
+        
+        footer{
+            border-top: 1px solid rgba(0,0,0,.08);
+            padding-top: .75rem;
+            text-align: center
+        }
+    }
+}
