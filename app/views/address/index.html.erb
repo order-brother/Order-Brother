@@ -1,20 +1,21 @@
 <h1>地址頁面</h1> 
  
 <div id="floating-panel">
-  <input id="address" type="textbox" value=" " placeholder="兄弟底叨？">
+  <input id="address" type="textbox" value="" placeholder="兄弟底叨？">
   <input id="submit" type="button" value="Search">
 </div>
 
-<div id="map"  style="width:600px;height: 600px;">
+<div id="map"  style="width:800px;height: 600px;">
      
   
 </div>
 
 <script>
-//     $(document).on('turbolinks:load', function() {
-//         console.log('JS ttttriggered');
-//         initMap()
-// });
+var map;
+$(document).on('turbolinks:load', function() {
+    console.log('JS ttttriggered');
+    initMap()
+});
 
 
 // document.addEventListener('turbolinks:load', function() {
@@ -41,9 +42,9 @@
                             lng: position.coords.longitude
                         }
                     );
-                    // console.log(myLocation);
+                    console.log(myLocation);
                     // ---------- 畫地圖 ------------
-                    var map = new google.maps.Map(document.getElementById("map"), {
+                    map = new google.maps.Map(document.getElementById("map"), {
                         center: myLocation,
                         zoom: 18
                     });
@@ -71,13 +72,14 @@
                             title: "媽 我在這"
                         }
                     ];
-                    var marker_config2 = [
-                        {
-                            position: searchLocation,
-                            map: map,
-                            title: "媽 我在這"
-                        }
-                    ];
+                    
+                    // var marker_config2 = [
+                    //     {
+                    //         position: searchLocation,
+                    //         map: map,
+                    //         title: "媽 我在這"
+                    //     }
+                    // ];
     
                     // 1. 從db取回資料
                     // 2. 將資料塞到 marker_config
@@ -106,10 +108,10 @@
                     });
     
                     // 可暫時忽略
-                    function _geocoder(address) {
+                    function _geocoder(searchLocation) {
                         geocoder.geocode(
                             {
-                                address: address
+                                address: searchLocation
                             },
                             function (results, status) {
                                 if (status == google.maps.GeocoderStatus.OK) {
@@ -128,9 +130,78 @@
             );
         } else {
             /* geolocation IS NOT available */
+            
         }
     
         // console.log(_geocoder());
+        if (typeof map === 'undefined') { 
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -33.8688, lng: 151.2195 },
+                zoom: 13,
+                mapTypeId: 'roadmap'
+            });
+        }
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('address');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function () {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function () {
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
+
+            // Clear out the old markers.
+            markers.forEach(function (marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function (place) {
+                if (!place.geometry) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+                var icon = {
+                    url: place.icon,
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(25, 25)
+                };
+
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: icon,
+                    title: place.name,
+                    position: place.geometry.location
+                }));
+
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
+
+        
     }
     
     // ------------  WHEN CLICK SUBMIT BUTTON
@@ -138,28 +209,34 @@
         console.log('CLIIIIIICK');
     
         // geocodeAddress(geocoder, map);
-        searchAddress();
+    // function searchAddress() {
+        searchLocation = document.getElementById('address').value;
+        console.log(searchLocation)
+        // document.getElementById('address').value = '';
+    // }
+        // searchAddress();
+        function _geocoder(searchLocation) {
+                        geocoder.geocode(
+                            {
+                                address: searchLocation
+                            },
+                            function (results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    LatLng = results[0].geometry.location;
+                                    return results;
+                                }
+                            }
+                        );
+                    }
+       
     });
     // ------------
     
     
-    var searchLocation = '';
-    function searchAddress() {
-        searchLocation = document.getElementById('address').value;
-        console.log(searchLocation)
-        document.getElementById('address').value = '';
-    }
 // }); 
-
-
-
-
-
 </script>
 
 <script
 defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATnRWstSO1hdtDa5zSmp2p0yKe0YoKIqU&callback=initMap"
->
-
-</script>
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVDZMwKN8RtcS_Sl4OaM_FDCl9hVYy_cU&libraries=places&callback=initMap"
+></script>

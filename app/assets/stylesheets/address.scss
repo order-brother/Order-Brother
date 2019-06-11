@@ -5,6 +5,10 @@ body {
   padding: 0;
 }
 
-#map {
-  height: 100%;
+input::placeholder{ /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1; /* Firefox */
 }
+
+
+

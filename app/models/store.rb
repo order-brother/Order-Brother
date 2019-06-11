@@ -4,4 +4,10 @@ class Store < ApplicationRecord
   has_many :dishes, dependent: :destroy
   has_many :business_hours, dependent: :destroy
   has_and_belongs_to_many :store_tags
+
+  # def self.get_all_store_latlng
+  #   self.all.map do |store|
+  #     store.to_json
+  #   end
+  # end
 end
