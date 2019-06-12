@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_11_072805) do
+ActiveRecord::Schema.define(version: 2019_06_12_125832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2019_06_11_072805) do
     t.time "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "store_id"
+    t.index ["store_id"], name: "index_business_hours_on_store_id"
   end
 
   create_table "dish_tags", force: :cascade do |t|
@@ -112,6 +114,7 @@ ActiveRecord::Schema.define(version: 2019_06_11_072805) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "business_hours", "stores"
   add_foreign_key "dishes", "stores"
   add_foreign_key "stores", "users"
   add_foreign_key "transaction_items", "dishes"
