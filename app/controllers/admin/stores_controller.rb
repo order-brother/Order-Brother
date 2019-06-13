@@ -8,8 +8,16 @@ class Admin::StoresController < Admin::BaseController
     @store = Store.new
   end
 
+  def show
+    @store = Store.find(params[:id])
+  end
+
   def create
-    @store = Store.create(store_params)
+    @store = Store.new(store_params)
+    @store.user = current_user
+    @store.save!
+    redirect_to admin_store_path(@store)
+    # byebug
   end
   
   def store_params
