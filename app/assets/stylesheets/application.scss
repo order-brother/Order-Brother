@@ -15,4 +15,22 @@
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
- body{ margin: 0; padding: 0; }
+ body{ 
+  margin:1.5rem 0; 
+  padding: 0; 
+  color: #6c757d;
+  background-attachment: scroll, fixed;
+  // background-image: url(background00.jpg);
+  background-image: url('bg.jpg');
+  // background-image: url('https://pixelarity.com/items/demos/transit/magenta/images/bg.jpg');
+  background-position: top left, top center;
+  background-repeat: repeat, no-repeat;
+  background-size: 100%, cover;
+  
+  }
+body, button, input, select, textarea {
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.65;
+}
