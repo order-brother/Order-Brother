@@ -17,6 +17,7 @@
           <p>描述：<%= store.description %></p>
           <p>地址：<%= store.location %></p>
           <p>電話：<%= store.tel %></p>
+          <%= link_to "編輯商店", edit_admin_store_path(store) if policy(store).edit? %>
           <%= link_to "查看", admin_store_path(store), class: 'btn btn-info' %>
         </div>
       </div>

@@ -1,5 +1,5 @@
 class Admin::StoresController < Admin::BaseController
-  
+  before_action :find_store, only: [:show, :edit, :update, :destroy]
   def index
     @stores = Store.all
   end
@@ -9,9 +9,7 @@ class Admin::StoresController < Admin::BaseController
   end
 
   def show
-    @store = Store.find(params[:id])
     # @store = Store.find(current_user.id)
-    # byebug
   end
 
   def create
@@ -27,11 +25,14 @@ class Admin::StoresController < Admin::BaseController
   
   def edit
     # 驗證店主 或 管理員
+    authorize @store
   end
 
   def update
+    # authorize @store
+    # byebug
     if @store.update(store_params)
-      redirect_to admin_stores_path, notice: '更新成功！'
+      redirect_to admin_store_path, notice: '更新成功！'
     else
       render :edit
     end
@@ -39,10 +40,17 @@ class Admin::StoresController < Admin::BaseController
 
   def destroy
     # 驗證店主 或 管理員
-    @store.destroy
+    authorize @store
+    @store.destroy!
     redirect_to root_path, notice: '商店已刪除'
   end
   
+  private
+
+  def find_store
+    @store = Store.find_by(id: params[:id])
+  end
+
   def store_params
     params.require(:store).permit(:name, :description, :location, :latitude, :tel, :main_img)
   end

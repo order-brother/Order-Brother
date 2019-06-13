@@ -1,4 +1,6 @@
 class Admin::BaseController < ActionController::Base
+  include Pundit
+
   layout 'admin/application'
   before_action :configure_permitted_parameters, if: :devise_controller?
 

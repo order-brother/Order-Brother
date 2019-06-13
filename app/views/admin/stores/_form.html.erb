@@ -5,8 +5,8 @@
     <% end %>
   </ul>
 <% end %>
-
-<%= form_for store, url: admin_stores_path , html: { id: 'store_form'} do |f| %>
+<%= form_for [:admin, store] , html: { id: 'store_form'} do |f| %>
+<%# byebug %>
   <div>
     <%= f.label :name, '店名' %>
     <%= f.text_field :name, id: 'name' %>
