@@ -1,0 +1,10 @@
+<h1>地址頁面</h1>
+
+<div id="floating-panel">
+  <input id="address" type="text" value="" placeholder="兄弟底叨？">
+  <input id="submit" type="button" value="Search">
+</div>
+
+<div id="map" style="width:800px;height: 600px;"></div>
+
+<script defer src="https://maps.googleapis.com/maps/api/js?key=<%= @api_key %>&libraries=places&callback=initMap"></script>
