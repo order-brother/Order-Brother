@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root 'users#index'
   get '/address', to: 'address#index'
   mount RailsAdmin::Engine => '/backstage', as: 'rails_admin'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-get "/page", to:"page#index"
+
+  get "/page", to:"page#index"
+
+  namespace :admin do
+    resources :stores
+  end
 end

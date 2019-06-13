@@ -1,0 +1,20 @@
+<h1>商家列表</h1>
+<div class="store-list container">
+  <% @stores.each do |store| %>
+    <div class="store-card card">
+      <div class="card-avatar">
+        <!-- <img src="https://picsum.photos/300/200/?random1" alt="圖片說明"> -->
+        <%= image_tag store.main_img_url if store.main_img? %>
+      </div>
+      <div class="info">
+        <div class="store-detail">
+          <h2><%= store.name %></h2>
+          <p>描述：<%= store.description %></p>
+          <p>地址：<%= store.location %></p>
+          <p>電話：<%= store.tel %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

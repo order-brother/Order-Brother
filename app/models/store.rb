@@ -5,7 +5,7 @@ class Store < ApplicationRecord
   has_many :business_hours, dependent: :destroy
   has_and_belongs_to_many :store_tags
 
-  mount_uploader :main_img, MainImageUploader
+  mount_uploader :main_img, MainImgUploader
   
   
   # def self.get_all_store_latlng
