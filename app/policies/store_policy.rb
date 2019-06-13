@@ -15,24 +15,26 @@ class StorePolicy < ApplicationPolicy
   end
 
   def create?
-    false
+    user
   end
 
   def new?
-    create?
+    user
   end
 
   def update?
-    user.id == record.user_id
+    user && (user.id == record.user_id)
   end
 
   def edit?
-    user.id == record.user_id
+    user && (user.role == 'admin' || user.id == record.user_id)
   end
 
   def destroy?
-    user.id == record.user_id
+    # byebug
+    user && (user.role == 'admin' || user.id == record.user_id )
   end
+
   # class Scope < Scope
   #   def resolve
   #     scope.all

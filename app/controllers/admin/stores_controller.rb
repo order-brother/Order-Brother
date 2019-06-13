@@ -48,7 +48,7 @@ class Admin::StoresController < Admin::BaseController
   private
 
   def find_store
-    @store = Store.find_by(id: params[:id])
+    @store = Store.includes(:dishes).find_by(id: params[:id])
   end
 
   def store_params

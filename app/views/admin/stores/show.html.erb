@@ -1,6 +1,43 @@
-<h1>你的商店</h1>
-
+<h1>我的店面</h1>
 <%#= link_to "建立商店", new_admin_store_path, class: 'btn btn-info' %>
-<%= render 'show_store', store: @store %>
+<%#= render '/show_store', store: @store %>
+<%= error_block(@store) %>
 
+<div class="container">
+
+  <div class="show--store__header col-12">
+    <h1><%= @store.name %></h1>
+    <p><%= @store.description %></p>
+    <p><%= @store.location %></p>
+  </div>
+  <div class="show--store__body col-8">
+    <div class="dishes__list">
+      <% @store.dishes.each do |dish| %>
+        <div class="dishes__card">
+          <div class="dishes__card--desc">
+            <p><%= dish.name %></p>
+            <p><%= dish.price %></p>
+          </div>
+          <div class="dish__img">
+            <%= image_tag dish.main_img_url if dish.main_img? %>
+          </div>
+        </div>
+      <% end %>
+      <div class="dishes__card">
+        <div class="dishes__card--desc">
+          <%#= link_to "新增菜色", new_admin_dish_path %>
+        </div>
+        <div class="dish__img">
+          <!-- 圖片上傳區 -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="show--store__info col-4">
+    <div class="show--store__main_img">
+      <%= image_tag @store.main_img_url if @store.main_img? %>
+    </div>
+    <%= link_to '編輯商店', edit_admin_store_path(@store), class: 'btn btn-warning' if policy(@store).edit? %>
+  </div>
+</div>
 

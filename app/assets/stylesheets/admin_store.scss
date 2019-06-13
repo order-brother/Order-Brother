@@ -2,7 +2,44 @@
   width: 960px;
   
   .store-card {
+    max-width: 300px;
     margin: 5px 5px;
     padding-top: 5px;
+  }
+}
+
+.dishes__list {
+  max-width: 720px;
+  min-width: 300px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  
+  .dishes__card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 270px;
+    height: 100px;
+    box-sizing: border-box;
+    padding: 3px;
+    margin: 5px;
+    flex-flow: row nowrap;
+    border: 1px solid salmon;
+    
+    .dishes__card--desc{
+      display: inline-block;
+    };
+    
+    .dish__img {
+      box-sizing: border-box;
+      display: inline-block;
+      height: 75px;
+      width: 75px;
+
+      img {
+        width: 100%;
+      }
+    }
   }
 }
