@@ -1,12 +1,15 @@
 <h1>商家列表</h1>
-<input type="button" class="btn btn-info" value="show">
-<%= link_to "建立商店", new_admin_store_path, class: 'btn btn-info' %>
-<div class="store-list container d-flex justify-content-center">
+<% if user_signed_in? %>
+  <%#= link_to "我的商店", admin_store_path(), class: 'btn btn-info' %>
+  
+  <%= link_to "建立商店", new_admin_store_path, class: 'btn btn-info' %>
+<% end %>
+<div class="store-list container d-flex flex-wrap justify-content-center">
   <% @stores.each do |store| %>
-    <div class="store-card card col-md-4">
-      <div class="card-avatar">
+    <div class="store-card card col-4">
+      <div class="card-img">
         <!-- <img src="https://picsum.photos/300/200/?random1" alt="圖片說明"> -->
-        <%= image_tag store.main_img_url if store.main_img? %>
+        <%= image_tag store.main_img_url, class: 'card-img-top' if store.main_img? %>
       </div>
       <div class="info">
         <div class="store-detail">
@@ -14,6 +17,7 @@
           <p>描述：<%= store.description %></p>
           <p>地址：<%= store.location %></p>
           <p>電話：<%= store.tel %></p>
+          <%= link_to "查看", admin_store_path(store), class: 'btn btn-info' %>
         </div>
       </div>
     </div>

@@ -1,0 +1,37 @@
+<% if store.errors.any? %>
+  <ul>
+    <%= store.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="container">
+  <div class="store__header"></div>
+  <div class="store__body"></div>
+  
+</div>
+
+<%= form_for store, url: admin_stores_path , html: { id: 'store_form'} do |f| %>
+  <div>
+    <%= f.label :name, '店名' %>
+    <%= f.text_field :name, id: 'name' %>
+  </div>
+  <div>
+    <%= f.label :description, '描述' %>
+    <%= f.text_area :description, id: 'description' %>
+  </div>
+  <div>
+    <%= f.label :location, '地址' %>
+    <%= f.text_field :location, id: 'location' %>
+  </div>
+  <div>
+    <%= f.label :tel, '電話' %>
+    <%= f.text_field :tel, id: 'tel' %>
+  </div>
+  <div>
+    <%= f.label :main_img, '首頁圖' %>
+    <%= f.file_field :main_img %>
+  </div>
+    <%= f.submit class: 'btn btn-info' %>
+<% end %>
