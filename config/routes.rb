@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'page#index'
   get '/address', to: 'address#index'
   mount RailsAdmin::Engine => '/backstage', as: 'rails_admin'
+<<<<<<< HEAD
 
   namespace :admin do
     resources :stores, shallow: true do
@@ -16,4 +17,9 @@ Rails.application.routes.draw do
       end
     end
   end
+=======
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :stores, only: [:show]
+
+>>>>>>> add frontend stores page
 end

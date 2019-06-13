@@ -3,6 +3,7 @@ class Transaction < ApplicationRecord
 
   belongs_to :user
   belongs_to :store
+<<<<<<< HEAD
   has_many :transaction_items, dependent: :destroy
 
   acts_as_paranoid
@@ -46,4 +47,22 @@ class Transaction < ApplicationRecord
   def total_price
     self.total_price = self.transaction_items.reduce(0) { |sum, transaction_item| sum + (transaction_item.item_price * transaction_item.dish_count) }
   end
+=======
+  has_many :transaction_items
+
+  # def transaction
+  #   def initialize
+  #     @items = []
+  #   end
+  
+
+  #   def add_item(transaction_item_id)
+  #     @items << transaction_item_id
+  #   end
+
+  #   def empty?
+  #     @items.empty?
+  #   end
+  # end
+>>>>>>> add frontend stores page
 end

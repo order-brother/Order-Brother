@@ -1,0 +1,19 @@
+<h1>店家頁面</h1>
+<div class= "store_page">
+<% @dishes.each do |dish| %>
+  <div class="dish-list">
+  
+        <div class="dish-card">
+          <div class= "avatar">
+            <%#= image_tag store.avatar_url(:small) if store.avatar? %>
+          </div>
+            
+            <div class="info">
+                <h1>品項：<%= dish.name %></h1>
+                <h2>價錢：<%= dish.price %></h2>   
+            </div>
+        </div>
+
+  </div>
+<% end %>
+</div>
