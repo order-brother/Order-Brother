@@ -1,5 +1,6 @@
 <h1>店家頁面</h1>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class= "store_page">
 <% @dishes.each do |dish| %>
   <div class="dish-list">
@@ -8,36 +9,32 @@
           <div class= "avatar">
             <%#= image_tag store.avatar_url(:small) if store.avatar? %>
 =======
+=======
+<div><img src="https://cdn2.ettoday.net/images/525/d525095.jpg" alt=""></div>
+>>>>>>> update stores/show.html.erb
 
 <%# 讀取餐點所有資訊%>
 <div class="container-fluid store_page">
   <div class="row">
     <div class="col-7 ">
       <div class="left-part">
-        <% @stores.each do |store| %>
-        <h2>StoreB Page</h2>
-        <p>店家資訊<%#= store.description %></p>
-        <p>地點<%#= store.location %></p>
-        <p>電話<%#= store.tel %></p>
-        <% end %>
-        <% @dishes.each do |dish| %>
         <div class="dish-list">
           <div class="row">
+            <% @store.dishes.each do |dish| %>
             <div class="col-6 dish-card">
               <div class="avatar">
-
                 <div class="info">
                   <div class="row">
                     <div class="col-6 item-info">
-                      <p>品項：<%= dish.name %></p>
-                      <p>價錢：<%= dish.price %></p>
+                      <span><%= dish.name %></span>
+                      <span><%= dish.price %>元</span>
                     </div>
                     <div class="col-6">
                       <img src="https://cdn2.ettoday.net/images/525/d525095.jpg" alt="">
                     </div>
                   </div>
-
                 </div>
+<<<<<<< HEAD
 
               </div>
             </div>
@@ -139,31 +136,39 @@
 
                 </div>
 
+=======
+>>>>>>> update stores/show.html.erb
               </div>
             </div>
+            <% end %>
           </div>
         </div>
-        <% end %>
-      
-
+    
       </div>
     </div>
     <div class="col-5">
-
       <div class="right-part">
         <div class="top-info">
           <div class="row">
-            <h4>兄弟飯館</h4>
+            <h4><%= @store.name %> Page</h4>
             <img src="https://cdn2.ettoday.net/images/525/d525095.jpg">
           </div>
+
           <div class="row">
-            <span>電話：0987654321</span>
-            <span>地址：深海的大鳳梨</span>
-            <span>營業時間：09:00~ 18:00</span>
+            <span>電話<%= @store.tel %></span>
+            <span>地點<%= @store.location %></span>
+            <span>店家資訊<%= @store.description %></span>
+            <span>營業時間：<%= @store.business_hours[0].start_at.hour %> ~ <%= @store.business_hours[0].end_at.hour %></span>
+
           </div>
         </div>
       </div>
     </div>
+<<<<<<< HEAD
   </div>
 </div>
 >>>>>>> tset
+=======
+
+    
+>>>>>>> update stores/show.html.erb

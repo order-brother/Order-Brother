@@ -1,14 +1,23 @@
 class StoresController < ApplicationController
+  before_action :find_store, only: [:show]
   
   def index
   end
   
-  def initialize
-  end
+  
 
   def show
-  @dishes = Dish.all
-  @stores = Store.all
+    @store = Store.find(params[:id]) 
+    # @dishes = @store.dishes
   end
+  private
+
+  def find_store
+    @store = Store.find_by(id: params[:id])
+  end
+
+  def store_params
+  params.require(:store).permit(:name, :description, :tel)
+end
 
 end

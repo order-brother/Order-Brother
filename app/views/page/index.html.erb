@@ -301,7 +301,8 @@
 						<section class="RestaurantsPageLayout col-md-12 row d-flex justify-content-center align-items-start">
 								<% @stores.each do |store| %>
 										<div class="card RestaurantsPageLayout-Item col-md-4">
-												<img src="https://img.purch.com/h/1400/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzEwNC84MzAvb3JpZ2luYWwvc2h1dHRlcnN0b2NrXzExMTA1NzIxNTkuanBn" class="card-img-top" alt="示意圖">
+												<%# <img src="" class="card-img-top" alt="示意圖"> %>
+												<%= image_tag store.main_img_url, class: 'card-img-top' if store.main_img? %>
 												
 												<div class="card-body">
 														<h5 class="catitlerd-"><%= store.name %></h5>
