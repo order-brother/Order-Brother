@@ -8,8 +8,7 @@ class StoresController < ApplicationController
 
   def show
   @dishes = Dish.all
+  @stores = Store.all
   end
-
-  
 
 end
