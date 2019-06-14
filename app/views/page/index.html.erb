@@ -21,11 +21,7 @@
         </nav>
 
         <aside class="CheckboxList col-md-3">
-<<<<<<< HEAD
-            <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" id="location" type="button" href="#category">哩底兜?</button>
-=======
             <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#address"><%= link_to"哩底兜?", address_path %></button>
->>>>>>> b31f851d2fa190bb1d0c7cd70a4ac10ba7437d4a
             <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#featured">pick up time?</button>
             <button class="btn mt-3 btn-sm col-md-12" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
                 類別
@@ -168,15 +164,16 @@
 
 <script type="text/javascript">
 	$(document).on('turbolinks:load', function(){
+        console.log('123');
 		$(".btn-close").click(function(e){
             // e.preventDefault();
             $(".full-screen").hide();
             return false;
         })
-        // $("#location").click(function(e){
-        //     // e.preventDefault();
-        //     $(".full-screen").show();
-        //     return false;
-		// }) 待改
+         $("#location").click(function(e){
+             // e.preventDefault();
+             $(".full-screen").show();
+             return false;
+		 }) 
 	});
 </script>
