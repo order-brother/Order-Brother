@@ -1,6 +1,5 @@
 <%= error_block(@store) %>
 <%= form_for [:admin, store] , html: { id: 'store_form'} do |f| %>
-<%# byebug %>
   <div>
     <%= f.label :name, '店名' %>
     <%= f.text_field :name, id: 'name' %>
