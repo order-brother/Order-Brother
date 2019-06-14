@@ -20,7 +20,7 @@
       <div class="show--store__main_img">
         <%= image_tag @store.main_img_url if @store.main_img? %>
       </div>
-      <%= link_to '編輯商店', edit_admin_store_path(@store), class: 'btn btn-warning', remote: true if policy(@store).edit? %>
+      <%= link_to "編輯商店", edit_admin_store_path(@store), class: 'btn btn-warning' if policy(@store).edit? %>
     </div>
   </div>
 </div>
