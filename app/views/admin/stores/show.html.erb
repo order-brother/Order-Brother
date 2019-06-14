@@ -1,0 +1,28 @@
+<h1>我的店面</h1>
+
+<div class="container">
+
+  <div class="show--store__header col-12">
+    <h1><%= @store.name %></h1>
+    <p><%= @store.description %></p>
+    <p><%= @store.location %></p>
+  </div>
+
+  <div class="row">
+    <div class="show--store__body col-8">
+      <section class="dishes">
+        <div class="dishes__list">
+          <%= render 'dish_list_items' %>
+          <%= render './admin/dishes/new_dishes_card' if policy(@store).edit? %>
+        </div>
+      </section>
+    </div>
+    <div class="show--store__info col-4">
+      <div class="show--store__main_img">
+        <%= image_tag @store.main_img_url if @store.main_img? %>
+      </div>
+      <%= link_to '編輯商店', edit_admin_store_path(@store), class: 'btn btn-warning', remote: true if policy(@store).edit? %>
+    </div>
+  </div>
+</div>
+

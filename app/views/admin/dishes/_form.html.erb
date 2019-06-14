@@ -1,0 +1,7 @@
+<%= form_for [:admin, @store, @dish], html: { remote: true, class: 'add_dish_form' } do |f| %>
+<%= f.label :name, "名稱" %>
+<%= f.text_field :name %><br />
+<%= f.label :price, "價格" %>
+<%= f.text_field :price %>
+<%= f.submit "確認", class: 'btn btn-success'%>
+<% end %>

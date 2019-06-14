@@ -1,15 +1,10 @@
-class ApplicationController < ActionController::Base
+class Admin::BaseController < ActionController::Base
   include Pundit
-  
-  before_action :configure_permitted_parameters, if: :devise_controller?
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  
-  protected
 
-  def user_not_authorized
-    flash[:alert] = '權限不足'
-    redirect_to(request.referrer || root_path)
-  end
+  layout 'admin/application'
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
 
   # Setting strong parameters for user sign_in of devise gem
   def configure_permitted_parameters

@@ -1,0 +1,11 @@
+<!-- not useing for now -->
+<div class="dishes__card">
+    <div class="dishes__card--desc">
+      <p><%= @store.dish.last.name %></p>
+      <p><%= @store.dish.last.price %></p>
+    </div>
+    <div class="dish__img">
+      <%= image_tag @store.dish.last.main_img_url if @store.dish.last.main_img? %>
+    </div>
+  </div>
+
