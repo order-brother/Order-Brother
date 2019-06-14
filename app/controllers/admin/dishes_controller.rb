@@ -1,5 +1,5 @@
 class Admin::DishesController < Admin::BaseController
-  before_action :find_store, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_store, only: [:new, :create, :edit, :update]
 
   def index
     @dish = Dish.all
@@ -9,16 +9,13 @@ class Admin::DishesController < Admin::BaseController
   end
   
   def new
-    @store = Store.find(params[:store_id])
     @dish = @store.dishes.new
   end
 
   def create
-    @store = Store.find(params[:store_id])
     if @store.dishes.create!(dish_params)
       render 'create'
     else
-
     end
   end
 
@@ -29,8 +26,9 @@ class Admin::DishesController < Admin::BaseController
   end
 
   def destroy
+    @dish = Dish.find(params[:id])
+    @store = @dish.store
     @dish.destroy!
-    # FIXME
     render 'destroy'
   end
 

@@ -7,6 +7,6 @@
     <div class="dish__img">
       <%= image_tag dish.main_img_url if dish.main_img? %>
     </div>
-    <%= link_to 'X', admin_dish_path(dish), method: 'delete', data: { confirm: '確認刪除菜色？' }, class: 'btn btn-danger' if policy(@store).edit? %>
+    <%= link_to 'X', admin_dish_path(dish), method: 'delete', remote: true, data: { confirm: '確認刪除菜色？' }, class: 'btn btn-danger' if policy(@store).edit? %>
   </div>
 <% end %>
