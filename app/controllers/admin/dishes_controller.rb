@@ -1,5 +1,5 @@
 class Admin::DishesController < Admin::BaseController
-  before_action :find_store, only: [:new, :create, :edit, :update]
+  before_action :find_store, only: [:new, :create]
   before_action :find_dish, only: [:edit, :update, :destroy]
 
   def index
@@ -24,6 +24,9 @@ class Admin::DishesController < Admin::BaseController
   end
 
   def update
+    @store = @dish.store
+    @dish.update!(dish_params)
+    render 'update'
   end
 
   def destroy
