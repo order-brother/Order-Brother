@@ -1,5 +1,6 @@
 class Admin::StoresController < Admin::BaseController
   before_action :find_store, only: [:show, :edit, :update, :destroy]
+  
   def index
     @stores = Store.all
   end

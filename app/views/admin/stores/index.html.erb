@@ -1,7 +1,6 @@
 <h1>商家列表</h1>
 <% if user_signed_in? %>
   <%#= link_to "我的商店", admin_store_path(), class: 'btn btn-info' %>
-  
   <%= link_to "建立商店", new_admin_store_path, class: 'btn btn-info' %>
 <% end %>
 <div class="store-list container d-flex flex-wrap justify-content-center">
@@ -24,4 +23,3 @@
     </div>
   <% end %>
 </div>
-
