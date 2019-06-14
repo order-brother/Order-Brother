@@ -21,7 +21,7 @@
         </nav>
 
         <aside class="CheckboxList col-md-3">
-            <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#category">哩底兜?</button>
+            <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" id="location" type="button" href="#category">哩底兜?</button>
             <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#featured">pick up time?</button>
             <button class="btn mt-3 btn-sm col-md-12" type="button" data-toggle="collapse" data-target="#collapse" aria-expanded="false" aria-controls="collapse">
                 類別
@@ -150,13 +150,16 @@
         <footer class="col-md-12">
         © 2019 Orderbrother
         </footer>
-    </div>
-    <!-- <div class="full-screen">
-        <div class="text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti velit enim ad, placeat possimus, alias dicta pariatur aliquam vitae dignissimos distinctio explicabo autem quaerat iure libero magni facere porro amet. Eos voluptatibus temporibus ipsum quam autem tempore officiis nesciunt eum iusto hic cum dolores aliquam vitae quibusdam, facere qui velit aliquid aperiam atque libero tenetur laboriosam perspiciatis quae ex animi. Similique tempora praesentium sit explicabo fuga quisquam, eius doloremque ad!
-            <a href="#" class="btn-close">X</a>
+        <div class="full-screen">
+            <div class="search-location">
+                <div class="input-group">
+                    <input class=" form-control form-control-sm form-control-borderless" type="search" placeholder="Search topics or keywords">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="submit">button</button>
+                </div>        
+                <a href="#" class="btn-close">X</a>
+            </div>
         </div>
-    </div> -->
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -165,6 +168,11 @@
             // e.preventDefault();
             $(".full-screen").hide();
             return false;
-		})
+        })
+        // $("#location").click(function(e){
+        //     // e.preventDefault();
+        //     $(".full-screen").show();
+        //     return false;
+		// }) 待改
 	});
 </script>
