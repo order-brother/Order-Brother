@@ -1,0 +1,6 @@
+
+development:
+  google_map_api: 'YOUR_API_KEY_PUTS_HERE_LAH!'
+
+production:
+  google_map_api: 'YOUR_API_KEY_PUTS_HERE_LAH!'
