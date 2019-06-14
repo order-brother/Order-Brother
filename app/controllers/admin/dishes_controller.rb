@@ -1,5 +1,6 @@
 class Admin::DishesController < Admin::BaseController
   before_action :find_store, only: [:new, :create, :edit, :update]
+  before_action :find_dish, only: [:edit, :update, :destroy]
 
   def index
     @dish = Dish.all
@@ -26,7 +27,6 @@ class Admin::DishesController < Admin::BaseController
   end
 
   def destroy
-    @dish = Dish.find(params[:id])
     @store = @dish.store
     @dish.destroy!
     render 'destroy'
@@ -36,6 +36,10 @@ class Admin::DishesController < Admin::BaseController
 
   def find_store
     @store = Store.find(params[:store_id])
+  end
+
+  def find_dish
+    @dish = Dish.find(params[:id])
   end
 
   def dish_params
