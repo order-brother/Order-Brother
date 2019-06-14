@@ -1,7 +1,7 @@
 module Admin
   module StoreHelper
     def error_block(store)
-      msg = []
+      msg = ['test helper']
       if store.errors.any? 
         msg << '<ul>'
         store.errors.full_messages.each do |message|

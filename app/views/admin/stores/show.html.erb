@@ -1,7 +1,4 @@
 <h1>我的店面</h1>
-<%#= link_to "建立商店", new_admin_store_path, class: 'btn btn-info' %>
-<%#= render '/show_store', store: @store %>
-<%= error_block(@store) %>
 
 <div class="container">
 
@@ -23,14 +20,17 @@
           </div>
         </div>
       <% end %>
-      <div class="dishes__card">
-        <div class="dishes__card--desc">
-          <%#= link_to "新增菜色", new_admin_dish_path %>
+      <% if policy(@store).edit? %>
+        <div class="dishes__card">
+          <div class="dishes__card--desc">
+            <%= link_to "新增菜色", new_admin_store_dish_path(store_id: @store.id), remote: true, class: 'btn btn-success btn-add' %>
+          </div>
+          <div class="dish__img">
+            <!-- 圖片上傳區 -->
+          </div>
         </div>
-        <div class="dish__img">
-          <!-- 圖片上傳區 -->
-        </div>
-      </div>
+      <% end %>
+
     </div>
   </div>
   <div class="show--store__info col-4">

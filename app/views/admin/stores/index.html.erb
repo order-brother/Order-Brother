@@ -8,7 +8,6 @@
   <% @stores.each do |store| %>
     <div class="store-card card col-4">
       <div class="card-img">
-        <!-- <img src="https://picsum.photos/300/200/?random1" alt="圖片說明"> -->
         <%= image_tag store.main_img_url, class: 'card-img-top' if store.main_img? %>
       </div>
       <div class="info">

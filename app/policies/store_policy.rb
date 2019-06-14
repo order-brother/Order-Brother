@@ -31,7 +31,6 @@ class StorePolicy < ApplicationPolicy
   end
 
   def destroy?
-    # byebug
     user && (user.role == 'admin' || user.id == record.user_id )
   end
 

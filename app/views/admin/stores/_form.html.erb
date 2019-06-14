@@ -1,10 +1,4 @@
-<% if store.errors.any? %>
-  <ul>
-    <%= store.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= error_block(@store) %>
 <%= form_for [:admin, store] , html: { id: 'store_form'} do |f| %>
 <%# byebug %>
   <div>

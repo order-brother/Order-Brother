@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "/page", to:"page#index"
 
   namespace :admin do
-    resources :stores
+    resources :stores do
+      resources :dishes
+    end
   end
 end
