@@ -1,4 +1,7 @@
 class Store < ApplicationRecord
+  validates_presence_of :name, :tel, { message: '*為必填欄位'}
+  validates_numericality_of :tel, { in: 9..10, message: '請填寫正確的電話號碼（數字）' }
+
   belongs_to :user
   has_many :transactions
   has_many :dishes, -> { order(id: :asc) }, dependent: :destroy

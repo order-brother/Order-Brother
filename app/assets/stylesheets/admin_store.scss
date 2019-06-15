@@ -1,3 +1,17 @@
+
+
+.show--store__info {
+  .show--store__main_img {
+    width: 300;
+    height: 300;
+    padding: 5px;
+    img {
+      width: 100%;
+      display: inline-block
+    }
+  }
+}
+
 .store-list {
   width: 960px;
   
@@ -8,13 +22,19 @@
     padding-top: 5px;
   }
 }
-
 .dishes__list {
   max-width: 720px;
   min-width: 300px;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
+  .dish_state_0::before {
+    content: '售完';
+    color: crimson;
+    font-size: 24px;
+    position: absolute;
+    display: inline-block;
+  }
 }
 
 .dishes__card {
@@ -52,6 +72,11 @@
   }
 }
 
+.error_messages {
+  color: red;
+  font-weight: 700;
+  text-decoration: underline;
+}
 .field_with_errors {
   display: inline;
 

@@ -14,9 +14,11 @@ class Admin::DishesController < Admin::BaseController
   end
 
   def create
-    if @store.dishes.create!(dish_params)
-      render 'create'
+    @dish = @store.dishes.build(dish_params)
+    if @dish.save
+      render 'create', noteice: '商品新增成功'
     else
+      render 'new'
     end
   end
 
@@ -25,8 +27,11 @@ class Admin::DishesController < Admin::BaseController
 
   def update
     @store = @dish.store
-    @dish.update!(dish_params)
-    render 'update'
+    if @dish.update(dish_params)
+      render 'update'
+    else
+      render 'update_fail'
+    end
   end
 
   def destroy
@@ -46,7 +51,6 @@ class Admin::DishesController < Admin::BaseController
   end
 
   def dish_params
-    # params.require(:dish).permit(:name, :price, :prepare_time, :state, :main_img, :store_id)
     params.require(:dish).permit(:name, :price, :prepare_time, :state, :main_img, :store_id)
   end
 end
