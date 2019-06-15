@@ -1,11 +1,9 @@
-<!-- not useing for now -->
-<div class="dishes__card">
-    <div class="dishes__card--desc">
-      <p><%= @store.dish.last.name %></p>
-      <p><%= @store.dish.last.price %></p>
-    </div>
-    <div class="dish__img">
-      <%= image_tag @store.dish.last.main_img_url if @store.dish.last.main_img? %>
-    </div>
-  </div>
-
+<div class="dishes__card--desc">
+  <p><%= @dish.name %></p>
+  <p><%= @dish.price %></p>
+</div>
+<div class="dish__img">
+  <%= image_tag @dish.main_img_url if @dish.main_img? %>
+</div>
+<%= link_to '#', edit_admin_dish_path(@dish), remote: true, class: 'btn btn-warning btn--function' if policy(@store).edit? %>
+<%= link_to 'X', admin_dish_path(@dish), method: 'delete', remote: true, data: { confirm: '確認刪除菜色？' }, class: 'btn btn-danger btn--function' if policy(@store).edit? %>

@@ -18,19 +18,22 @@
 }
 
 .dishes__card {
+  width: 270px;
+  height: auto;
   background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 270px;
-  height: 100px;
   box-sizing: border-box;
-  padding: 3px;
+  padding: 3px 5px;
   margin: 5px;
   flex-flow: row nowrap;
   border: 1px solid salmon;
+  .btn--function {
+    border-radius: 50%;
+  }
   
-  .dishes__card--desc{
+  .dishes__card--desc {
     display: inline-block;
 
     .btn-add {
@@ -59,5 +62,14 @@
   label {
     color: red;
     font-weight: 700;
+  }
+}
+
+.add_dish_form.form-control-sm {
+  height: auto;
+  margin: 0;
+  background-color: rgb(168, 249, 249);
+  input[type="file"] {
+    font-size: 12px;
   }
 }
