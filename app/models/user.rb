@@ -2,7 +2,9 @@ class User < ApplicationRecord
   # Tell devise to use :login in the authentication_keys
   attr_writer :login
 
-  validates :phone, presence: true
+  validates :phone, presence: { message: '電話為必填。'},
+                    uniqueness: { message: '很抱歉，此電話已被註冊過了。'}
+  # validates_presence_of :phone
   validates_format_of :phone, with: /^\d{10}$/, multiline: true
   
   # Include default devise modules. Others available are:

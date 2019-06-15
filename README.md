@@ -53,3 +53,16 @@ $ rails routes
 
 ## Membership System
 - Using phone number as sign up account, but user can sign in with either phone number(10 digits) or email.
+
+### Build your own store
+> backend store route：/admin/stores
+- **登入後**可以建立商店  
+  After login, user can build store at `/admin/stores` page, with store name, main image, etc..
+
+- 只能編輯、刪除自己的店面  
+Users can ONLY update or delete their own store(s).
+
+### Create dishes
+
+- 只能在自己的店面上架、編輯產品  
+Once your store be created, you can add merchendise easily in your store page.

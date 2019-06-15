@@ -14,7 +14,7 @@ class Admin::DishesController < Admin::BaseController
   end
 
   def create
-    if @store.dishes.create!(dish_params)
+    if @store.dishes.create(dish_params)
       render 'create'
     else
     end

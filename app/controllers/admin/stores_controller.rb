@@ -16,8 +16,7 @@ class Admin::StoresController < Admin::BaseController
   def create
     @store = Store.new(store_params)
     @store.user = current_user
-    if @store.save!
-    # byebug
+    if @store.save
       redirect_to admin_store_path(@store), notice: '新增成功！'
     else
       render :new
