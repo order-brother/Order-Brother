@@ -1,1 +1,6 @@
+// 按下新增商品按鈕後，用表單替換掉新增商品卡片
 $('.dishes__card').last().html('<%= j render "form", id: @store[:id] %>')
+
+<% @dish.errors.full_messages.each do |message| %>
+  $('#helpBlock').append('<p class="notice"><%= message %></p>')
+<% end %>
