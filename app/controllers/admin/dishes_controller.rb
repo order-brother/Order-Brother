@@ -15,8 +15,9 @@ class Admin::DishesController < Admin::BaseController
 
   def create
     if @store.dishes.create(dish_params)
-      render 'create'
+      render 'create', noteice: '商品新增成功'
     else
+      render 'new'
     end
   end
 
