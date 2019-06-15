@@ -1,4 +1,4 @@
-<h1><%= @store.user.name %> 的店面</h1>
+<h1><%= @store.user.name %> 的店 <%= fa_icon "edit" %>面</h1>
 
 <div class="container">
   <div class="show--store__header col-12">
@@ -20,7 +20,7 @@
       <div class="show--store__main_img">
         <%= image_tag @store.main_img_url if @store.main_img? %>
       </div>
-      <%= link_to "編輯商店", edit_admin_store_path(@store), class: 'btn btn-warning' if policy(@store).edit? %>
+      <%= link_to fa_icon("edit", text: "編輯店面", right: true), edit_admin_store_path(@store), class: 'btn btn-warning' if policy(@store).edit? %>
     </div>
   </div>
 </div>

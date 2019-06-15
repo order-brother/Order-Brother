@@ -325,6 +325,7 @@ DEPENDENCIES
   factory_bot_rails (~> 5.0, >= 5.0.2)
   faker (~> 1.9, >= 1.9.3)
   figaro (~> 1.1, >= 1.1.1)
+  font-awesome-rails (~> 4.6, >= 4.6.3.1)
   hirb-unicode (~> 0.0.5)
   jbuilder (~> 2.5)
   jquery-rails
