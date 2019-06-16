@@ -13,6 +13,8 @@ class Admin::TransactionsController < ApplicationController
   end
 
   def create
+    # TODO 加入流水編號
+    # TODO 根據所含的 transaction_items 計算總價
   end
 
   def edit

@@ -13,8 +13,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:login]
 
-  has_many :stores
-  has_many :transactions
+  has_many :stores, dependent: :destroy
+  has_many :transactions, dependent: :destroy
+
+  acts_as_paranoid
 
   def login
     @login || self.phone
