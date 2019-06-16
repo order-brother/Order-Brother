@@ -1,0 +1,17 @@
+<div class="orders__container container">
+  <div class="row">
+    <div class="orders__header col-12">
+      <h1>訂單管理</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="orders__list col-12">
+    <% @transactions.each do |transaction| %>
+      <div class="orders__card">
+        <p>訂單狀態：<%= transaction.state %> ｜ 預計取餐時間：<%= transaction.pick_up_time %></p>
+        <p>客戶名稱：<%= transaction.user.name %> ｜ 聯絡電話：<%= transaction.user.phone %></p>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
