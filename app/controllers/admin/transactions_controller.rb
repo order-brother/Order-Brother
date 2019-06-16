@@ -6,7 +6,7 @@ class Admin::TransactionsController < ApplicationController
   end
 
   def show
-    @transaction = Transaction.find(params[:id]).includes(:user)
+    @transaction = Transaction.find(params[:id]).includes(:user, :dish)
   end
   
   def new

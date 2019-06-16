@@ -58,6 +58,9 @@ gem 'pundit', '~> 2.0', '>= 2.0.1'
 # 文字圖標套件
 gem 'font-awesome-rails', '~> 4.6', '>= 4.6.3.1'
 
+# 軟刪除
+gem 'paranoia', '~> 2.4', '>= 2.4.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
