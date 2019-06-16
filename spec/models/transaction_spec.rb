@@ -1,5 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:transaction) { Transaction.new}
+
+  describe "基本功能：狀態" do
+    it 'Default state = pending' do
+      expect(transaction.state).to eq 'pending'
+    end
+
+    it 'After accept, the transaction state will change to waiting_pick_up' do
+      transaction.accept
+      expect(transaction.state).to eq 'waiting_pick_up'
+    end
+    
+    it '訂單產生時加入流水編號' do
+      transaction.save
+      expect(transaction.transaction_number).to be true
+    end
+  end
 end

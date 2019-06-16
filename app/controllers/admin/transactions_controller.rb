@@ -1,20 +1,26 @@
-class Admin::TransactionsController < ApplicationController
+class Admin::TransactionsController < Admin::BaseController
   before_action :find_store, only: [:index, :show]
 
   def index
     @transactions = @store.transactions
   end
 
-  def show
-    @transaction = Transaction.find(params[:id]).includes(:user, :dish)
-  end
+  # def show
+  #   @transaction = Transaction.includes(:user, :dish).find(params[:id])
+  # end
   
   def new
   end
 
   def create
-    # TODO 加入流水編號
-    # TODO 根據所含的 transaction_items 計算總價
+    ## 以下為參考用：
+    @transaction.new
+    # 收集參數，建立 TransactionItem
+    # params[:items].each do |_index, item|
+    #   item[:custom_fields] = item[:custom_field] if item[:custom_fields].nil? && item[:custom_field]
+    #   transaction_item = @transaction.transaction_items.new()
+    #   transaction_item.set_value_with_params(item)
+    # end
   end
 
   def edit
@@ -25,10 +31,34 @@ class Admin::TransactionsController < ApplicationController
 
   def destroy
   end
+  
+  def state
+    @transaction = Transaction.find(params[:id])
+    byebug
+    case params[:state]
+    when 'accept'
+      puts 'accept'
+      @transaction.accept
+      puts @transaction.state
+    when 'modify'
+      @transaction.modify
+    when 'reject'
+      @transaction.reject
+    end
+    # flash[:notice] = @transaction.state
+    # render 'function_buttons'
+    render 'state'
+
+
+  end
 
   private
 
   def find_store
-    @store = Store.includes(:transactions).find(params[:store_id])
+    @store = Store.includes(transactions: [:user, transaction_items: [:dish]]).find(params[:store_id])
+  end
+
+  def transaction_params
+    params.require(:id_name).permit(:variable)
   end
 end
