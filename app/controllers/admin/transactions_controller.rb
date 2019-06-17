@@ -36,11 +36,11 @@ class Admin::TransactionsController < Admin::BaseController
     @transaction = Transaction.find(params[:id])
     case params[:state]
     when 'accept'
-      @transaction.accept
+      @transaction.accept!
     when 'modify'
-      @transaction.modify
+      @transaction.modify!
     when 'reject'
-      @transaction.reject
+      @transaction.reject!
     end
     render 'state'
   end
