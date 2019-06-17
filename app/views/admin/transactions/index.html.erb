@@ -6,30 +6,11 @@
   </div>
   <div class="row">
     <main class="orders__list col-12">
-    <% @transactions.each do |t| %>
-      <div class="orders__card row col-12">
-        <div class="orders__card--info">
-        <!-- TODO 加入狀態下拉選單 -->
-          <p>訂單狀態：<%= t.state %> ｜ 預計取餐時間：<%= t.pick_up_time %></p>
-          <p>客戶名稱：<%= t.user.name %> ｜ 聯絡電話：<%= t.user.phone %></p>
-          <p>訂單備註：<%= t.description %></p>
-          <div class="orders__card--functions">
-            <%= link_to "接受", state_admin_transaction_path(t, state: 'accept'), method: 'patch', remote: true, class: 'btn btn-success' %>
-            <%= link_to "修改", state_admin_transaction_path(t, state: 'modify'), method: 'patch', remote: true, class: 'btn btn-warning' %>
-            <%= link_to "拒絕", state_admin_transaction_path(t, state: 'reject'), method: 'patch', remote: true, class: 'btn btn-danger' %>
-            <%= link_to "客戶已取餐/結案", state_admin_transaction_path(t, state: 'pick'), method: 'patch', remote: true, class: 'btn btn-info' %>
-          </div>
-        </div>
-        <div class="orders__card--items">
-          <% t.transaction_items.each do |ti| %>
-            <div class="transaction_items__card">
-              <p><span><%= ti.dish.name %> （<%= ti.item_price.round %>元）* <%= ti.dish_count %> 份</span> | <span>小計：<%= ti.item_price.round * ti.dish_count %>元</span></p>
-              <p><strong>應收總額：<%= t.total_price %></strong></p>
-            </div>
-          <% end %>
-        </div>
+      <% @transactions.each do |t| %>
+      <div id="order_<%= t.id %>" class="orders__card row col-12">
+        <%= render 'orders__card--body.html.erb', t: t %>
       </div>
-    <% end %>
+      <% end %>
     </main>
   </div>
 </div>

@@ -10,6 +10,7 @@ class Admin::StoresController < Admin::BaseController
   end
 
   def show
+    # 後台只顯示自己的店面
     # @store = Store.find(current_user.id)
   end
 
@@ -29,8 +30,7 @@ class Admin::StoresController < Admin::BaseController
   end
 
   def update
-    # authorize @store
-    # byebug
+    authorize @store
     if @store.update(store_params)
       redirect_to admin_store_path, notice: '更新成功！'
     else

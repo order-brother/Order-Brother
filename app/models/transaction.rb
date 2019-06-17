@@ -33,13 +33,14 @@ class Transaction < ApplicationRecord
     end
   end
 
-  # TODO 寫一個方法根據所含的 transaction_items 計算總價
-
-
-  after_save :set_serial_number
-
+  
+  after_save :set_serial_number, :total_price
+  
   def set_serial_number
     self.serial_number = ("%08d" % self.id).to_s
   end
-
+  
+  def total_price
+    self.total_price = self.transaction_items.reduce(0) { |sum, transaction_item| sum + (transaction_item.item_price * transaction_item.dish_count) }
+  end
 end

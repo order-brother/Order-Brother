@@ -5,6 +5,6 @@ FactoryBot.define do
     location { "MyString" }
     latitude { "MyString" }
     tel { Faker::Number.number(10) }
-    user { nil }
+    user { FactoryBot.create(:user) }
   end
 end

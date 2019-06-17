@@ -14,10 +14,9 @@ RSpec.describe Transaction, type: :model do
     end
     
     it '訂單產生時加入流水編號' do
-      t1 = FactoryBot.build(:transaction)
-      t1.user = User.first
-      t1.store = Store.first
-      expect(t1).to be true
+      t1 = FactoryBot.create(:transaction)
+      ans = "%08d" % t1.id
+      expect(t1.serial_number).to eq ans
       # expect(t1.serial_number).to be true
     end
   end

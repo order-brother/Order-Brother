@@ -34,22 +34,15 @@ class Admin::TransactionsController < Admin::BaseController
   
   def state
     @transaction = Transaction.find(params[:id])
-    byebug
     case params[:state]
     when 'accept'
-      puts 'accept'
       @transaction.accept
-      puts @transaction.state
     when 'modify'
       @transaction.modify
     when 'reject'
       @transaction.reject
     end
-    # flash[:notice] = @transaction.state
-    # render 'function_buttons'
     render 'state'
-
-
   end
 
   private

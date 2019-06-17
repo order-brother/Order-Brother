@@ -1,0 +1,6 @@
+<div class="orders__card--function_buttons">
+  <%= link_to "接受", state_admin_transaction_path(t, state: 'accept'), method: 'patch', remote: true, class: 'btn btn-success' if t.may_accept? %>
+  <%= link_to "修改", state_admin_transaction_path(t, state: 'modify'), method: 'patch', remote: true, class: 'btn btn-warning' if t.may_modify? %>
+  <%= link_to "拒絕", state_admin_transaction_path(t, state: 'reject'), method: 'patch', remote: true, class: 'btn btn-danger' if t.may_reject? %>
+  <%= link_to "客戶已取餐/結案", state_admin_transaction_path(t, state: 'pick'), method: 'patch', remote: true, class: 'btn btn-info' if t.may_pick? %>
+</div>
