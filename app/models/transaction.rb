@@ -37,7 +37,9 @@ class Transaction < ApplicationRecord
   after_save :set_serial_number, :total_price
   
   def set_serial_number
-    self.serial_number = ("%08d" % self.id).to_s
+    return if self.serial_number.present?
+    serial_number = ("%08d" % self.id).to_s
+    self.update_columns(serial_number: serial_number)
   end
   
   def total_price
