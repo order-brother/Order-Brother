@@ -1,8 +1,19 @@
 class Admin::TransactionsController < Admin::BaseController
   before_action :find_store, only: [:index, :show]
+  before_action :authenticate_user!
 
   def index
-    @transactions = @store.transactions
+      # 驗證店主 或 管理員
+    if current_user.stores.ids.include? @store.id
+      # 通過驗證才能取得資料
+      @transactions = @store.transactions
+    else
+      # 否則回到前頁 或 首頁
+      redirect_to(request.referrer || root_path)
+    end
+    
+    # options 2:
+    # @transactions = policy_scope(Transaction)
   end
 
   # def show
