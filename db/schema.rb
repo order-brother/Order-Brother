@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_16_234101) do
+ActiveRecord::Schema.define(version: 2019_06_19_073526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,7 +98,6 @@ ActiveRecord::Schema.define(version: 2019_06_16_234101) do
   create_table "transactions", force: :cascade do |t|
     t.decimal "total_price", null: false
     t.text "description"
-    t.string "pick_up_time", null: false
     t.integer "state"
     t.bigint "user_id"
     t.bigint "store_id"
@@ -108,6 +107,7 @@ ActiveRecord::Schema.define(version: 2019_06_16_234101) do
     t.datetime "updated_at", null: false
     t.string "serial_number"
     t.datetime "deleted_at"
+    t.datetime "pick_up_time"
     t.index ["deleted_at"], name: "index_transactions_on_deleted_at"
     t.index ["store_id"], name: "index_transactions_on_store_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
