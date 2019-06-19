@@ -15,23 +15,23 @@ class ApplicationPolicy
   end
 
   def create?
-    false
+    user
   end
 
   def new?
-    create?
+    user
   end
 
   def update?
-    false
+    user && (user.id == record.user_id)
   end
 
   def edit?
-    update?
+    user && (user.role == 'admin' || user.id == record.user_id)
   end
 
   def destroy?
-    current_user.role == 'admin'
+    user && (user.role == 'admin' || user.id == record.user_id )
   end
 
   class Scope
@@ -43,7 +43,7 @@ class ApplicationPolicy
     end
 
     def resolve
-      scope.all
+      scope
     end
   end
 end

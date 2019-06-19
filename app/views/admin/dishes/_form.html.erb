@@ -1,4 +1,4 @@
-<%= form_for [:admin, @store, @dish], html: { remote: true, class: 'add_dish_form form-control-sm' } do |f| %>
+<%= form_for @dish, url: url, method: method, html: { remote: true, class: 'add_dish_form form-control-sm' } do |f| %>
 
 <div class="dish--name">
   <%= f.label :name, "名稱：" %>

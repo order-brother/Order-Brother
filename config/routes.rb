@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :stores, shallow: true do
       resources :dishes
+      resources :transactions, only: [:index, :new, :create]
+    end
+
+    resources :transactions, only: [:show, :edit, :update, :destroy] do
+      member do
+        patch :state
+      end
     end
   end
 end

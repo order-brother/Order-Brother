@@ -4,8 +4,10 @@ FactoryBot.define do
     description { "MyText" }
     pick_up_time { "MyString" }
     state { 1 }
-    user { nil }
-    store { nil }
+    user { FactoryBot.create(:user) }
+    # user
+    store { FactoryBot.create(:store) }
+    # store
     like { false }
     read_at { "2019-06-06 00:08:33" }
   end

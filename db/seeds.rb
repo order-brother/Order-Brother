@@ -7,3 +7,10 @@ User.create(name: 'Store Owner', password: '999999', phone: '2222222222', email:
 
 Store.create(name: 'C Shop', description: 'CCC', tel: '022222222', user_id: 2, location: '台北市')
 Store.create(name: 'D Shop', description: 'DDD', tel: '022222222', user_id: 1, location: '台北市')
+Store.create(name: 'Super store', description: '有肉有菜', tel: '022222222', user_id: 3, location: '台北市')
+
+4.times { |n| Dish.create(name: "#{ n + 1 } 號大牛肉", price: "#{ n + 1 }99", store_id: 1) }
+4.times { |n| Dish.create(name: "#{ n + 1 } 號大牛肉", price: "#{ n + 1 }99", store_id: 2) }
+4.times { |n| Dish.create(name: "#{ n + 1 } 號大牛肉", price: "#{ n + 1 }99", store_id: 3) }
+
+3.times { 4.times { |n| Transaction.create(total_price: "#{ (n + 1) * 100 }", description: "test traction#{ n + 1 }", pick_up_time: '', user_id: (n + 1), store_id: (n + 1)) } }

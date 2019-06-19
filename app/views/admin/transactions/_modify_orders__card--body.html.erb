@@ -1,0 +1,18 @@
+<div class="orders__card--info">
+  <h2 class="orsers_card--title">修改訂單</h2>
+  <%= form_for [:admin, transaction], html: { remote: true, class: 'modify_order_form', id: 'order_form'} do |f| %>
+  <div class="form-group">
+    <%= f.label :pick_up_time, "調整取餐時間" %>
+    <!-- TODO 加入預設時間 -->
+    <%= f.datetime_field :pick_up_time, value: default_pick_up_time(transaction.pick_up_time) ,id: 'pick_up_time' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, "修改訂單備註" %>
+    <%= f.text_area :description, id: 'description' %>
+  </div>
+  <%= f.submit class: 'btn btn-info' %>
+  <% end %>
+  
+</div>
+
+<% # byebug %>

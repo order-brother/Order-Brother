@@ -11,6 +11,8 @@ class Admin::DishesController < Admin::BaseController
   
   def new
     @dish = @store.dishes.new
+    @url = admin_store_dishes_path(@store, @dish)
+    @method = :post
   end
 
   def create
@@ -18,11 +20,15 @@ class Admin::DishesController < Admin::BaseController
     if @dish.save
       render 'create', noteice: '商品新增成功'
     else
+      @url = admin_store_dishes_path(@store, @dish)
+      @method = :post
       render 'new'
     end
   end
 
   def edit
+    @url = admin_dish_path(@dish)
+    @method = :patch
   end
 
   def update
@@ -30,7 +36,7 @@ class Admin::DishesController < Admin::BaseController
     if @dish.update(dish_params)
       render 'update'
     else
-      render 'update_fail'
+      render 'edit'
     end
   end
 

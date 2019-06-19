@@ -35,3 +35,10 @@ body, button, input, select, textarea {
   font-size: 1rem;
   line-height: 1.65;
 }
+
+.test-nav {
+  background-color: rgba(255, 255, 255, 0.735);
+  li {
+    display: inline-block;
+  }
+}

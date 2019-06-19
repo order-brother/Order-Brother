@@ -1,10 +1,10 @@
 FactoryBot.define do
   factory :store do
-    name { "MyString" }
+    name { Faker::Name.unique.name }
     description { "MyText" }
     location { "MyString" }
     latitude { "MyString" }
-    tel { "MyString" }
-    user { nil }
+    tel { Faker::Number.number(10) }
+    user { FactoryBot.create(:user) }
   end
 end
