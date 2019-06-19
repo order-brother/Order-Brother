@@ -1,0 +1,5 @@
+$('#order_<%= @transaction.id %>').html('<%= j render "modify_orders__card--body", transaction: @transaction %>')
+
+<% @transaction.errors.full_messages.each do |message| %>
+  $('#helpBlock').append('<p class="notice"><%= message %></p>')
+<% end %> 

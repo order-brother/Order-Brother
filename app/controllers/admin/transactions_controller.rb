@@ -3,12 +3,9 @@ class Admin::TransactionsController < Admin::BaseController
   before_action :authenticate_user!
 
   def index
-      # 驗證店主 或 管理員
-    if current_user.stores.ids.include? @store.id
-      # 通過驗證才能取得資料
+    if (current_user.stores.ids.include? @store.id) || (current_user.role == 'admin')
       @transactions = @store.transactions
     else
-      # 否則回到前頁 或 首頁
       redirect_to(request.referrer || root_path)
     end
     
@@ -38,6 +35,12 @@ class Admin::TransactionsController < Admin::BaseController
   end
 
   def update
+    @transaction = Transaction.find(params[:id])
+    if @transaction.update(dish_params)
+      render 'update'
+    else
+      # render 'update_fail'
+    end
   end
 
   def destroy
@@ -48,12 +51,14 @@ class Admin::TransactionsController < Admin::BaseController
     case params[:state]
     when 'accept'
       @transaction.accept!
+      render 'state'
     when 'modify'
       @transaction.modify!
+      render 'edit'
     when 'reject'
       @transaction.reject!
+      render 'state'
     end
-    render 'state'
   end
 
   private

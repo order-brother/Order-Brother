@@ -1,6 +1,6 @@
 <div class="orders__card--info">
   <!-- TODO 加入狀態下拉選單 -->
-  <%# byebug %>
+
   <p>訂單編號：<%= t.serial_number %> ｜ 訂單狀態：<%= t.state %> ｜ 預計取餐時間：<%= t.pick_up_time %></p>
   <p>客戶名稱：<%= t.user.name %> ｜ 聯絡電話：<%= t.user.phone %></p>
   <p>訂單備註：<%= t.description %></p>
@@ -9,7 +9,7 @@
     <%= link_to "修改", state_admin_transaction_path(t, state: 'modify'), method: 'patch', remote: true, class: 'btn btn-warning' if t.may_modify? %>
     <%= link_to "拒絕", state_admin_transaction_path(t, state: 'reject'), method: 'patch', remote: true, class: 'btn btn-danger' if t.may_reject? %>
     <%= link_to "客戶已取餐/結案", state_admin_transaction_path(t, state: 'pick'), method: 'patch', remote: true, class: 'btn btn-info' if t.may_pick? %>
-  </div>已取餐/結案", state_admin_transaction_path(t, state: 'pick'), method: 'patch', remote: true, class: 'btn btn-info' if t.may_pick? %>
+  </div>
 
 </div>
 <div class="orders__card--items">
