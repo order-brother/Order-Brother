@@ -24,7 +24,7 @@ class Admin::TransactionsController < Admin::BaseController
     ## 以下為參考用：
     @transaction.new
     # 收集參數，建立 TransactionItem
-    # params[:items].each do |_index, item|
+    # params[:transaction][:transaction_item].each do |_index, item|
     #   item[:custom_fields] = item[:custom_field] if item[:custom_fields].nil? && item[:custom_field]
     #   transaction_item = @transaction.transaction_items.new()
     #   transaction_item.set_value_with_params(item)
@@ -32,14 +32,16 @@ class Admin::TransactionsController < Admin::BaseController
   end
 
   def edit
+    byebug
+    # @transaction = Transaction.find(params[:id])
   end
 
   def update
     @transaction = Transaction.find(params[:id])
-    if @transaction.update(dish_params)
+    if @transaction.update(transaction_params)
       render 'update'
     else
-      # render 'update_fail'
+      render 'edit'
     end
   end
 
@@ -68,6 +70,6 @@ class Admin::TransactionsController < Admin::BaseController
   end
 
   def transaction_params
-    params.require(:id_name).permit(:variable)
+    params.require(:transaction).permit(:description, :pick_up_time)
   end
 end

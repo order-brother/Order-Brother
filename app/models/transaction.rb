@@ -24,6 +24,7 @@ class Transaction < ApplicationRecord
       transitions from: [:pending, :waiting_pick_up], to: :canceled
     end
 
+    # FIXME 店家可以不經過客戶同意自己修改訂單，再自己接受
     event :modify do
       transitions from: [:pending, :waiting_pick_up], to: :pending
     end
