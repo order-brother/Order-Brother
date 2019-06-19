@@ -32,7 +32,6 @@ class Admin::TransactionsController < Admin::BaseController
   end
 
   def edit
-    byebug
     # @transaction = Transaction.find(params[:id])
   end
 
