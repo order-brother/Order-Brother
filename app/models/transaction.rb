@@ -34,16 +34,16 @@ class Transaction < ApplicationRecord
     end
   end
 
-  
   after_save :set_serial_number, :total_price
-  
+
   def set_serial_number
-    return if self.serial_number.present?
-    serial_number = ("%08d" % self.id).to_s
-    self.update_columns(serial_number: serial_number)
+    return if serial_number.present?
+
+    serial_number = ('%08d' % id).to_s
+    update_columns(serial_number: serial_number)
   end
-  
+
   def total_price
-    self.total_price = self.transaction_items.reduce(0) { |sum, transaction_item| sum + (transaction_item.item_price * transaction_item.dish_count) }
+    self.total_price = transaction_items.reduce(0) { |sum, ti| sum + (ti.item_price * ti.dish_count) }
   end
 end

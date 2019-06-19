@@ -1,5 +1,5 @@
 class Admin::TransactionsController < Admin::BaseController
-  before_action :find_store, only: [:index, :show]
+  before_action :find_store, only: %i[index show]
   before_action :authenticate_user!
 
   def index
@@ -8,7 +8,7 @@ class Admin::TransactionsController < Admin::BaseController
     else
       redirect_to(request.referrer || root_path)
     end
-    
+
     # options 2:
     # @transactions = policy_scope(Transaction)
   end
@@ -16,7 +16,7 @@ class Admin::TransactionsController < Admin::BaseController
   # def show
   #   @transaction = Transaction.includes(:user, :dish).find(params[:id])
   # end
-  
+
   def new
   end
 
@@ -27,12 +27,12 @@ class Admin::TransactionsController < Admin::BaseController
 
     transaction.description = return_order[:description]
     transaction.description = return_order[:pick_up_time]
-    
-    return_order[:transaction_item].each do |index, col|
+
+    return_order[:transaction_item].each do |_index, col|
       t = transaction.transaction_items.new(col)
       t.save!
     end
-    
+
     # 收集參數，建立 TransactionItem
 
     # @transaction.description = params[:transaction][:description]
@@ -62,7 +62,7 @@ class Admin::TransactionsController < Admin::BaseController
 
   def destroy
   end
-  
+
   def state
     @transaction = Transaction.find(params[:id])
     case params[:state]
@@ -78,22 +78,22 @@ class Admin::TransactionsController < Admin::BaseController
     end
   end
 
-  private 
-  
+  private
+
   def return_order
     {
       :description => 'text_here',
       :pick_up_time => 'Wed, 19 Jun 2019 21:17:38 CST +08:00>',
       :transaction_item => {
-        :item1 => { 
-          "dish_id" => d1.id,
-          "dish_count" => "1",
-          "item_price" => 2999
+        :item1 => {
+          'dish_id' => d1.id,
+          'dish_count' => 1,
+          'item_price' => 2999
         },
         :item2 => {
-          "dish_id" => d2.id,
-          "dish_count" => "1",
-          "item_price" => 199
+          'dish_id' => d2.id,
+          'dish_count' => 1,
+          'item_price' => 199
         }
       }
     }

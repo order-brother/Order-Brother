@@ -8,7 +8,7 @@ class Admin::DishesController < Admin::BaseController
 
   def show
   end
-  
+
   def new
     @dish = @store.dishes.new
     @url = admin_store_dishes_path(@store, @dish)
@@ -36,6 +36,8 @@ class Admin::DishesController < Admin::BaseController
     if @dish.update(dish_params)
       render 'update'
     else
+      @url = admin_dish_path(@dish)
+      @method = :patch
       render 'edit'
     end
   end

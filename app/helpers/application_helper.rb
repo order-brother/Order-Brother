@@ -9,6 +9,6 @@ module ApplicationHelper
 
   def default_pick_up_time(current_time = Time.now + 30.minutes)
     current_time ||= Time.now + 30.minutes
-    current_time.strftime("%Y-%m-%dT%H:%M")
+    current_time.strftime('%Y-%m-%dT%H:%M')
   end
 end
