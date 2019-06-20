@@ -1,171 +1,214 @@
-.container{
-    .nav{ display:block; }
-    .notice{ display:block; }
-    .alert{ display:block; }
-    .container-fluid{
-        .row{
-            border-radius: 0.5rem;
-            background-color: rgba(255, 255, 255, .7);
-            nav.topnav{
-                border-top-left-radius: 0.5rem;
-                border-top-right-radius: 0.5rem;
-                background-color: #937f8f80;
-                background-image: linear-gradient(90deg, #937f8f80, #5a6284);
-                li{
-                    display: inline-block;
-                    .btn{
-                        color:white;
-                    }
-                    .btn-outline-secondary{
-                        border: solid 1px #d5d5d5;
-                    }
-                    .form-control{
-                        background-color: #dfdbdc11;
-                        border: 1px solid #d5d5d5;
-                    }
-                    ::placeholder {
-                        color: white;
-                      }
-                    a{
-                        text-decoration: none;
-                    }
-                }
-            }
-            
-            aside.CheckboxList{
-                
-                background-image: rgba(255, 255, 255, 0.8);
-                .btn-outline-secondary{
-                    color:white;
-                    border: solid 1px #d5d5d5;  
-                }
-                .btn{
-                    background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));
-                    color:white;
-                    border:1px solid #d5d5d5;
-                }
-                .card-body{
-                    padding:.75rem;
-                    ul{
-                        display:block;
-                        padding:0;
-                        li{
-                            display:block;
-                            
-                        }
-                    }
-                }
-            }
-            main{   
-                min-height: 42rem;
-                padding-left:0;
-                .tag-arear{
-                    min-height: 8.25rem;
-                    .tag-arear-show{
-                        padding-left:0;
-                        .btn-outline-secondary{
-                            border: solid 1px #d5d5d5;  
-                        }
-                        .btn{
-                            background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));
-                            color:white;
-                            border:1px solid #d5d5d5;
-                        }
-                        font-size: 0;
-                        button{margin: 1rem .5rem .5rem 0;}
-                    }
-                }
-                .col-md-2{
-                    .input-group-append{
-                        .btn-outline-secondary{
-                            border: solid 1px #d5d5d5;  
-                        }
-                        .btn{ 
-                            background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));
-                            color:white;
-                            border:1px solid #d5d5d5;
-                        }
-                        button{
-                            margin: 1rem;
-                        }
-                    }
-                }
-                .RestaurantsPageLayout{
-                    overflow: auto;
-                    background-color: rgba(255, 255, 255, 0);
-                    display: flex;
-                    flex-wrap: wrap;
-                    padding-right: 0px;
-                    padding-left: 0px;
-                    .RestaurantsPageLayout-Item{
-                        width: 100%;
-                        border-radius: 4px;
-                        overflow: hidden;
-                        min-height: 13rem;
-                        padding-right: 0;
-                        img{
-                            border:1px solid #d5d5d5;
-                            border-bottom:none;
-                        }
-                        div{
-                            /* background-color: #d5d5d5; */
-                            padding: .3rem;
-                            color:#6c757d;
-                            border:1px solid #d5d5d5;
-                            border-top:none;
-                            border-radius: 0 0 4px 4px;
-                            .card-title{
-                                margin-bottom: 0;
-                            }
-                            .card-text{
-                                overflow: auto;
-                                word-wrap:break-word;
-                            }
-                        }
-                    }
-                }
-            }
-            
-            footer{
-                padding: .75rem 0;
-                text-align: center;
-                background-color: #f1f1f180;
-                color: #616161;
-                border-radius:0 0 0.5rem 0.5rem;
-            }
+.container {
+  .nav {
+    display: block;
+  }
+
+  .notice {
+    display: block;
+  }
+
+  .alert {
+    display: block;
+  }
+
+  .dropdown-toggle{
+    
+  }
+  .container-fluid {
+    .row {
+      border-radius: 0.5rem;
+      background-color: rgba(255, 255, 255, .7);
+
+      nav.topnav {
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        background-color: #937f8f80;
+        background-image: linear-gradient(90deg, #937f8f80, #5a6284);
+
+        li {
+          color: #fff;
+          display: inline-block;
+
+          .btn {
+            color: white;
+          }
+
+          .btn-outline-secondary {
+            border: solid 1px #d5d5d5;
+          }
+
+          .form-control {
+            background-color: #dfdbdc11;
+            border: 1px solid #d5d5d5;
+          }
+
+          ::placeholder {
+            color: white;
+          }
+
+          a {
+            text-decoration: none;
+          }
         }
-        .full-screen{
-			position: fixed;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 100%;
-			z-index: 10;
-			background:rgba(0,0,0,.5);
-			display: flex;
-			justify-content:center;
-			align-items:center;
-		}
-		.full-screen .search-location{
-			width: 90%;
-			max-width: 40rem;
-			max-height: 20rem;
-			background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));;
-			padding: 20px;
-			position: relative;
-		}
-		.full-screen .btn-close{
-			position: absolute;
-			width: 30px;
-			height: 30px;
-			line-height: 30px;
-			text-align: center;
-			background-color: #000;
-			color:#fff;
-			text-decoration: none;
-			top: -15px;
-			right: -15px;
-			border-radius:50%;
-		}
+      }
+
+      aside.CheckboxList {
+        background-image: rgba(255, 255, 255, 0.8);
+
+        .btn-outline-secondary {
+          color: white;
+          border: solid 1px #d5d5d5;
+        }
+
+        .btn {
+          background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));
+          color: white;
+          border: 1px solid #d5d5d5;
+        }
+
+        .card-body {
+          padding: 4px;
+
+          ul {
+            display: block;
+            padding: 0;
+
+            li {
+              display: block;
+
+            }
+          }
+        }
+      }
+
+      main {
+        min-height: 42rem;
+        // padding-left: 0;
+
+        .tag-arear {
+          min-height: 2.25rem;
+
+          .tag-arear-show {
+
+            .btn-outline-secondary {
+              border: solid 1px #d5d5d5;
+            }
+
+            .btn {
+              background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));
+              color: white;
+              border: 1px solid #d5d5d5;
+            }
+
+            font-size: 0;
+
+            button {
+              margin: 4px .5rem 4px 0;
+            }
+          }
+        }
+
+          .input-group-append {
+            .btn-outline-secondary {
+              border: solid 1px #d5d5d5;
+            }
+
+            .btn {
+              background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));
+              color: white;
+              border: 1px solid #d5d5d5;
+            }
+
+            button {
+              margin: 4px;
+            }
+          }
+
+        .store__list {
+          overflow: auto;
+          background-color: rgba(255, 255, 255, 0);
+          display: flex;
+          flex-wrap: wrap;
+          // padding-right: 0px;
+          // padding-left: 0px;
+
+          .store__list--item {
+            width: 100%;
+            border-radius: 4px;
+            overflow: hidden;
+            min-height: 13rem;
+            // padding-right: 0;
+
+            img {
+              border: 1px solid #d5d5d5;
+              border-bottom: none;
+            }
+
+            div {
+              /* background-color: #d5d5d5; */
+              padding: .3rem;
+              color: #6c757d;
+              border: 1px solid #d5d5d5;
+              border-top: none;
+              border-radius: 0 0 4px 4px;
+
+              .card-title {
+                margin-bottom: 0;
+              }
+
+              .card-text {
+                overflow: auto;
+                word-wrap: break-word;
+              }
+            }
+          }
+        }
+      }
+
+      footer {
+        padding: .75rem 0;
+        text-align: center;
+        background-color: #f1f1f180;
+        color: #616161;
+        border-radius: 0 0 0.5rem 0.5rem;
+      }
     }
+
+    .full-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 10;
+      background: rgba(0, 0, 0, .5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .full-screen .search-location {
+      width: 90%;
+      max-width: 40rem;
+      max-height: 20rem;
+      background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));
+      ;
+      padding: 20px;
+      position: relative;
+    }
+
+    .full-screen .btn-close {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+      top: -15px;
+      right: -15px;
+      border-radius: 50%;
+    }
+  }
 }

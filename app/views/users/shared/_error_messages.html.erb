@@ -9,7 +9,7 @@
     <ul class="error_messages">
       <% resource.errors.full_messages.each do |message| %>
         <li>Error msg from users/shared/_error_messages.html.erb</li>
-        <li><%= message %></li>
+        <li class="alert alert-danger"><%= message %></li>
       <% end %>
     </ul>
   </div>

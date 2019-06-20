@@ -1,8 +1,10 @@
-<h2>註＊冊</h2>
+<h2>註 冊</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
+  <!-- 停用 devise 內建錯誤訊息   -->
+  <%#= render "devise/shared/error_messages", resource: resource %>
+  
+  <%= error_block(resource) %>
   <div class="field">
     <%= f.label :phone, "電話(十位數字) *必填" %><br />
     <%= f.text_field :phone, autofocus: true %>

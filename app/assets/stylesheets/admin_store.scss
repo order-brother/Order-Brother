@@ -70,24 +70,6 @@
   }
 }
 
-.error_messages {
-  color: red;
-  font-weight: 700;
-  text-decoration: underline;
-}
-.field_with_errors {
-  display: inline;
-
-  input {
-    border-color: red;
-    border-width: 2px;
-  }
-  label {
-    color: red;
-    font-weight: 700;
-  }
-}
-
 .add_dish_form.form-control-sm {
   height: auto;
   margin: 0;

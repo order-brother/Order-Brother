@@ -25,10 +25,11 @@
   background-image: url('bg.jpg');
   // background-image: url('https://pixelarity.com/items/demos/transit/magenta/images/bg.jpg');
   background-position: top left, top center;
-  background-repeat: repeat, no-repeat;
-  background-size: 100%, cover;
-  
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100%;
   }
+
 body, button, input, select, textarea {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
   font-weight: 300;
@@ -40,5 +41,56 @@ body, button, input, select, textarea {
   background-color: rgba(255, 255, 255, 0.735);
   li {
     display: inline-block;
+  }
+}
+
+.store__list {
+  height: 87vh;
+  overflow: auto;
+}
+.store__card {
+  max-width: 220px;
+  
+}
+.store__card--img {
+  position: relative;
+  display: inline-block;
+  height: 220px;
+  overflow: hidden;
+  text-align: center;
+
+  img {
+    display: inline-block;
+    // position: absolute;
+    // left: 50%;
+    // top:50%;
+    // transform-origin: left top;
+    // transform: translate(-50%, -50%);
+    height:100%;
+    width:100%;
+    vertical-align: middle;
+    width: auto;
+    transition: all .2s ease-in-out;
+
+    &:hover{
+      // height: 120%;
+      // width: 120%;
+      transform: scale(1.2);
+    }
+  }
+}
+.error_messages {
+  color: rgb(165, 23, 23);
+  font-weight: 700;
+}
+.field_with_errors {
+  display: inline;
+  input {
+    border-color: red;
+    border-width: 2px;
+  }
+  label {
+    color: rgb(165, 23, 23);
+    font-weight: 700;
   }
 }
