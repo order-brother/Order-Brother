@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get '/address', to: 'address#index'
   mount RailsAdmin::Engine => '/backstage', as: 'rails_admin'
 
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :stores, only: [:show]
+  resources :transaction, only: [:create ,:show]
+
   namespace :admin do
     resources :stores, shallow: true do
       resources :dishes

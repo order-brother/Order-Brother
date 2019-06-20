@@ -1,0 +1,169 @@
+<h1>店家頁面</h1>
+<div class="index_img"><img src="https://pic.pimg.tw/enlife/1552641423-3637193736.jpg" alt=""></div>
+
+<%# 讀取餐點所有資訊%>
+<div class="container-fluid store_page">
+  <div class="row">
+    <div class="col-7">
+      <div class="left-part">
+        <div class="dish-list">
+          <div class="row">
+            <% @store.dishes.each do |dish| %>
+            <div id="dish_id_<%= dish.id %>" class="col-6 dish-card">
+              <div class="row">
+                <div class="col-8 item-info">
+                  <span class="dish_name"><%= dish.name %></span>
+                  <span class="dish_price" value="<%= dish.price %>"><%= dish.price %></span><p>元</p>
+                  <input id="add_dish_<%= dish.id %>" class="add_dish_to_cart" type="button" value="加入">
+                </div>
+                <div class="col-4 info">
+                  <img src="https://cdn2.ettoday.net/images/525/d525095.jpg" alt="">
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="right-part">
+        <div class="top-info">
+          <div class="row">
+            <h4><%= @store.name %> Page</h4>
+            <img src="<%= @store.main_img %>">
+          </div>
+          <div class="row">
+            <span>電話<%= @store.tel %></span>
+            <span>地點<%= @store.location %></span>
+            <span>店家資訊<%= @store.description %></span>
+            <span>營業時間：<%= @store.business_hours[0].start_at.hour %> ~
+              <%= @store.business_hours[0].end_at.hour %></span>
+            <div>
+              <textarea id="Remark" type="textarea" value="訂餐備註" style="width:250px;height: 100px;"></textarea><br />
+              <div class="add_dish_list">
+                <input id="check_dish" class="check"type="button" value="總金額">
+
+                <%# <%= link_to '總金額', store_path, class: 'btn btn-primary' %>
+
+                <%= button_tag '確認送出', type: 'button', class: 'btn btn-primary', id: 'js-show-modal' %>
+              </div>
+            </div>
+          </div>
+          <div class="row js-calc-rs">
+          </div>
+        </div>
+      </div>
+      <div class="modal js-modal" style="display:none;background-color:#ff0;">
+        <%= form_tag transaction_index_path do %>
+          <%= hidden_field_tag 'store_id', @store.id %>
+          <%= hidden_field_tag 'dishes', '', id: 'js-dishes' %>
+          <div class="js-calc-rs"></div>
+          <button type="submit">送出訂單</button>
+          <button onclick="$('.js-modal').hide();return false;">重新選擇</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  
+let b = 1, total = 0, cart = {}
+var fns = {
+  add2cart: function(item) {
+    var $item = $(item),
+        id    = $item.attr('id').replace('add_dish_', ''),
+        name  = $item.siblings('.dish_name:eq(0)').text(),
+        price = parseFloat($item.siblings('.dish_price:eq(0)').text());
+    if (typeof cart[id] !== 'undefined') {
+      cart[id]['count']++;
+    } else {
+      cart[id] = {};
+      cart[id]['name']  = name;
+      cart[id]['price'] = price;
+      cart[id]['count'] = 1;
+    }
+  },
+  // buildCartList: function() {
+  //   var msg = '<ul>';
+  //   for(let idx in cart) {
+  //     let item = cart[idx];
+  //     msg += '<li>';
+  //     msg += item['name'] + ' ' + item['price'] + ' * ' + item['count'];
+  //     msg += '</li>';
+  //   }
+  //   msg += '<li>總金額： ' + fns.cartTotal() + '</li>';
+  //   msg += '</ul>';
+  //   return msg;
+  // },
+  buildCartList: function() {
+    var msg = '<ul>';
+    for(let idx in cart) {
+      let item = cart[idx];
+      msg += '<li>';
+      msg += item['name'] + ' ' + item['price'] + ' * ' + item['count'];
+      msg += '</li>';
+    }
+    msg += '<li>總金額： ' + fns.cartTotal() + '</li>';
+    msg += '</ul>';
+    return msg;
+  },
+  cartTotal: function(){
+    if (cart === {}) return 0;
+    let total = 0;
+    for(let idx in cart) {
+      let item = cart[idx];
+      total += item.price * item.count
+    }
+    return total;
+  },
+  cart2json: function(){
+    let json = {};
+    for(let idx in cart) {
+      let item = cart[idx],
+          id   = idx;
+      // {1: 2} id:1 數量2
+      json[id] = item['count'];
+    }
+    return JSON.stringify(json);
+  }
+}
+$('.add_dish_to_cart').on('click',function(){
+  fns.add2cart(this);
+
+  let a = $(this).siblings('.dish_name').text() + $(this).siblings('.dish_price').text();
+  
+  console.log(b);
+  let num = $(this).siblings('.dish_price').text();
+
+  num = Number(num)
+  console.log(typeof num);
+  total = total + num * b;
+  console.log(total);
+  // 檢查已點的商品 存成某個變數 
+  // let existDish = $('.orderedDish').text()
+    // existDish // => aaaaaaaaaaaaaaa
+    // <p css="display:none" class="orderedDish">aaaaaaaaaaaaaaa</p>
+  // 比對已點的商品(這邊要找一下 範圍比對 的方法)，如果已存在，就不新增
+    // if (existDish !== $(this).siblings('.dish_name').text()) {
+    //   $(".top-info").append( 
+    //     a + "<span>1</span><br />") 
+    //   } else () {
+    //     $(".top-info").html(a + "<span>"1 + 1"</span><br />")
+    //   };
+
+
+  // let dishCount = 
+  //$(".top-info").append(" <br>" + a + "</br>");
+});
+  $(".check").on("click", function () {
+    //$(".top-info").append("<p>共計"+ total +"元</p>");
+    var $calc_rs = $('.js-calc-rs');
+    console.log($calc_rs.html(fns.buildCartList));
+    
+  });
+  $('#js-show-modal').click(function(){
+    $('#js-dishes').val(fns.cart2json());
+    $('.js-modal').show();
+  });
+</script>
