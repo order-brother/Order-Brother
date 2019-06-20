@@ -1,10 +1,10 @@
 class Admin::StoresController < Admin::BaseController
   before_action :find_store, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @stores = Store.all
   end
-  
+
   def new
     @store = Store.new
   end
@@ -44,7 +44,7 @@ class Admin::StoresController < Admin::BaseController
     @store.destroy!
     redirect_to root_path, notice: '商店已刪除'
   end
-  
+
   private
 
   def find_store
