@@ -9,6 +9,8 @@
 
   .alert {
     display: block;
+    padding: 0;
+    margin-bottom: 0;
   }
 
   .dropdown-toggle{
@@ -63,7 +65,7 @@
         .btn {
           background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));
           color: white;
-          border: 1px solid #d5d5d5;
+          // border: 1px solid #d5d5d5;
         }
 
         .card-body {
@@ -97,7 +99,7 @@
             .btn {
               background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));
               color: white;
-              border: 1px solid #d5d5d5;
+              // border: 1px solid #d5d5d5;
             }
 
             font-size: 0;
@@ -116,7 +118,7 @@
             .btn {
               background-image: linear-gradient(90deg, rgba(238, 101, 136, 0.7), rgba(246, 149, 96, 1));
               color: white;
-              border: 1px solid #d5d5d5;
+              // border: 1px solid #d5d5d5;
             }
 
             button {
@@ -139,18 +141,18 @@
             min-height: 13rem;
             // padding-right: 0;
 
-            img {
-              border: 1px solid #d5d5d5;
-              border-bottom: none;
-            }
+            // img {
+            //   border: 1px solid #d5d5d5;
+            //   border-bottom: none;
+            // }
 
-            div {
+            // div {
               /* background-color: #d5d5d5; */
-              padding: .3rem;
-              color: #6c757d;
-              border: 1px solid #d5d5d5;
-              border-top: none;
-              border-radius: 0 0 4px 4px;
+              // padding: .3rem;
+              // color: #6c757d;
+              // border: 1px solid #d5d5d5;
+              // border-top: none;
+              // border-radius: 0 0 4px 4px;
 
               .card-title {
                 margin-bottom: 0;
@@ -160,7 +162,7 @@
                 overflow: auto;
                 word-wrap: break-word;
               }
-            }
+            // }
           }
         }
       }
@@ -210,5 +212,124 @@
       right: -15px;
       border-radius: 50%;
     }
+  }
+}
+#pop_up_menu {
+  color: rgba(255, 255, 255, 0.75);
+  // background-color: rgb(238, 101, 136);
+  background-image: linear-gradient(90deg, #ee6588, #f69560);
+  height: 100%;
+  max-width: 80%;
+  overflow-y: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 20rem;
+  z-index: 10002;
+  transform: translateX(100%);
+  transition: .5s;
+  
+  a {
+    border: 0;
+    border-bottom: solid 1px #fff;
+    color: inherit;
+    display: block;
+    line-height: 3.5rem;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+  color: #ffffff;
+  }
+
+  .button {
+    color: #fff;
+    background-color: transparent;
+    // box-shadow: inset 0 0 0 2px #ffffff;
+  }
+  .close {
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+    border: 0;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    display: inline-block;
+    height: 3.25rem;
+    line-height: 3.25rem;
+    padding-right: 1.25rem;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+    vertical-align: middle;
+    width: 7rem;
+
+    // &:before {
+    //   content: 'X';
+    //   font-size: 1.25rem;
+    //   display: inline-block;
+    //   font-style: normal;
+    //   font-variant: normal;
+    //   text-rendering: auto;
+    //   line-height: 1;
+    //   font-weight: 900;
+    // }
+  }
+}
+@media screen and (max-width: 736px) {
+  #menu {
+    padding: 2.5rem 1.75rem;
+
+    .close {
+      height: 4rem;
+      line-height: 4rem;
+    }
+  }
+}
+
+// pop_up_menu control - option 1
+body.is-menu-visible #menu {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+body.is-menu-visible:after {
+  z-index: 10000;
+  opacity: 0.75;
+  pointer-events: auto;
+  cursor: default;
+}
+
+// option -2
+#pop_up_control{
+  opacity: 0;
+  z-index: 2;
+
+  &:checked ~ #pop_up_menu {
+    background-image: #fff;
+    transform: translateX(0);
+    // visibility: visible;
+  }
+}
+
+.pop_up_control_label {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  // background-color: #ccc;
+  &:before {
+    content: ' ';
+    position: absolute;
+    width: 90%;
+    height: 4px;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 10px #fff, 0 -10px #fff;
+    border-radius: 2px;
   }
 }

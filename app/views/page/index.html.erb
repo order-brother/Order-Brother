@@ -1,4 +1,26 @@
 <div class="container-fluid">
+
+   <!-- 彈出式功能視窗 -->
+   <input type="checkbox" id="pop_up_control">
+   <nav id="pop_up_menu">
+     <ul class="links">
+       <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Home</a></li>
+       <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Generic</a></li>
+       <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Elements</a></li>
+     </ul>
+     <ul class="actions stacked">
+       <li>
+         <%= link_to "登出", destroy_user_session_path,
+                            method: 'delete',
+                            data: { confirm: '確定登出？' },
+                            class: "button" if user_signed_in? %>
+       </li>
+     </ul>
+     <label for="pop_up_control" class="close"><%= fa_icon('close') %></label>
+   </nav>
+   <!-- 彈出式功能視窗 結束 -->
+
+
   <div class="row">
     <nav class="p-2 topnav col-md-12 d-flex justify-content-between align-items-center">
       <li><%= link_to "首頁", root_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
@@ -8,11 +30,10 @@
         <li><button type="button" class="m-1 btn btn-sm btn-outline-secondary" href="#support_me">幫我挑</button></li>
         <li>
           <div class="input-group">
-            <input class=" form-control form-control-sm form-control-borderless" type="search"
-            placeholder="搜尋">
+            <input class=" form-control form-control-sm form-control-borderless" type="search" placeholder="搜尋">
             <div class="input-group-append">
               <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="submit"
-              data-toggle="dropdown">Search</button>
+                data-toggle="dropdown">Search</button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
@@ -22,36 +43,40 @@
           </div>
         </li>
         <% if user_signed_in? %>
-          <li class="mx-2">使用者： <%= current_user.phone %> 你好！</li>
-          <li><%= link_to "我的店舖", admin_stores_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
-          <li><%= link_to "登出", destroy_user_session_path, method: 'delete', data: { confirm: '確定登出？' }, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
+        <li class="mx-2">使用者： <%= current_user.phone %> 你好！</li>
+        <li><%= link_to "我的店舖", admin_stores_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
+        <li>
+          <%= link_to "登出", destroy_user_session_path, method: 'delete', data: { confirm: '確定登出？' }, class: "m-1 btn btn-sm btn-outline-secondary" %>
+        </li>
         <% else %>
-          <li><%= link_to "登入", new_user_session_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
-          <li><%= link_to "註冊", new_user_registration_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
+        <li><%= link_to "登入", new_user_session_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
+        <li><%= link_to "註冊", new_user_registration_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
         <% end %>
+        <!-- 控制: 彈出功能列 -->
+        <label class="m-1 btn btn-sm btn-outline-secondary pop_up_control_label" for="pop_up_control"></label>
       </div>
-      </nav>
+    </nav>
 
-      <aside class="CheckboxList col-md-3">
-        <%= link_to"取得位置?", address_path, class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
-        <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#featured">pick up
-          time?</button>
-          <button class="btn mt-3 btn-sm col-md-12" type="button" data-toggle="collapse" data-target="#collapse"
-          aria-expanded="false" aria-controls="collapse">
-          類別
-        </button>
-        <div class="collapse" id="collapse">
-          <div class="card-body">
-            <ul class="col-md-12 justify-content-center align-items-center">
-              <li class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">中式料理</label>
-              </li>
-              <li class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">日式料理</label>
-              </li>
-              <li class="form-check form-check-inline">
+       <aside class="CheckboxList col-md-3">
+      <%= link_to"取得位置?", address_path, class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
+      <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#featured">pick up
+        time?</button>
+      <button class="btn mt-3 btn-sm col-md-12" type="button" data-toggle="collapse" data-target="#collapse"
+        aria-expanded="false" aria-controls="collapse">
+        類別
+      </button>
+      <div class="collapse" id="collapse">
+        <div class="card-body">
+          <ul class="col-md-12 justify-content-center align-items-center">
+            <li class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+              <label class="form-check-label" for="inlineCheckbox1">中式料理</label>
+            </li>
+            <li class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+              <label class="form-check-label" for="inlineCheckbox2">日式料理</label>
+            </li>
+            <li class="form-check form-check-inline">
               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
               <label class="form-check-label" for="inlineCheckbox1">韓式料理</label>
             </li>
@@ -100,7 +125,7 @@
         </div>
         <div class="input-group-append col-md-2 d-flex">
           <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
-          data-toggle="dropdown">排序</button>
+            data-toggle="dropdown">排序</button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#">Action</a>
             <a class="dropdown-item" href="#">Another action</a>
@@ -108,16 +133,16 @@
           </div>
         </div>
       </div>
-      
+
       <section class="store__list d-flex justify-content-around">
         <% @stores.each do |store| %>
         <div class="store__list--itme col-md-4 col-sm-6 px-2 pb-4">
           <div class="card store__card">
             <div class="store__card--img">
               <% if store.main_img? %>
-                <%= link_to image_tag(store.main_img_url, class: 'card-img-top'), store %>
+              <%= link_to image_tag(store.main_img_url, class: 'card-img-top'), store %>
               <% else %>
-                <%= link_to image_tag('bg_default', class: 'card-img-top'), store %>
+              <%= link_to image_tag('bg_default', class: 'card-img-top'), store %>
               <% end %>
             </div>
             <div class="card-body">
@@ -131,6 +156,8 @@
         <% end %>
       </section>
     </main>
+
+
 
     <footer class="col-md-12">
       © 2019 Orderbrother

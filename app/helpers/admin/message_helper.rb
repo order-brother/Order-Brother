@@ -2,7 +2,8 @@
 module Admin
   module MessageHelper
     def flash_message(msg_type)
-      %Q(<p class="#{msg_type} error_messages">#{flash[msg_type]}</p>).html_safe
+      return if msg_type.nil?
+        %Q(<p class="#{msg_type} error_messages">#{flash[msg_type]}</p>).html_safe
     end
 
     def error_block(store)
