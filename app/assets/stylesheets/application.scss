@@ -16,6 +16,8 @@
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
  @import "bootstrap";
+ @import "tempusdominus-bootstrap-4.css";
+
  body{ 
   margin:1.5rem 0; 
   padding: 0; 

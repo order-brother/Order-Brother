@@ -1,25 +1,24 @@
 <div class="container-fluid">
 
-   <!-- 彈出式功能視窗 -->
-   <input type="checkbox" id="pop_up_control">
-   <nav id="pop_up_menu">
-     <ul class="links">
-       <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Home</a></li>
-       <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Generic</a></li>
-       <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Elements</a></li>
-     </ul>
-     <ul class="actions stacked">
-       <li>
-         <%= link_to "登出", destroy_user_session_path,
+  <!-- 彈出式功能視窗 -->
+  <input type="checkbox" id="pop_up_control">
+  <nav id="pop_up_menu">
+    <ul class="links">
+      <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Home</a></li>
+      <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Generic</a></li>
+      <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Elements</a></li>
+    </ul>
+    <ul class="actions stacked">
+      <li>
+        <%= link_to "登出", destroy_user_session_path,
                             method: 'delete',
                             data: { confirm: '確定登出？' },
                             class: "button" if user_signed_in? %>
-       </li>
-     </ul>
-     <label for="pop_up_control" class="close"><%= fa_icon('close') %></label>
-   </nav>
-   <!-- 彈出式功能視窗 結束 -->
-
+      </li>
+    </ul>
+    <label for="pop_up_control" class="close"><%= fa_icon('close') %></label>
+  </nav>
+  <!-- 彈出式功能視窗 結束 -->
 
   <div class="row">
     <nav class="p-2 topnav col-md-12 d-flex justify-content-between align-items-center">
@@ -46,7 +45,10 @@
         <li class="mx-2">使用者： <%= current_user.phone %> 你好！</li>
         <li><%= link_to "我的店舖", admin_stores_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
         <li>
-          <%= link_to "登出", destroy_user_session_path, method: 'delete', data: { confirm: '確定登出？' }, class: "m-1 btn btn-sm btn-outline-secondary" %>
+          <%= link_to "登出", destroy_user_session_path,
+                               method: 'delete',
+                               data: { confirm: '確定登出？' },
+                               class: "m-1 btn btn-sm btn-outline-secondary" %>
         </li>
         <% else %>
         <li><%= link_to "登入", new_user_session_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
@@ -57,10 +59,21 @@
       </div>
     </nav>
 
-       <aside class="CheckboxList col-md-3">
+    <aside class="CheckboxList col-md-3">
       <%= link_to"取得位置?", address_path, class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
-      <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#featured">pick up
-        time?</button>
+      <!-- <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#featured">pick up
+        time?</button> -->
+      <%#= datetime_field 'transaction', 'pick_up_time', val: default_pick_up_time(), id: 'pick_time', class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
+      <div class="form-group">
+        <label for="datetimepicker1" class='btn mt-3 mb-0 btn-sm col-md-2 btn-outline-secondary'>取餐時間：</label>
+        <!-- TODO change to default_pick_up_time -->
+        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+          <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />
+          <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
+      </div>
       <button class="btn mt-3 btn-sm col-md-12" type="button" data-toggle="collapse" data-target="#collapse"
         aria-expanded="false" aria-controls="collapse">
         類別
@@ -157,10 +170,16 @@
       </section>
     </main>
 
-
-
     <footer class="col-md-12">
       © 2019 Orderbrother
     </footer>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker({
+      locale: 'ru'
+    });
+  });
+</script>

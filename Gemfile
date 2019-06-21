@@ -35,10 +35,10 @@ gem 'jbuilder', '~> 2.5'
 
 # bootstrap4
 gem 'bootstrap', '~> 4.3.1'
-
-gem 'jquery-rails'
+gem 'bootstrap4-datetime-picker-rails', '~> 0.3.1' # datetime picker
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'jquery-rails'
 
 # 後台管理工具
 gem 'rails_admin', '~> 1.4', '>= 1.4.2'
@@ -65,6 +65,9 @@ gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'aasm', '~> 5.0', '>= 5.0.5'
 
 gem 'simple_form', '~> 4.1'
+
+# Moment.js for bootstrap 4 datetime picker
+gem 'momentjs-rails', '~> 2.20', '>= 2.20.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
