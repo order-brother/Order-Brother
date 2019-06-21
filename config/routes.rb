@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :stores, shallow: true do
       resources :dishes do
-        collection do
-        get :cancel
+        member do
+          get :cancel
         end
       end
       resources :transactions, only: [:index, :new, :create]

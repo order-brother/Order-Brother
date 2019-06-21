@@ -1,5 +1,0 @@
-$('#dish_id_<%= @dish.id %>').html('<%= j render "update_fail_form", id: @dish.store.id %>')
-
-<% @dish.errors.full_messages.each do |message| %>
-  $('#helpBlock').append('<p class="notice"><%= message %></p>')
-<% end %>
