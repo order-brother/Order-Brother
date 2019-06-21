@@ -21,8 +21,9 @@ class Admin::TransactionsController < Admin::BaseController
   end
 
   def create
+    byebug
     ## 以下為參考用
-    @store = Store.find(params[:id])
+    @store = Store.find(params[:store_id])
     @transaction = @store.transactions.create(user: current_user, total_price: 0)
 
     transaction.description = return_order[:description]

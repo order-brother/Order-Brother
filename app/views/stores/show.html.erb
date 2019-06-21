@@ -41,27 +41,33 @@
               <%= @store.business_hours[0].end_at.hour %></span>
             <div>
               <div class="add_dish_list">
-                <input id="check_dish" class="check"type="button" value="總金額">  
+                <%# select取餐時間 %>
+                <br /><b style="color:#00f;">pick_up_time:</b>
+                <select>
+                  <% pick_up_time.each do |time| %>                  
+                    <option value="最快取餐時間"><%= time %></option>
+                  <% end %>
+                </select>
                 <%= button_tag '確認送出', type: 'button', class: 'btn btn-primary', id: 'js-show-modal' %>
-                  <%# select取餐時間 %>
-                  <br /><b style="color:#00f;">pick_up_time:</b>
-                  <select>
-                    <% pick_up_time.each do |time| %>                  
-                      <option value="最快取餐時間"><%= time %></option>
-                    <% end %>
-                  </select>                  
+                <%# <input id="check_dish" class="check"type="button" value="總金額">   %>
+                                  
                 
               </div>
             </div>
           </div>
           <div class="row js-calc-rs"></div>
-          <textarea id="Remark" type="textarea" value="訂餐備註" style="width:250px;height: 100px;">訂單備註</textarea><br />
+          <textarea id="Remark" type="textarea" placeholder="訂餐備註" style="width:300px;height: 100px;margin-top: 10px;"></textarea><br />
+          
         </div>
       </div>
       <div class="modal js-modal" style="display:none;background-color:#ff0;">
-        <%= form_tag transaction_index_path do %>
-          <%= hidden_field_tag 'store_id', @store.id %>
-          <%= hidden_field_tag 'dishes', '', id: 'js-dishes' %>
+        <%= form_tag admin_store_transactions_path(@store) do %>
+          <%= fields_for :transaction_item do |r| %>
+            <%= r.hidden_field 'dish_id_', id: 'js-dishes'%>
+            <%= r.hidden_field 'dish_id_2', id: 'js-dishes'%>
+          <%end%>
+        
+          
           <div class="js-calc-rs"></div>
           <button type="submit">送出訂單</button>
           <button onclick="$('.js-modal').hide();return false;">重新選擇</button>
@@ -79,13 +85,13 @@ var fns = {
         id    = $item.attr('id').replace('add_dish_', ''),
         name  = $item.siblings('.dish_name:eq(0)').text(),
         price = parseFloat($item.siblings('.dish_price:eq(0)').text());
-    if (typeof cart[id] !== 'undefined') {
-      cart[id]['count']++;
-    } else {
+    if (typeof cart[id] == 'undefined') {
       cart[id] = {};
       cart[id]['name']  = name;
       cart[id]['price'] = price;
       cart[id]['count'] = 1;
+    } else {
+      cart[id]['count']++;
     }
   },
   sub2cart: function(item) {
@@ -98,14 +104,9 @@ var fns = {
           price = parseFloat($item.siblings('.dish_price:eq(0)').text());
       if (typeof cart[id] !== 'undefined') {
         if(cart[id]['count'] -1 === 0){
-          // alert(123);
-          // $('').empty();
-          // console.log($(this).parent('li'));
-          var index = id.toString();
-          console.log(index);
-          delete cart[index];
-          // console.log(id.toString());
- 
+          // var index = id.toString();
+          // console.log(index);
+          delete cart[id];
         }else{
           cart[id]['count']--;
         }
@@ -120,7 +121,8 @@ var fns = {
       msg += '<button class= "count-down" type="button" data-id="' + idx + '" > - </button>' + ' ';
       msg += item['count'] 
       msg += '<button class= "count-up" type="button" data-id="' + idx +'" > + </button>' + ' ';
-      msg += '  ' + '<div>' + item['name'] + '<div class="xx d-none">X</div></div>' + ' -- ' + (item['price']* item['count'] + '元');
+      // msg += '  ' + '<div>' + item['name'] + '<div class="xx d-none">X</div></div>' + ' -- ' + (item['price']* item['count'] + '元');
+      msg += '  ' + '<div>' + item['name'] + ' -- ' + (item['price'] * item['count'] + '元');
       msg += '</li>';
     }
     msg += '<li>總金額： ' + fns.cartTotal() + '</li>';
@@ -141,8 +143,10 @@ var fns = {
     for(let idx in cart) {
       let item = cart[idx],
           id   = idx;
+      // "{\"1\":2, \"2\":2}"
       // {1: 2} id:1 數量2
       json[id] = item['count'];
+      // debugger
     }
     return JSON.stringify(json);
   }
