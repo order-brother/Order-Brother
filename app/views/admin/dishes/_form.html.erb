@@ -11,7 +11,7 @@
   <%= f.text_field :price %>
 </div>
 <div class="dish--img">
-  <%= f.label :main_img, "商品圖：" %>
+  <%= f.label :main_img, "商品圖片：" %>
   <%= f.file_field :main_img %>
 </div>
 <div class="dish--time">
@@ -19,5 +19,7 @@
   <%= f.number_field :prepare_time, in: 1..60, step: 0.5 %>
 </div>
 <%= f.submit "確認", class: 'btn btn-success'%>
+<!-- TODO 新增取消按鈕 -->
+<%= link_to '取消', cancel_ %>
 <span id="helpBlock" class="help-block error_messages"></span>
 <% end %>
