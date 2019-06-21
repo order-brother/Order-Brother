@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateJoinTableForDishTagsAndDishes < ActiveRecord::Migration[5.2]
   def change
     create_table :dish_tags_dishes, id: false do |t|

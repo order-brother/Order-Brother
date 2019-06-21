@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ChangeDataTypeOfPickUpTimeInTransaction < ActiveRecord::Migration[5.2]
   def up
     remove_column :transactions, :pick_up_time, :string

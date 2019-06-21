@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateBusinessHours < ActiveRecord::Migration[5.2]
   def change
     create_table :business_hours do |t|
