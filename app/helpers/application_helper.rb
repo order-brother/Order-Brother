@@ -11,4 +11,17 @@ module ApplicationHelper
     current_time ||= Time.now + 30.minutes
     current_time.strftime("%Y-%m-%dT%H:%M")
   end
+
+  def generate_pick_up_time(time, minutes)
+    current_time ||= time + 30.minutes + minutes
+    current_time.strftime("%Y-%m-%dT%H:%M")
+  end
+
+  def pick_up_time
+    result = []
+    10.times { |index| 
+      result << generate_pick_up_time(Time.now, 10.minutes * index)
+    }
+    result
+  end
 end
