@@ -1,182 +1,187 @@
-<div class="container-fluid">
+<div class='container-fluid'>
+  <div class='row'>
 
-  <!-- 彈出式功能視窗 -->
-  <input type="checkbox" id="pop_up_control">
-  <nav id="pop_up_menu">
-    <ul class="links">
-      <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Home</a></li>
-      <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Generic</a></li>
-      <li><a href="javascript:window._pxOpen('TARGET.html');" style="">Elements</a></li>
-    </ul>
-    <ul class="actions stacked">
-      <li>
-        <%= link_to "登出", destroy_user_session_path,
-                            method: 'delete',
-                            data: { confirm: '確定登出？' },
-                            class: "button" if user_signed_in? %>
-      </li>
-    </ul>
-    <label for="pop_up_control" class="close"><%= fa_icon('close') %></label>
-  </nav>
-  <!-- 彈出式功能視窗 結束 -->
-
-  <div class="row">
-    <nav class="p-2 topnav col-md-12 d-flex justify-content-between align-items-center">
-      <li><%= link_to "首頁", root_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
-      <div class="d-flex justify-content-end align-items-center">
-        <li><button type="button" class="m-1 btn btn-sm btn-outline-secondary" href="#category">分類</button></li>
-        <li><button type="button" class="m-1 btn btn-sm btn-outline-secondary" href="#featured">精選</button></li>
-        <li><button type="button" class="m-1 btn btn-sm btn-outline-secondary" href="#support_me">幫我挑</button></li>
+    <!-- 彈出式功能視窗 -->
+    <input type='checkbox' id='pop_up_control'>
+    <nav id='pop_up_menu'>
+      <ul class='links mt-5'>
+        <li><a href='javascript:window._pxOpen('TARGET.html');'>Elements</a></li>
+      </ul>
+      <% if user_signed_in?  %>
+      <ul class='actions stacked'>
+        <!-- TODO 加入修改帳戶資料功能 -->
+        <li><%= link_to '修改個人資料', url: '#' %></li>
         <li>
-          <div class="input-group">
-            <input class=" form-control form-control-sm form-control-borderless" type="search" placeholder="搜尋">
-            <div class="input-group-append">
-              <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="submit"
-                data-toggle="dropdown">Search</button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+          <%= link_to '登出', destroy_user_session_path,
+                              method: 'delete',
+                              data: { confirm: '確定登出？' },
+                              class: 'button' if user_signed_in? %>
+        </li>
+        <li><%= link_to '訂單記錄', transaction_index_path(current_user), class: 'button' %></li>
+      </ul>
+      <% end %>
+      <label for='pop_up_control' class='close'><%= fa_icon('close') %></label>
+    </nav>
+    <!-- 彈出式功能視窗 結束 -->
+
+    <div class='row main'>
+      <nav class='p-2 topnav col-md-12 d-flex justify-content-between align-items-center'>
+        <li><%= link_to '首頁', root_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
+        <div class='d-flex justify-content-end align-items-center'>
+          <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#category'>分類</button></li>
+          <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#featured'>精選</button></li>
+          <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#support_me'>幫我挑</button></li>
+          <li>
+            <div class='input-group'>
+              <input class=' form-control form-control-sm form-control-borderless' type='search' placeholder='搜尋'>
+              <div class='input-group-append'>
+                <button class='btn btn-sm btn-outline-secondary dropdown-toggle' type='submit'
+                  data-toggle='dropdown'>Search</button>
+                <div class='dropdown-menu'>
+                  <a class='dropdown-item' href='#'>Action</a>
+                  <a class='dropdown-item' href='#'>Another action</a>
+                  <a class='dropdown-item' href='#'>Something else here</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <% if user_signed_in? %>
+          <li class='mx-2'>使用者： <%= current_user.phone %> 你好！</li>
+          <li><%= link_to '我的店舖', admin_stores_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
+          <li>
+            <%= link_to '登出', destroy_user_session_path,
+                                 method: 'delete',
+                                 data: { confirm: '確定登出？' },
+                                 class: 'm-1 btn btn-sm btn-outline-secondary' %>
+          </li>
+          <% else %>
+          <li><%= link_to '登入', new_user_session_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
+          <li><%= link_to '註冊', new_user_registration_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
+          <% end %>
+          <!-- 控制: 彈出功能列 -->
+          <label class='m-1 btn btn-sm btn-outline-secondary pop_up_control_label' for='pop_up_control'></label>
+        </div>
+      </nav>
+
+      <aside class='CheckboxList col-md-3'>
+        <%= link_to'取得位置?', address_path, class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
+        <!-- <button class='btn mt-3 btn-sm col-md-12 btn-outline-secondary' type='button' href='#featured'>pick up
+          time?</button> -->
+        <%#= datetime_field 'transaction', 'pick_up_time', val: default_pick_up_time(), id: 'pick_time', class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
+        <div class='form-group'>
+          <label for='datetimepicker1' class='btn mt-3 mb-0 btn-sm col-md-12 btn-outline-secondary'>取餐時間：</label>
+          <!-- TODO change to default_pick_up_time -->
+          <div class='input-group date' id='datetimepicker1' data-target-input='nearest'>
+            <input type='text' class='form-control datetimepicker-input' data-target='#datetimepicker1' />
+            <div class='input-group-append' data-target='#datetimepicker1' data-toggle='datetimepicker'>
+              <div class='input-group-text'><i class='fa fa-calendar'></i></div>
+            </div>
+          </div>
+        </div>
+        <button class='btn mt-3 btn-sm col-md-12' type='button' data-toggle='collapse' data-target='#collapse'
+          aria-expanded='false' aria-controls='collapse'>
+          類別
+        </button>
+        <div class='collapse' id='collapse'>
+          <div class='card-body'>
+            <ul class='col-md-12 justify-content-center align-items-center'>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox1' value='option1'>
+                <label class='form-check-label' for='inlineCheckbox1'>中式料理</label>
+              </li>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox2' value='option2'>
+                <label class='form-check-label' for='inlineCheckbox2'>日式料理</label>
+              </li>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox1' value='option1'>
+                <label class='form-check-label' for='inlineCheckbox1'>韓式料理</label>
+              </li>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox2' value='option2'>
+                <label class='form-check-label' for='inlineCheckbox2'>越南料理</label>
+              </li>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox1' value='option1'>
+                <label class='form-check-label' for='inlineCheckbox1'>西式料理</label>
+              </li>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox2' value='option2'>
+                <label class='form-check-label' for='inlineCheckbox2'>義式料理</label>
+              </li>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox1' value='option1'>
+                <label class='form-check-label' for='inlineCheckbox1'>元氣早餐</label>
+              </li>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox2' value='option2'>
+                <label class='form-check-label' for='inlineCheckbox2'>漢堡</label>
+              </li>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox1' value='option1'>
+                <label class='form-check-label' for='inlineCheckbox1'>牛排</label>
+              </li>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox2' value='option2'>
+                <label class='form-check-label' for='inlineCheckbox2'>飲料</label>
+              </li>
+              <li class='form-check form-check-inline'>
+                <input class='form-check-input' type='checkbox' id='inlineCheckbox1' value='option1'>
+                <label class='form-check-label' for='inlineCheckbox1'>甜品</label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <main class='col-md-9 justify-content-around'>
+        <div class='tag-arear col-md-12 d-flex'>
+          <div class='tag-arear-show col-md-10 d-flex justify-content-start align-items-start'>
+            <button type='button' class=' btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
+            <button type='button' class=' btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
+            <button type='button' class=' btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
+          </div>
+          <div class='input-group-append col-md-2 d-flex'>
+            <button class='btn btn-sm btn-outline-secondary dropdown-toggle' type='button'
+              data-toggle='dropdown'>排序</button>
+            <div class='dropdown-menu'>
+              <a class='dropdown-item' href='#'>Action</a>
+              <a class='dropdown-item' href='#'>Another action</a>
+              <a class='dropdown-item' href='#'>Something else here</a>
+            </div>
+          </div>
+        </div>
+
+        <section class='store__list d-flex justify-content-around'>
+          <% @stores.each do |store| %>
+          <div class='store__list--itme col-md-4 col-sm-6 px-2 pb-4'>
+            <div class='card store__card'>
+              <div class='store__card--img'>
+                <% if store.main_img? %>
+                <%= link_to image_tag(store.main_img_url, class: 'card-img-top'), store %>
+                <% else %>
+                <%= link_to image_tag('bg_default', class: 'card-img-top'), store %>
+                <% end %>
+              </div>
+              <div class='card-body'>
+                <h5 class='catitlerd-'><%= store.name %></h5>
+                <p class='catitlerd-'><%= store.tel %></p>
+                <p class='catitlerd-'><%= store.description %></p>
+                <%= link_to '進入店家', store, class: 'btn btn-info' %>
               </div>
             </div>
           </div>
-        </li>
-        <% if user_signed_in? %>
-        <li class="mx-2">使用者： <%= current_user.phone %> 你好！</li>
-        <li><%= link_to "我的店舖", admin_stores_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
-        <li>
-          <%= link_to "登出", destroy_user_session_path,
-                               method: 'delete',
-                               data: { confirm: '確定登出？' },
-                               class: "m-1 btn btn-sm btn-outline-secondary" %>
-        </li>
-        <% else %>
-        <li><%= link_to "登入", new_user_session_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
-        <li><%= link_to "註冊", new_user_registration_path, class: "m-1 btn btn-sm btn-outline-secondary" %></li>
-        <% end %>
-        <!-- 控制: 彈出功能列 -->
-        <label class="m-1 btn btn-sm btn-outline-secondary pop_up_control_label" for="pop_up_control"></label>
-      </div>
-    </nav>
+          <% end %>
+        </section>
+      </main>
 
-    <aside class="CheckboxList col-md-3">
-      <%= link_to"取得位置?", address_path, class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
-      <!-- <button class="btn mt-3 btn-sm col-md-12 btn-outline-secondary" type="button" href="#featured">pick up
-        time?</button> -->
-      <%#= datetime_field 'transaction', 'pick_up_time', val: default_pick_up_time(), id: 'pick_time', class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
-      <div class="form-group">
-        <label for="datetimepicker1" class='btn mt-3 mb-0 btn-sm col-md-12 btn-outline-secondary'>取餐時間：</label>
-        <!-- TODO change to default_pick_up_time -->
-        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-          <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1" />
-          <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
-            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-          </div>
-        </div>
-      </div>
-      <button class="btn mt-3 btn-sm col-md-12" type="button" data-toggle="collapse" data-target="#collapse"
-        aria-expanded="false" aria-controls="collapse">
-        類別
-      </button>
-      <div class="collapse" id="collapse">
-        <div class="card-body">
-          <ul class="col-md-12 justify-content-center align-items-center">
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-              <label class="form-check-label" for="inlineCheckbox1">中式料理</label>
-            </li>
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-              <label class="form-check-label" for="inlineCheckbox2">日式料理</label>
-            </li>
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-              <label class="form-check-label" for="inlineCheckbox1">韓式料理</label>
-            </li>
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-              <label class="form-check-label" for="inlineCheckbox2">越南料理</label>
-            </li>
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-              <label class="form-check-label" for="inlineCheckbox1">西式料理</label>
-            </li>
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-              <label class="form-check-label" for="inlineCheckbox2">義式料理</label>
-            </li>
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-              <label class="form-check-label" for="inlineCheckbox1">元氣早餐</label>
-            </li>
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-              <label class="form-check-label" for="inlineCheckbox2">漢堡</label>
-            </li>
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-              <label class="form-check-label" for="inlineCheckbox1">牛排</label>
-            </li>
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-              <label class="form-check-label" for="inlineCheckbox2">飲料</label>
-            </li>
-            <li class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-              <label class="form-check-label" for="inlineCheckbox1">甜品</label>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </aside>
-    <main class="col-md-9 justify-content-around">
-      <div class="tag-arear col-md-12 d-flex">
-        <div class="tag-arear-show col-md-10 d-flex justify-content-start align-items-start">
-          <button type="button" class=" btn btn-sm btn-outline-secondary" href="#support_me">tag</button>
-          <button type="button" class=" btn btn-sm btn-outline-secondary" href="#support_me">tag</button>
-          <button type="button" class=" btn btn-sm btn-outline-secondary" href="#support_me">tag</button>
-        </div>
-        <div class="input-group-append col-md-2 d-flex">
-          <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
-            data-toggle="dropdown">排序</button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div>
-      </div>
-
-      <section class="store__list d-flex justify-content-around">
-        <% @stores.each do |store| %>
-        <div class="store__list--itme col-md-4 col-sm-6 px-2 pb-4">
-          <div class="card store__card">
-            <div class="store__card--img">
-              <% if store.main_img? %>
-              <%= link_to image_tag(store.main_img_url, class: 'card-img-top'), store %>
-              <% else %>
-              <%= link_to image_tag('bg_default', class: 'card-img-top'), store %>
-              <% end %>
-            </div>
-            <div class="card-body">
-              <h5 class="catitlerd-"><%= store.name %></h5>
-              <p class="catitlerd-"><%= store.tel %></p>
-              <p class="catitlerd-"><%= store.description %></p>
-              <%= link_to "進入店家", store, class: 'btn btn-info' %>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </section>
-    </main>
-
-    <footer class="col-md-12">
-      © 2019 Orderbrother
-    </footer>
+      <footer class='col-md-12'>
+        © 2019 Orderbrother
+      </footer>
+    </div>
   </div>
 </div>
 
-<script type="text/javascript">
+<script type='text/javascript'>
   $(function () {
     $('#datetimepicker1').datetimepicker({
       locale: 'ru'

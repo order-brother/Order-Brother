@@ -7,7 +7,7 @@ class Transaction < ApplicationRecord
 
   acts_as_paranoid
 
-  enum state: [:pending, :waiting_pick_up, :rejected, :closed, :canceled]
+  enum state: %i[pending waiting_pick_up rejected closed canceled]
   aasm column: 'state' do
     state :pending, initial: true
     state :accepted, :waiting_pick_up, :rejected, :closed, :canceled
@@ -21,16 +21,16 @@ class Transaction < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:pending, :waiting_pick_up], to: :canceled
+      transitions from: %i[pending waiting_pick_up], to: :canceled
     end
 
     # FIXME 店家可以不經過客戶同意自己修改訂單，再自己接受
     event :modify do
-      transitions from: [:pending, :waiting_pick_up], to: :pending
+      transitions from: %i[pending waiting_pick_up], to: :pending
     end
 
     event :reject do
-      transitions from: [:pending, :waiting_pick_up], to: :rejected
+      transitions from: %i[pending waiting_pick_up], to: :rejected
     end
   end
 

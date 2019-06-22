@@ -65,18 +65,18 @@ class Admin::TransactionsController < Admin::BaseController
   def destroy
   end
 
-  def state
+  def act
     @transaction = Transaction.find(params[:id])
-    case params[:state]
+    case params[:act]
     when 'accept'
       @transaction.accept!
-      render 'state'
+      render 'act'
     when 'modify'
       @transaction.modify!
       render 'edit'
     when 'reject'
       @transaction.reject!
-      render 'state'
+      render 'act'
     end
   end
 
