@@ -65,12 +65,8 @@
 
       <aside class='CheckboxList col-md-3'>
         <%= link_to'取得位置?', address_path, class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
-        <!-- <button class='btn mt-3 btn-sm col-md-12 btn-outline-secondary' type='button' href='#featured'>pick up
-          time?</button> -->
-        <%#= datetime_field 'transaction', 'pick_up_time', val: default_pick_up_time(), id: 'pick_time', class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
         <div class='form-group'>
           <label for='datetimepicker1' class='btn mt-3 mb-0 btn-sm col-md-12 btn-outline-secondary'>取餐時間：</label>
-          <!-- TODO change to default_pick_up_time -->
           <div class='input-group date' id='datetimepicker1' data-target-input='nearest'>
             <input type='text' class='form-control datetimepicker-input' data-target='#datetimepicker1' value="<%= default_pick_up_time %>"/>
             <div class='input-group-append' data-target='#datetimepicker1' data-toggle='datetimepicker'>
