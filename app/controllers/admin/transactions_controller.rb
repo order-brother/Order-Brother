@@ -29,6 +29,7 @@ class Admin::TransactionsController < Admin::BaseController
     transaction.description = return_order[:description]
     transaction.description = return_order[:pick_up_time]
 
+
     return_order[:transaction_item].each do |_index, col|
       t = transaction.transaction_items.new(col)
       t.save!
@@ -64,18 +65,18 @@ class Admin::TransactionsController < Admin::BaseController
   def destroy
   end
 
-  def state
+  def act
     @transaction = Transaction.find(params[:id])
-    case params[:state]
+    case params[:act]
     when 'accept'
       @transaction.accept!
-      render 'state'
+      render 'act'
     when 'modify'
       @transaction.modify!
       render 'edit'
     when 'reject'
       @transaction.reject!
-      render 'state'
+      render 'act'
     end
   end
 
@@ -94,7 +95,7 @@ class Admin::TransactionsController < Admin::BaseController
         :item2 => {
           'dish_id' => d2.id,
           'dish_count' => 1,
-          'item_price' => 199
+          'item_price' => Dish.find(d2.id).pirce
         }
       }
     }

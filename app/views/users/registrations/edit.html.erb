@@ -1,8 +1,10 @@
 <h2>編*輯 <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  
+  <!-- 停用 devise 內建錯誤訊息   -->
+  <%#= render "devise/shared/error_messages", resource: resource %>
+    
+  <%= error_block(resource) %>
     <div class="field">
       <%= f.label :phone %><br />
       <%= f.text_field :phone, autofocus: true %>

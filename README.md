@@ -1,5 +1,11 @@
 Order Brother!
 ===
+Life is short, we'd like to enjoy every moment of every day.
+
+Here we're trying to offer a way to live a more productive life, 
+just don't waste your time to wait in line.
+
+**Order Brother** is a pre-order system that helps people easily find and make orders, or open stores.
 
 ## Requirements
 

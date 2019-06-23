@@ -1,27 +1,30 @@
-<h2>登＊入</h2>
+<h2>登 入</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :login, "帳號：電話號碼或 Email" %><br />
+<div class="form-group">
+  <%= error_block(resource) %>
+  <%= f.label :login, "帳號：電話號碼或 Email", class: 'col-4 col-form-label' %>
+  <div class="col-8">
     <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    <%= f.text_field :login, autofocus: true %>
+    <%= f.text_field :login, autofocus: true, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :password, "密碼" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <%= f.label :password, "密碼", class: 'col-4 col-form-label' %>
+  <div class="col-8">
+  <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
+    <div class="col-12">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me, "勿忘我" %>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= f.submit "登入" %>
+    <%= f.submit "登入", class: 'btn btn-info' %>
   </div>
+  <%= render "users/shared/links" %>
+</div>
 <% end %>
 
-<%= render "users/shared/links" %>

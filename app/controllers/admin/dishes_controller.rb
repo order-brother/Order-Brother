@@ -1,6 +1,6 @@
 class Admin::DishesController < Admin::BaseController
   before_action :find_store, only: [:new, :create]
-  before_action :find_dish, only: [:edit, :update, :destroy]
+  before_action :find_dish, only: %i(edit update cancel destroy)
 
   def index
     @dish = Dish.all
@@ -40,6 +40,10 @@ class Admin::DishesController < Admin::BaseController
       @method = :patch
       render 'edit'
     end
+  end
+
+  def cancel
+    @store = @dish.store
   end
 
   def destroy
