@@ -74,6 +74,9 @@ class Admin::TransactionsController < Admin::BaseController
     when 'modify'
       @transaction.modify!
       render 'edit'
+    when 'pick'
+      @transaction.pick!
+      render 'act'
     when 'reject'
       @transaction.reject!
       render 'act'
