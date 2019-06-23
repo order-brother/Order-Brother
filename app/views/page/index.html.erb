@@ -72,7 +72,7 @@
           <label for='datetimepicker1' class='btn mt-3 mb-0 btn-sm col-md-12 btn-outline-secondary'>取餐時間：</label>
           <!-- TODO change to default_pick_up_time -->
           <div class='input-group date' id='datetimepicker1' data-target-input='nearest'>
-            <input type='text' class='form-control datetimepicker-input' data-target='#datetimepicker1' />
+            <input type='text' class='form-control datetimepicker-input' data-target='#datetimepicker1' value="<%= default_pick_up_time %>"/>
             <div class='input-group-append' data-target='#datetimepicker1' data-toggle='datetimepicker'>
               <div class='input-group-text'><i class='fa fa-calendar'></i></div>
             </div>
@@ -133,7 +133,7 @@
           </div>
         </div>
       </aside>
-      <main class='col-md-9 justify-content-around'>
+      <main class='col-md-9 justify-content-around row'>
         <div class='tag-arear col-md-12 d-flex'>
           <div class='tag-arear-show col-md-10 d-flex justify-content-start align-items-start'>
             <button type='button' class=' btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
@@ -153,7 +153,7 @@
 
         <section class='store__list d-flex justify-content-around'>
           <% @stores.each do |store| %>
-          <div class='store__list--itme col-md-4 col-sm-6 px-2 pb-4'>
+          <div class='store__list--item col-md-4 col-sm-6 mb-2 row'>
             <div class='card store__card'>
               <div class='store__card--img'>
                 <% if store.main_img? %>
@@ -174,7 +174,7 @@
         </section>
       </main>
 
-      <footer class='col-md-12'>
+      <footer class='footer__section col-md-12'>
         © 2019 Orderbrother
       </footer>
     </div>
@@ -184,7 +184,7 @@
 <script type='text/javascript'>
   $(function () {
     $('#datetimepicker1').datetimepicker({
-      locale: 'ru'
+      format: 'YYYY/MM/DD HH:mm'
     });
   });
 </script>
