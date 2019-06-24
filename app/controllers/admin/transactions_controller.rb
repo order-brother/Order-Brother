@@ -31,7 +31,7 @@ class Admin::TransactionsController < Admin::BaseController
 
 
     return_order[:transaction_item].each do |_index, col|
-      t = transaction.transaction_items.new(col)
+      t = @transaction.transaction_items.new(col)
       t.save!
     end
 

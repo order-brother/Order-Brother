@@ -49,29 +49,27 @@
                   <% end %>
                 </select>
                 <%= button_tag '確認送出', type: 'button', class: 'btn btn-primary', id: 'js-show-modal' %>
-                <%# <input id="check_dish" class="check"type="button" value="總金額">   %>
-                                  
-                
+       
               </div>
             </div>
           </div>
           <div class="row js-calc-rs"></div>
-          <textarea id="Remark" type="textarea" placeholder="訂餐備註" style="width:300px;height: 100px;margin-top: 10px;"></textarea><br />
-          
+
+          <textarea id="Remark" type="textarea" value="訂單備註" placeholder="訂單備註" style="width:250px;height: 100px;"></textarea><br />
         </div>
       </div>
-      <div class="modal js-modal" style="display:none;background-color:#ff0;">
+      <div class="modal js-modal">
         <%= form_tag admin_store_transactions_path(@store) do %>
-          <%= fields_for :transaction_item do |r| %>
-            <%= r.hidden_field 'dish_id_', id: 'js-dishes'%>
-            <%= r.hidden_field 'dish_id_2', id: 'js-dishes'%>
-          <%end%>
-        
-          
+          <%= hidden_field_tag 'store_id', @store.id %>
+          <%= hidden_field_tag 'dishes', '', id: 'js-dishes' %>
+          <%# select取餐時間 %>
+          <br /><b style="color:#00f;">pick_up_time:</b>
+          <%= select_tag(:time, options_for_select(pick_up_time))%>
+
           <div class="js-calc-rs"></div>
           <button type="submit">送出訂單</button>
           <button onclick="$('.js-modal').hide();return false;">重新選擇</button>
-        <% end %>
+        <% end  %>
       </div>
     </div>
   </div>
@@ -121,8 +119,9 @@ var fns = {
       msg += '<button class= "count-down" type="button" data-id="' + idx + '" > - </button>' + ' ';
       msg += item['count'] 
       msg += '<button class= "count-up" type="button" data-id="' + idx +'" > + </button>' + ' ';
+
+      msg += '  ' + '<div>' + item['name'] + ' -- ' + (item['price']* item['count'] + '元');
       // msg += '  ' + '<div>' + item['name'] + '<div class="xx d-none">X</div></div>' + ' -- ' + (item['price']* item['count'] + '元');
-      msg += '  ' + '<div>' + item['name'] + ' -- ' + (item['price'] * item['count'] + '元');
       msg += '</li>';
     }
     msg += '<li>總金額： ' + fns.cartTotal() + '</li>';
