@@ -21,7 +21,9 @@
                       <div class="dish__img">
                         <%= image_tag dish.main_img_url if dish.main_img? %>
                       </div>
-                      <input id="add_dish_<%= dish.id %>" class="add_dish_to_cart" type="button" value="加入">
+                      <% if dish.state == 1 %>
+                      <input id="add_dish_<%= dish.id %>" class="add_dish_to_cart" type="button" value="加入" >
+                      <% end %>
                     </div> 
                   </div>
                 </section>

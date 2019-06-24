@@ -8,7 +8,7 @@
     <main class="orders__list col-12">
       <% @transactions.each do |t| %>
       <div id="order_<%= t.id %>" class="orders__card row col-12">
-        <%= render 'orders__card--body.html.erb', t: t %>
+        <%= render 'orders__card--body', t: t %>
       </div>
       <% end %>
     </main>

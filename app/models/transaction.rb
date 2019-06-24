@@ -44,6 +44,6 @@ class Transaction < ApplicationRecord
   end
 
   def total_price
-    self.total_price = transaction_items.reduce(0) { |sum, ti| sum + (ti.item_price * ti.dish_count) }
+    self.total_price = transaction_items.reduce(0) { |sum, ti| sum + (Dish.find(ti.dish_id).price * ti.dish_count) }
   end
 end
