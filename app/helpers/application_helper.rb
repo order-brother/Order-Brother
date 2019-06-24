@@ -23,6 +23,9 @@ module ApplicationHelper
     10.times { |index| 
       result << generate_pick_up_time(Time.now, 10.minutes * index)
     }
+  #   2.times { |index|
+  # result << generate_pick_up_time(Time.now, 30.minutes * index)
+  #   }
     result
   end
 end

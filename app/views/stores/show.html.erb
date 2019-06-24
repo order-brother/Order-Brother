@@ -4,21 +4,29 @@
 <%# 讀取餐點所有資訊%>
 <div class="container-fluid store_page">
   <div class="row">
-    <div class="col-7">
+    <div class="col">
       <div class="left-part">
         <div class="dish-list">
           <div class="row">
             <% @store.dishes.each do |dish| %>
-            <div id="dish_id_<%= dish.id %>" class="col-6 dish-card">
-              <div class="row">
-                <div class="col-8 item-info">
-                  <span class="dish_name"><%= dish.name %></span>
-                  <span class="dish_price" value="<%= dish.price %>"><%= dish.price %></span><span>元</span>
-                  <input id="add_dish_<%= dish.id %>" class="add_dish_to_cart" type="button" value="加入">
-                </div>
-                <div class="col-4 info">
-                  <img src="https://cdn2.ettoday.net/images/525/d525095.jpg" alt="">
-                </div>
+            <div class="row">
+              <div class="show--store__body col-8">
+                <section class="dishes">
+                  <div class="dishes__list">
+                    <div id="dish_id_<%= dish.id %>" class="dishes__card dish_state_<%= dish.state %>">
+                      <div class="dishes__card--desc">
+                        <span class="dish_name"value="<%= dish.name %>"><%= dish.name %></span>
+                        <span class="dish_price" value="<%= dish.price %>"><%= dish.price %>元</span>
+                      </div>
+                      <div class="dish__img">
+                        <%= image_tag dish.main_img_url if dish.main_img? %>
+                      </div>
+                      <% if dish.state == 1 %>
+                      <input id="add_dish_<%= dish.id %>" class="add_dish_to_cart" type="button" value="加入" >
+                      <% end %>
+                    </div> 
+                  </div>
+                </section>
               </div>
             </div>
             <% end %>
@@ -26,14 +34,15 @@
         </div>
       </div>
     </div>
-    <div class="col-5">
+    <div class="col">
       <div class="right-part">
-        <div class="top-info">
-          <div class="row">
+        <div class="top-info ">
+          <div class="show--store__main_img">
             <h4><%= @store.name %> Page</h4>
             <img src="<%= @store.main_img %>">
           </div>
-          <div class="row">
+          
+          <div class="show--store__header">
             <span>電話<%= @store.tel %></span>
             <span>地點<%= @store.location %></span>
             <span>店家資訊<%= @store.description %></span>
@@ -49,29 +58,27 @@
                   <% end %>
                 </select>
                 <%= button_tag '確認送出', type: 'button', class: 'btn btn-primary', id: 'js-show-modal' %>
-                <%# <input id="check_dish" class="check"type="button" value="總金額">   %>
-                                  
-                
+       
               </div>
             </div>
           </div>
           <div class="row js-calc-rs"></div>
-          <textarea id="Remark" type="textarea" placeholder="訂餐備註" style="width:300px;height: 100px;margin-top: 10px;"></textarea><br />
-          
+
+          <textarea id="Remark" type="textarea" value="訂單備註" placeholder="訂單備註" style="width:250px;height: 100px;"></textarea><br />
         </div>
       </div>
-      <div class="modal js-modal" style="display:none;background-color:#ff0;">
+      <div class="modal js-modal">
         <%= form_tag admin_store_transactions_path(@store) do %>
-          <%= fields_for :transaction_item do |r| %>
-            <%= r.hidden_field 'dish_id_', id: 'js-dishes'%>
-            <%= r.hidden_field 'dish_id_2', id: 'js-dishes'%>
-          <%end%>
-        
-          
+          <%= hidden_field_tag 'store_id', @store.id %>
+          <%= hidden_field_tag 'dishes', '', id: 'js-dishes' %>
+          <%# select取餐時間 %>
+          <br /><b style="color:#00f;">pick_up_time:</b>
+          <%= select_tag(:time, options_for_select(pick_up_time))%>
+
           <div class="js-calc-rs"></div>
           <button type="submit">送出訂單</button>
           <button onclick="$('.js-modal').hide();return false;">重新選擇</button>
-        <% end %>
+        <% end  %>
       </div>
     </div>
   </div>
@@ -83,12 +90,14 @@ var fns = {
   add2cart: function(item) {
     var $item = $(item),
         id    = $item.attr('id').replace('add_dish_', ''),
-        name  = $item.siblings('.dish_name:eq(0)').text(),
-        price = parseFloat($item.siblings('.dish_price:eq(0)').text());
+        name  = $item.siblings().find('.dish_name:eq(0)').attr('value');
+        // price = parseFloat($item.siblings('.dish_price:eq(0)').text());
+        price = parseFloat($item.siblings().find('.dish_price').attr('value'));
+        
     if (typeof cart[id] == 'undefined') {
       cart[id] = {};
-      cart[id]['name']  = name;
-      cart[id]['price'] = price;
+      cart[id]['dish_name']  = name;
+      cart[id]['dish_price'] = price;
       cart[id]['count'] = 1;
     } else {
       cart[id]['count']++;
@@ -100,8 +109,8 @@ var fns = {
     //   若不是 直接 count - 1
     var $item = $(item),
           id    = $item.attr('id').replace('add_dish_', ''),
-          name  = $item.siblings('.dish_name:eq(0)').text(),
-          price = parseFloat($item.siblings('.dish_price:eq(0)').text());
+          name  = $item.siblings().find('.dish_name:eq(0)').attr('value');
+          price = parseFloat($item.siblings().find('.dish_price').attr('value'));
       if (typeof cart[id] !== 'undefined') {
         if(cart[id]['count'] -1 === 0){
           // var index = id.toString();
@@ -115,26 +124,32 @@ var fns = {
   
   buildCartList: function() {
     var msg = '<ul>';
+    console.log('cat',cart)
     for(let idx in cart) {
       let item = cart[idx];
       msg += '<li>';
       msg += '<button class= "count-down" type="button" data-id="' + idx + '" > - </button>' + ' ';
       msg += item['count'] 
       msg += '<button class= "count-up" type="button" data-id="' + idx +'" > + </button>' + ' ';
+
+      msg += '  ' + item['dish_name'] + ' : ' + (item['dish_price']* item['count'] + '元');
+      console.log("132144532",item['count']);
       // msg += '  ' + '<div>' + item['name'] + '<div class="xx d-none">X</div></div>' + ' -- ' + (item['price']* item['count'] + '元');
-      msg += '  ' + '<div>' + item['name'] + ' -- ' + (item['price'] * item['count'] + '元');
       msg += '</li>';
     }
     msg += '<li>總金額： ' + fns.cartTotal() + '</li>';
+
     msg += '</ul>';
     return msg;
   },
   cartTotal: function(){
     if (cart === {}) return 0;
     let total = 0;
+    console.log(cart);
     for(let idx in cart) {
       let item = cart[idx];
-      total += item.price * item.count
+      total += item.dish_price * item.count
+      console.log("price",item.price);
     }
     return total;
   },
