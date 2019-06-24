@@ -12,6 +12,7 @@ class Transaction < ApplicationRecord
     state :pending, initial: true
     state :accepted, :waiting_pick_up, :rejected, :closed, :canceled
 
+    # TODO 進入 pending 的時候 callback job 讓他倒數五分鐘
     event :accept do
       transitions from: :pending, to: :waiting_pick_up
     end
@@ -44,6 +45,6 @@ class Transaction < ApplicationRecord
   end
 
   def total_price
-    self.total_price = transaction_items.reduce(0) { |sum, ti| sum + (ti.item_price * ti.dish_count) }
+    self.total_price = transaction_items.reduce(0) { |sum, ti| sum + (Dish.find(ti.dish_id).price * ti.dish_count) }
   end
 end
