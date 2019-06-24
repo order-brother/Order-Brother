@@ -5,8 +5,16 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/backstage', as: 'rails_admin'
 
   resources :stores, only: [:show]
-  resources :transaction, except: %i[destroy]
+  # Frontend transaction pages
+  resources :transaction, except: %i[destroy] do
+    member do
+      patch :modify
+      patch :save_draft
+      patch :cancel
+    end
+  end
 
+  # Backend pages
   namespace :admin do
     resources :stores, shallow: true do
       resources :dishes do
@@ -19,7 +27,13 @@ Rails.application.routes.draw do
 
     resources :transactions, only: %i[show edit update destroy] do
       member do
-        patch :act
+        # patch :act
+        patch :accept
+        patch :reject
+        patch :pick
+        patch :modify
+        patch :save_draft
+        patch :cancel
       end
     end
   end

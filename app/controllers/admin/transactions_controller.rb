@@ -20,36 +20,7 @@ class Admin::TransactionsController < Admin::BaseController
   def new
   end
 
-  def create    
-    ## 以下為參考用
-    @store = Store.find(params[:store_id])
-    @transaction = @store.transactions.create(user: current_user, total_price: 0)
-
-    @transaction.description = build_dish_item[:description]
-    @transaction.description = build_dish_item[:pick_up_time]
-
-
-    build_dish_item.each do |_index, col|
-      t = @transaction.transaction_items.new(col)
-      t.save!
-    end
-
-    # 收集參數，建立 TransactionItem
-
-    # @transaction.description = params[:transaction][:description]
-    # @transaction.description = params[:transaction][:pick_up_time]
-    # # params[:transaction][:transaction_item].each do |index, value|
-    # #   # item[:custom_fields] = item[:custom_field] if item[:custom_fields].nil? && item[:custom_field]
-    # #   @transaction.transaction_items.new()
-    # #   @transaction.transaction_items
-
-    # #   # transaction_item.set_value_with_params(item)
-    # # end
-
-  end
-
   def edit
-    # @transaction = Transaction.find(params[:id])
   end
 
   def update
@@ -90,22 +61,6 @@ class Admin::TransactionsController < Admin::BaseController
       :pick_up_time => 'Wed, 19 Jun 2019 21:17:38 CST +08:00>',
       :transaction_item => build_dish_item
     }
-  end
-
-  def build_dish_item
-    dishes = JSON.parse(params[:dishes]) rescue {}
-    # dishes = { "10": 1, "19": 2 }
-    ids = dishes.map { |k, _| k.to_i }
-    rs = {}
-    Dish.where(id: ids).each do |dish|
-      count = dishes[dish.id.to_s].to_i
-      rs["item#{dish.id}"] = {
-        'dish_id' => dish.id,
-        'dish_count' => count,
-        'item_price' => dish.price
-      }
-    end
-    rs
   end
 
   def find_store
