@@ -149,6 +149,22 @@ var fns = {
       // debugger
     }
     return JSON.stringify(json);
+  },
+
+  cart2json2: function(){
+    let json = {
+      note: $('#note').val(),
+      transaction_item: {}
+    };
+    for(let idx in cart) {
+      let item = cart[idx],
+          id   = idx;
+      // "{\"1\":2, \"2\":2}"
+      // {1: 2} id:1 數量2
+      json['transaction_item'][id] = item['count'];
+      // debugger
+    }
+    return JSON.stringify(json);
   }
 }
 $('.add_dish_to_cart').on('click',function(){

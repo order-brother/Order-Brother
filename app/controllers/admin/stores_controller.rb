@@ -42,7 +42,7 @@ class Admin::StoresController < Admin::BaseController
     # 驗證店主 或 管理員
     authorize @store
     @store.destroy!
-    redirect_to root_path, notice: '商店已刪除'
+    redirect_to admin_stores_path, notice: '商店已刪除'
   end
 
   private

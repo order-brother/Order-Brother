@@ -2,7 +2,7 @@ module Admin
   class BaseController < ApplicationController
     include Pundit
 
-    layout 'admin/application'
+    # layout 'admin/application' # uncomment if different layout from frontend demanding.
     before_action :configure_permitted_parameters, if: :devise_controller?
 
     protected

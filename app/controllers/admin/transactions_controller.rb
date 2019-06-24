@@ -74,6 +74,9 @@ class Admin::TransactionsController < Admin::BaseController
     when 'modify'
       @transaction.modify!
       render 'edit'
+    when 'pick'
+      @transaction.pick!
+      render 'act'
     when 'reject'
       @transaction.reject!
       render 'act'
@@ -86,19 +89,38 @@ class Admin::TransactionsController < Admin::BaseController
     {
       :description => 'text_here',
       :pick_up_time => 'Wed, 19 Jun 2019 21:17:38 CST +08:00>',
-      :transaction_item => {
-        :item1 => {
-          'dish_id' => d1.id,
-          'dish_count' => 1,
-          'item_price' => 2999
-        },
-        :item2 => {
-          'dish_id' => d2.id,
-          'dish_count' => 1,
-          'item_price' => Dish.find(d2.id).pirce
-        }
-      }
+      :transaction_item => build_dish_item
     }
+  end
+
+  def build_dish_item
+    dishes = JSON.parse(params[:dishes]) rescue {}
+    dishes = { "10": 1, "19": 2 }
+    rs = {}
+    dishes.each do |k, v|
+      rs["item#{k}"] = {
+        'dish_id' => k,
+        'dish_count' => v,
+        'item_price' => Dish.find(k).price * v
+      }
+    end
+    rs
+  end
+
+  def build_dish_item2
+    dishes = JSON.parse(params[:dishes]) rescue {}
+    # dishes = { "10": 1, "19": 2 }
+    ids = dishes.map { |k, _| k.to_i }
+    rs = {}
+    Dish.where(id: ids).each do |dish|
+      count = dishes[dish.id.to_s].to_i
+      rs["item#{dish.id}"] = {
+        'dish_id' => dish.id,
+        'dish_count' => count,
+        'item_price' => dish.price * count
+      }
+    end
+    rs
   end
 
   def find_store
