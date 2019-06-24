@@ -1,21 +1,12 @@
 h1{
-  // height: px;
-  // background-color: #ccc;
   text-align: center;
-
-
 }
 .index_img{
   text-align: center;
   img{
     width: 100%;
-    height: 500px;
-
-    
+    height: 500px; 
   }
-  
-  
-
 }
 .store_page {
   background-color: #f2f2f2;
@@ -37,7 +28,6 @@ h1{
       border: 1px solid #ccc;
       border-radius: 4px;
       .info{
-          
           img{
             margin: 16px;
             width: 50px;
@@ -68,4 +58,21 @@ h1{
     width: 100%;
   }
 }
+
+.modal{
+  display:none;
+  background-color:#FFFFE8;
+  border-radius: 20px;
+  border:#d5d5d5 solid 2px; 
+  width:80%;
+  height:60%;
+  position:absolute;
+  top: 200px;
+  color: #000;
+  button{
+    background-color:#FFB326;
+    margin: 2px;
+  }
+}
+
 

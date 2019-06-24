@@ -3,11 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .count-down{
   border-radius: 50px;
-  background-color: #cf0;
+  background-color: #FFB326;
+  margin: 2px;
 }
 .count-up{
   border-radius: 50px;
-  background-color: #cf0;
+  background-color: #FFB326;
+  margin: 2px;
 }
 .row .js-calc-rs div{
     display: inline;
@@ -20,4 +22,7 @@
 }
 
 .add_dish_to_cart { flex: none; }
+
+
+
 
