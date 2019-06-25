@@ -24,9 +24,9 @@ class Admin::TransactionsController < Admin::BaseController
     ## 以下為參考用
     @store = Store.find(params[:store_id])
     @transaction = @store.transactions.create(user: current_user, total_price: 0)
-
-    @transaction.description = build_dish_item[:description]
-    @transaction.description = build_dish_item[:pick_up_time]
+  
+    @transaction.pick_up_time = default_pick_up_time(params[:time])
+    @transaction.save
 
 
     build_dish_item.each do |_index, col|
@@ -83,6 +83,12 @@ class Admin::TransactionsController < Admin::BaseController
   end
 
   private
+
+  def default_pick_up_time(current_time = Time.now + 30.minutes)
+    current_time = Time.parse(current_time)
+    current_time ||= Time.now + 30.minutes
+    current_time.strftime("%Y-%m-%dT%H:%M")
+  end
 
   def return_order
     {
