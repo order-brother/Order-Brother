@@ -1,10 +1,11 @@
 class Admin::TransactionsController < Admin::BaseController
   before_action :find_store, only: %i[index show]
+  before_action :find_transaction, only: %i[accept modify reject pick]
   before_action :authenticate_user!
 
   def index
     if (current_user.stores.ids.include? @store.id) || (current_user.role == 'admin')
-      @transactions = @store.transactions
+      @transactions = @store.transactions.order(created_at: :desc)
     else
       redirect_to(request.referrer || root_path)
     end
@@ -35,23 +36,44 @@ class Admin::TransactionsController < Admin::BaseController
   def destroy
   end
 
-  def act
-    @transaction = Transaction.find(params[:id])
-    case params[:act]
-    when 'accept'
-      @transaction.accept!
-      render 'act'
-    when 'modify'
-      @transaction.modify!
-      render 'edit'
-    when 'pick'
-      @transaction.pick!
-      render 'act'
-    when 'reject'
-      @transaction.reject!
-      render 'act'
-    end
+  def accept
+    @transaction.accept!
+    render 'state_change'
   end
+
+  def modify
+    @transaction.modify!
+    render 'edit'
+  end
+
+  def reject
+    @transaction.reject!
+    render 'state_change'
+  end
+
+  def pick
+    @transaction.pick!
+    render 'state_change'
+  end
+
+  # 舊版寫法參考用
+  # def act
+  #   @transaction = Transaction.find(params[:id])
+  #   case params[:act]
+  #   when 'accept'
+  #     @transaction.accept!
+  #     render 'act'
+  #   when 'modify'
+  #     @transaction.modify!
+  #     render 'edit'
+  #   when 'pick'
+  #     @transaction.pick!
+  #     render 'act'
+  #   when 'reject'
+  #     @transaction.reject!
+  #     render 'act'
+  #   end
+  # end
 
   private
 
@@ -61,19 +83,15 @@ class Admin::TransactionsController < Admin::BaseController
     current_time.strftime("%Y-%m-%dT%H:%M")
   end
 
-  def return_order
-    {
-      :description => 'text_here',
-      :pick_up_time => 'Wed, 19 Jun 2019 21:17:38 CST +08:00>',
-      :transaction_item => build_dish_item
-    }
-  end
-
   def find_store
     @store = Store.includes(transactions: [:user, transaction_items: [:dish]]).find(params[:store_id])
   end
 
   def transaction_params
     params.require(:transaction).permit(:description, :pick_up_time)
+  end
+
+  def find_transaction
+    @transaction = Transaction.find(params[:id])
   end
 end

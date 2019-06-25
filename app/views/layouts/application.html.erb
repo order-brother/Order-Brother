@@ -32,7 +32,7 @@
                                       data: { confirm: '確定登出？' },
                                       class: 'button' if user_signed_in? %>
                 </li>
-                <li><%= link_to '訂單記錄', transaction_index_path(current_user), class: 'button' %></li>
+                <li><%= link_to '訂單記錄', transactions_path(current_user), class: 'button' %></li>
               </ul>
               <% end %>
               <label for='pop_up_control' class='close'><%= fa_icon('close') %></label>

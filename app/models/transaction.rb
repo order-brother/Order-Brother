@@ -9,8 +9,8 @@ class Transaction < ApplicationRecord
 
   enum state: %i[draft pending waiting_pick_up rejected closed canceled]
   aasm column: 'state' do
-    state :draft, initial: true
-    state :pending, :accepted, :waiting_pick_up, :rejected, :closed, :canceled
+    state :pending, initial: true
+    state :draft, :accepted, :waiting_pick_up, :rejected, :closed, :canceled
 
     # TODO 進入 pending 的時候 callback job 讓他倒數五分鐘
     event :save_draft do

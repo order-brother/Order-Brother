@@ -1,19 +1,17 @@
-class TransactionController < ApplicationController
+class TransactionsController < ApplicationController
   before_action :find_transaction, only: %i[modify save_draft cancel]
 
   def index
     @transactions = current_user.transactions.order('created_at desc')
   end
 
-  # WIP 搬移 admin transactions_controller
-  # Fix link of frontend store
+  # WIP fix link of frontend store
   def create
     @store = Store.find(params[:store_id])
     @transaction = @store.transactions.create(user: current_user, total_price: 0)
-  
+
     @transaction.pick_up_time = default_pick_up_time(params[:time])
     @transaction.save
-
 
     build_dish_item.each do |_index, col|
       t = @transaction.transaction_items.new(col)
@@ -42,7 +40,7 @@ class TransactionController < ApplicationController
 
   def cancel
     @transaction.cancel!
-    render ''
+    render 'state_change'
   end
 
   private
@@ -53,7 +51,6 @@ class TransactionController < ApplicationController
 
   def build_dish_item
     dishes = JSON.parse(params[:dishes]) rescue {}
-    # dishes = { "10": 1, "19": 2 }
     ids = dishes.map { |k, _| k.to_i }
     rs = {}
     Dish.where(id: ids).each do |dish|
@@ -65,6 +62,12 @@ class TransactionController < ApplicationController
       }
     end
     rs
+  end
+
+  def default_pick_up_time(current_time = Time.now + 30.minutes)
+    current_time = Time.parse(current_time)
+    current_time ||= Time.now + 30.minutes
+    current_time.strftime("%Y-%m-%dT%H:%M")
   end
 
   def transaction_params
