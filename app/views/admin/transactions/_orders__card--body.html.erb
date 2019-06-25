@@ -8,8 +8,7 @@
       <% t.transaction_items.each do |ti| %>
       <div class='transaction_items__detail col-12'>
         <p>
-          <span><%= ti.dish.name %> （<%= ti.item_price.round %>元）* <%= ti.dish_count %> 份</span> |
-          <span>小計：<%= ti.item_price.round * ti.dish_count %>元</span>
+          <span><%= ti.dish.name %> （<%= ti.item_price.round %>元）* <%= ti.dish_count %> 份</span>
         </p>
         <p class='row col-12'><strong>應收總額：<%= t.total_price %></strong></p>
       </div>

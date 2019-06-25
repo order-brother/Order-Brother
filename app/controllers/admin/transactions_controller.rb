@@ -20,17 +20,16 @@ class Admin::TransactionsController < Admin::BaseController
   def new
   end
 
-  def create
-    byebug
+  def create    
     ## 以下為參考用
     @store = Store.find(params[:store_id])
     @transaction = @store.transactions.create(user: current_user, total_price: 0)
 
-    transaction.description = return_order[:description]
-    transaction.description = return_order[:pick_up_time]
+    @transaction.description = build_dish_item[:description]
+    @transaction.description = build_dish_item[:pick_up_time]
 
 
-    return_order[:transaction_item].each do |_index, col|
+    build_dish_item.each do |_index, col|
       t = @transaction.transaction_items.new(col)
       t.save!
     end
@@ -95,20 +94,6 @@ class Admin::TransactionsController < Admin::BaseController
 
   def build_dish_item
     dishes = JSON.parse(params[:dishes]) rescue {}
-    dishes = { "10": 1, "19": 2 }
-    rs = {}
-    dishes.each do |k, v|
-      rs["item#{k}"] = {
-        'dish_id' => k,
-        'dish_count' => v,
-        'item_price' => Dish.find(k).price * v
-      }
-    end
-    rs
-  end
-
-  def build_dish_item2
-    dishes = JSON.parse(params[:dishes]) rescue {}
     # dishes = { "10": 1, "19": 2 }
     ids = dishes.map { |k, _| k.to_i }
     rs = {}
@@ -117,7 +102,7 @@ class Admin::TransactionsController < Admin::BaseController
       rs["item#{dish.id}"] = {
         'dish_id' => dish.id,
         'dish_count' => count,
-        'item_price' => dish.price * count
+        'item_price' => dish.price
       }
     end
     rs
