@@ -19,6 +19,6 @@
   <%= link_to '接受', act_admin_transaction_path(t, act: 'accept'), method: 'patch', remote: true, class: 'btn btn-success mr-2' if t.may_accept? %>
   <%= link_to '修改', act_admin_transaction_path(t, act: 'modify'), method: 'patch', remote: true, class: 'btn btn-warning mr-2' if t.may_modify? %>
   <!-- TODO add cancel function -->
-  <%= link_to '取消', act_admin_transaction_path(t, act: 'cancel'), method: 'patch', remote: true, class: 'btn btn-danger mr-2' if t.may_reject? %>
+  <%#= link_to '取消', act_admin_transaction_path(t, act: 'cancel'), method: 'patch', remote: true, class: 'btn btn-danger mr-2' if t.may_reject? %>
   <%= link_to '取餐/結案', act_admin_transaction_path(t, act: 'pick'), method: 'patch', remote: true, class: 'btn btn-info' if t.may_pick? %>
 </div>
