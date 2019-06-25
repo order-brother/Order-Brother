@@ -2,7 +2,7 @@ class TransactionController < ApplicationController
   before_action :find_transaction, only: %i[modify save_draft cancel]
 
   def index
-    @transactions = current_user.transactions
+    @transactions = current_user.transactions.order('created_at desc')
   end
 
   # WIP 搬移 admin transactions_controller

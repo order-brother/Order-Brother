@@ -4,7 +4,7 @@
 <%# 讀取餐點所有資訊%>
 <div class="container-fluid store_page">
   <div class="row">
-    <div class="col">
+    <div class="col-7">
       <div class="left-part">
         <div class="dish-list">
           <div class="row">
@@ -23,7 +23,7 @@
                       </div>
                       <% if dish.state == 1 %>
                       <input id="add_dish_<%= dish.id %>" class="add_dish_to_cart" type="button" value="加入" >
-                      <% end %>
+                      <% end%>
                     </div> 
                   </div>
                 </section>
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col-5">
       <div class="right-part">
         <div class="top-info ">
           <div class="show--store__main_img">
@@ -46,19 +46,18 @@
             <span>電話<%= @store.tel %></span>
             <span>地點<%= @store.location %></span>
             <span>店家資訊<%= @store.description %></span>
-            <span>營業時間：<%= @store.business_hours[0].start_at.hour %> ~
-              <%= @store.business_hours[0].end_at.hour %></span>
+            <span>營業時間：<%#= @store.business_hours[0].start_at.hour %> ~
+              <%#= @store.business_hours[0].end_at.hour %></span>
             <div>
               <div class="add_dish_list">
                 <%# select取餐時間 %>
                 <br /><b style="color:#00f;">pick_up_time:</b>
-                <select>
-                  <% pick_up_time.each do |time| %>                  
-                    <option value="最快取餐時間"><%= time %></option>
-                  <% end %>
-                </select>
-                <%= button_tag '確認送出', type: 'button', class: 'btn btn-primary', id: 'js-show-modal' %>
-       
+          
+                <%= select_tag(:time, options_for_select(pick_up_time), id: 'transacion_time')%>
+
+                <%= button_tag '確認送出', type: 'submit', class: 'btn btn-primary', id: 'submit_transaction' %>
+                <%# <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">送出</button> %>
+
               </div>
             </div>
           </div>
@@ -67,23 +66,61 @@
           <textarea id="Remark" type="textarea" value="訂單備註" placeholder="訂單備註" style="width:250px;height: 100px;"></textarea><br />
         </div>
       </div>
-      <div class="modal js-modal">
+      <div style="display: none">
         <%= form_tag admin_store_transactions_path(@store) do %>
           <%= hidden_field_tag 'store_id', @store.id %>
           <%= hidden_field_tag 'dishes', '', id: 'js-dishes' %>
           <%# select取餐時間 %>
           <br /><b style="color:#00f;">pick_up_time:</b>
-          <%= select_tag(:time, options_for_select(pick_up_time))%>
-
+          <%= select_tag(:time, options_for_select(pick_up_time), id: 'transacion_time_value')%>
+        
           <div class="js-calc-rs"></div>
-          <button type="submit">送出訂單</button>
+          <%# <button type="submit">送出訂單</button> %>
+        
+          <!-- modal 內的按鈕！！！ --------------------------------------------------------->
+          <%= button_tag '送出', type: 'submit', class: 'btnck btn-primary', id: 'show-modal' %>
+          <%# <button type="submit" class="btn_1 rounded" data-toggle="modal" data-target="#confirmModalCenter">送出</button> %>
           <button onclick="$('.js-modal').hide();return false;">重新選擇</button>
         <% end  %>
       </div>
+        
+      
+      <div class="success-modal" id="confirmModalCenter" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+        aria-hidden="true"></span>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="confirmModalLabel">Order Brother</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h2>預約已送出</h2>
+              <h4>等帶店家回覆</h4>
+              <h4>訂單號碼：ＸＸＸＸＸＸＸ</h4>
+            </div>
+            <div class="modal-footer">
+              <button onclick="$('.success-modal').hide();return false;">關閉</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div>
+      
+      
     </div>
   </div>
 </div>
 <script>
+
+$('#transacion_time').on('change', function(){
+  $('#transacion_time_value').val($('#transacion_time').val())
+})
+$('#submit_transaction').click(function(){
+  $('#js-dishes').val(fns.cart2json());
+  $('#show-modal').click();
+  $('#confirmModalCenter').show();
+})
   
 let b = 1, total = 0, cart = {}
 var fns = {
@@ -114,7 +151,6 @@ var fns = {
       if (typeof cart[id] !== 'undefined') {
         if(cart[id]['count'] -1 === 0){
           // var index = id.toString();
-          // console.log(index);
           delete cart[id];
         }else{
           cart[id]['count']--;
@@ -124,7 +160,6 @@ var fns = {
   
   buildCartList: function() {
     var msg = '<ul>';
-    console.log('cat',cart)
     for(let idx in cart) {
       let item = cart[idx];
       msg += '<li>';
@@ -133,7 +168,6 @@ var fns = {
       msg += '<button class= "count-up" type="button" data-id="' + idx +'" > + </button>' + ' ';
 
       msg += '  ' + item['dish_name'] + ' : ' + (item['dish_price']* item['count'] + '元');
-      console.log("132144532",item['count']);
       // msg += '  ' + '<div>' + item['name'] + '<div class="xx d-none">X</div></div>' + ' -- ' + (item['price']* item['count'] + '元');
       msg += '</li>';
     }
@@ -145,11 +179,9 @@ var fns = {
   cartTotal: function(){
     if (cart === {}) return 0;
     let total = 0;
-    console.log(cart);
     for(let idx in cart) {
       let item = cart[idx];
       total += item.dish_price * item.count
-      console.log("price",item.price);
     }
     return total;
   },
@@ -184,8 +216,8 @@ var fns = {
 }
 $('.add_dish_to_cart').on('click',function(){
    fns.add2cart(this); 
-   console.log('add_dish_to_cart');
-   console.log(this);
+  //  console.log('add_dish_to_cart');
+  //  console.log(this);
    fns.buildCartList;
 });
 
@@ -193,14 +225,21 @@ $('.add_dish_to_cart').on('click',function(){
   $(".check,.add_dish_to_cart").on("click", function () {
     //$(".top-info").append("<p>共計"+ total +"元</p>");
     var $calc_rs = $('.js-calc-rs');
-    console.log($calc_rs.html(fns.buildCartList));
+    $calc_rs.html(fns.buildCartList);
+    // console.log($calc_rs.html(fns.buildCartList));
     
   });
 
   $('#js-show-modal').click(function(){
+    console.log('fns', fns.cart2json());
     $('#js-dishes').val(fns.cart2json());
     $('.js-modal').show();
   });
+
+  $('#show-modal').click(function () {
+    $('#confirmModalCenter').show();
+  });
+
   $('.js-calc-rs').on('click', '.count-up', function(){
     var $this    = $(this),
         id       = $this.data('id'),
