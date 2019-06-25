@@ -4,7 +4,7 @@
 <%# 讀取餐點所有資訊%>
 <div class="container-fluid store_page">
   <div class="row">
-    <div class="col">
+    <div class="col-7">
       <div class="left-part">
         <div class="dish-list">
           <div class="row">
@@ -23,7 +23,7 @@
                       </div>
                       <% if dish.state == 1 %>
                       <input id="add_dish_<%= dish.id %>" class="add_dish_to_cart" type="button" value="加入" >
-                      <% end %>
+                      <% end%>
                     </div> 
                   </div>
                 </section>
@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col-5">
       <div class="right-part">
         <div class="top-info ">
           <div class="show--store__main_img">
@@ -58,7 +58,8 @@
                   <% end %>
                 </select>
                 <%= button_tag '確認送出', type: 'button', class: 'btn btn-primary', id: 'js-show-modal' %>
-       
+                <%# <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">送出</button> %>
+
               </div>
             </div>
           </div>
@@ -74,12 +75,42 @@
           <%# select取餐時間 %>
           <br /><b style="color:#00f;">pick_up_time:</b>
           <%= select_tag(:time, options_for_select(pick_up_time))%>
-
+        
           <div class="js-calc-rs"></div>
-          <button type="submit">送出訂單</button>
+          <%# <button type="submit">送出訂單</button> %>
+        
+          <!-- modal 內的按鈕！！！ --------------------------------------------------------->
+          <%= button_tag '送出', type: 'submit', class: 'btnck btn-primary', id: 'show-modal' %>
+          <%# <button type="submit" class="btn_1 rounded" data-toggle="modal" data-target="#confirmModalCenter">送出</button> %>
           <button onclick="$('.js-modal').hide();return false;">重新選擇</button>
+      
         <% end  %>
       </div>
+        
+      
+      <div class="success-modal" id="confirmModalCenter" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+        aria-hidden="true"></span>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="confirmModalLabel">Order Brother</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h2>預約已送出</h2>
+              <h4>等帶店家回覆</h4>
+              <h4>訂單號碼：ＸＸＸＸＸＸＸ</h4>
+            </div>
+            <div class="modal-footer">
+              <button onclick="$('.success-modal').hide();return false;">關閉</button>
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div>
+      
+      
     </div>
   </div>
 </div>
@@ -201,6 +232,12 @@ $('.add_dish_to_cart').on('click',function(){
     $('#js-dishes').val(fns.cart2json());
     $('.js-modal').show();
   });
+
+  $('#show-modal').click(function () {
+    console.log("123");
+    $('#success-modal').show();
+  });
+
   $('.js-calc-rs').on('click', '.count-up', function(){
     var $this    = $(this),
         id       = $this.data('id'),
