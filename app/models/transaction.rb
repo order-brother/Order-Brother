@@ -12,6 +12,7 @@ class Transaction < ApplicationRecord
     state :pending, initial: true
     state :accepted, :waiting_pick_up, :rejected, :closed, :canceled
 
+    # TODO 進入 pending 的時候 callback job 讓他倒數五分鐘
     event :accept do
       transitions from: :pending, to: :waiting_pick_up
     end

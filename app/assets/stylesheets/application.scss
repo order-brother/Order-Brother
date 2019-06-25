@@ -14,25 +14,33 @@
  *= require_self
  *= require_tree .
  */
- // Custom bootstrap variables must be set or imported *before* bootstrap.
- @import "bootstrap";
- @import "tempusdominus-bootstrap-4.css";
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+@import "tempusdominus-bootstrap-4.css";
 
- body{ 
-  margin:1.5rem 0; 
-  padding: 0; 
+html {
+  height: 100%;
+}
+
+body {
+  margin: 1.5rem 0;
+  padding: 0;
   color: #6c757d;
   background-attachment: scroll, fixed;
   // background-image: url(background00.jpg);
-  background-image: url('bg.jpg');
+  background-image: url('paula-vermeulen-URjZkhqsuBk-unsplash.jpg');
   // background-image: url('https://pixelarity.com/items/demos/transit/magenta/images/bg.jpg');
   background-position: top left, top center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-size: 100%;
-  }
+  background-size: cover;
+}
 
-body, button, input, select, textarea {
+body,
+button,
+input,
+select,
+textarea {
   font-family: "Source Sans Pro", Helvetica, sans-serif;
   font-weight: 300;
   font-size: 1rem;
@@ -41,6 +49,7 @@ body, button, input, select, textarea {
 
 .test-nav {
   background-color: rgba(255, 255, 255, 0.735);
+
   li {
     display: inline-block;
   }
@@ -50,10 +59,12 @@ body, button, input, select, textarea {
   height: 87vh;
   overflow: auto;
 }
+
 .store__card {
   max-width: 220px;
-  
+
 }
+
 .store__card--img {
   position: relative;
   display: inline-block;
@@ -68,29 +79,33 @@ body, button, input, select, textarea {
     // top:50%;
     // transform-origin: left top;
     // transform: translate(-50%, -50%);
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
     vertical-align: middle;
     width: auto;
     transition: all .2s ease-in-out;
 
-    &:hover{
+    &:hover {
       // height: 120%;
       // width: 120%;
       transform: scale(1.2);
     }
   }
 }
+
 .error_messages {
   color: rgb(165, 23, 23);
   font-weight: 700;
 }
+
 .field_with_errors {
   display: inline;
+
   input {
     border-color: red;
     border-width: 2px;
   }
+
   label {
     color: rgb(165, 23, 23);
     font-weight: 700;
@@ -102,4 +117,3 @@ body, button, input, select, textarea {
   // background: linear-gradient(to bottom, rgba(230, 83, 83, 0.856), rgb(190, 176, 176), 50% );
   // background-image: linear-gradient(to bottom, hsl(0, 0%, 100%) 50%, #eefbff);
 }
-
