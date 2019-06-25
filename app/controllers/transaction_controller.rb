@@ -6,12 +6,14 @@ class TransactionController < ApplicationController
   end
 
   # WIP 搬移 admin transactions_controller
+  # Fix link of frontend store
   def create
     @store = Store.find(params[:store_id])
     @transaction = @store.transactions.create(user: current_user, total_price: 0)
+  
+    @transaction.pick_up_time = default_pick_up_time(params[:time])
+    @transaction.save
 
-    @transaction.description = build_dish_item[:description]
-    @transaction.description = build_dish_item[:pick_up_time]
 
     build_dish_item.each do |_index, col|
       t = @transaction.transaction_items.new(col)
@@ -19,16 +21,23 @@ class TransactionController < ApplicationController
     end
   end
 
+  def update
+    @transaction = Transaction.find(params[:id])
+    if @transaction.update(transaction_params)
+      render 'update'
+    else
+      render 'edit'
+    end
+  end
+
   def modify
     @transaction.modify!
-    # WIP redirect to edit page
     render 'edit'
   end
 
   def save_draft
-    # WIP redirect to transaction index
     @transaction.save_draft!
-    render ''
+    render 'state_change'
   end
 
   def cancel

@@ -20,34 +20,6 @@ class Admin::TransactionsController < Admin::BaseController
   def new
   end
 
-  def create    
-    ## 以下為參考用
-    @store = Store.find(params[:store_id])
-    @transaction = @store.transactions.create(user: current_user, total_price: 0)
-  
-    @transaction.pick_up_time = default_pick_up_time(params[:time])
-    @transaction.save
-
-
-    build_dish_item.each do |_index, col|
-      t = @transaction.transaction_items.new(col)
-      t.save!
-    end
-
-    # 收集參數，建立 TransactionItem
-
-    # @transaction.description = params[:transaction][:description]
-    # @transaction.description = params[:transaction][:pick_up_time]
-    # # params[:transaction][:transaction_item].each do |index, value|
-    # #   # item[:custom_fields] = item[:custom_field] if item[:custom_fields].nil? && item[:custom_field]
-    # #   @transaction.transaction_items.new()
-    # #   @transaction.transaction_items
-
-    # #   # transaction_item.set_value_with_params(item)
-    # # end
-
-  end
-
   def edit
   end
 
