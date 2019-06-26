@@ -5,7 +5,6 @@ class TransactionsController < ApplicationController
     @transactions = current_user.transactions.order('created_at desc')
   end
 
-  # WIP fix link of frontend store
   def create
     @store = Store.find(params[:store_id])
     @transaction = @store.transactions.create(user: current_user, total_price: 0)
