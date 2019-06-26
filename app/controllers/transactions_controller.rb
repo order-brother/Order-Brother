@@ -5,12 +5,13 @@ class TransactionsController < ApplicationController
     @transactions = current_user.transactions.order('created_at desc')
   end
 
-  # WIP fix link of frontend store
   def create
     @store = Store.find(params[:store_id])
     @transaction = @store.transactions.create(user: current_user, total_price: 0)
 
     @transaction.pick_up_time = default_pick_up_time(params[:time])
+    
+    @transaction.description = (params[:description])
     @transaction.save
 
     build_dish_item.each do |_index, col|
