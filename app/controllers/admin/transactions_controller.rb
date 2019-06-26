@@ -26,8 +26,9 @@ class Admin::TransactionsController < Admin::BaseController
     @transaction = @store.transactions.create(user: current_user, total_price: 0)
   
     @transaction.pick_up_time = default_pick_up_time(params[:time])
-    @transaction.save
 
+    @transaction.description = params[:description]
+    @transaction.save
 
     build_dish_item.each do |_index, col|
       t = @transaction.transaction_items.new(col)
@@ -45,6 +46,7 @@ class Admin::TransactionsController < Admin::BaseController
 
     # #   # transaction_item.set_value_with_params(item)
     # # end
+
 
   end
 

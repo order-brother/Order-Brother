@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :stores, only: [:show]
   resources :transaction, except: %i[destroy]
 
+
   namespace :admin do
     resources :stores, shallow: true do
       resources :dishes do

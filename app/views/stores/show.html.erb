@@ -70,14 +70,14 @@
         <%= form_tag admin_store_transactions_path(@store) do %>
           <%= hidden_field_tag 'store_id', @store.id %>
           <%= hidden_field_tag 'dishes', '', id: 'js-dishes' %>
+          <%= hidden_field_tag 'description', '', id: 'js-description' %>
+          <%# <%= hidden_field_tag 'description',@transaction.description %> %>
           <%# select取餐時間 %>
           <br /><b style="color:#00f;">pick_up_time:</b>
           <%= select_tag(:time, options_for_select(pick_up_time), id: 'transacion_time_value')%>
         
           <div class="js-calc-rs"></div>
-          <%# <button type="submit">送出訂單</button> %>
-        
-          <!-- modal 內的按鈕！！！ --------------------------------------------------------->
+
           <%= button_tag '送出', type: 'submit', class: 'btnck btn-primary', id: 'show-modal' %>
           <%# <button type="submit" class="btn_1 rounded" data-toggle="modal" data-target="#confirmModalCenter">送出</button> %>
           <button onclick="$('.js-modal').hide();return false;">重新選擇</button>
@@ -91,19 +91,20 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="confirmModalLabel">Order Brother</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               </button>
             </div>
             <div class="modal-body">
               <h2>預約已送出</h2>
-              <h4>等帶店家回覆</h4>
-              <h4>訂單號碼：ＸＸＸＸＸＸＸ</h4>
+              <h4>等待店家回覆</h4>
+              <%# <h4>訂單號碼：ＸＸＸＸＸＸＸ</h4> %>
             </div>
             <div class="modal-footer">
-              <button onclick="$('.success-modal').hide();return false;">關閉</button>
+              <%# <button onclick="$('.success-modal').hide();return false;"></button> %>
+              <%= link_to '關閉', transaction_index_path(current_user), class: 'button'%>
+              
             </div>
-          </div><!-- /.modal-content -->
+          </div>
         </div><!-- /.modal-dialog -->
       </div>
       
@@ -118,6 +119,10 @@ $('#transacion_time').on('change', function(){
 })
 $('#submit_transaction').click(function(){
   $('#js-dishes').val(fns.cart2json());
+  $('#js-description').val($('#Remark').val());
+  console.log($('#Remark').val());
+  // $('#js-description').txt('123');
+
   $('#show-modal').click();
   $('#confirmModalCenter').show();
 })
@@ -236,8 +241,8 @@ $('.add_dish_to_cart').on('click',function(){
     $('.js-modal').show();
   });
 
-  $('#show-modal').click(function () {
-    $('#confirmModalCenter').show();
+  $('.close').click(function () {
+    $('#confirmModalCenter').hide();return false;;
   });
 
   $('.js-calc-rs').on('click', '.count-up', function(){
