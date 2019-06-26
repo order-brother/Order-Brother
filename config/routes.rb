@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     end
   end
   resources :transactions, only: %i[index show edit update]
-  
   # Backend pages
   namespace :admin do
     resources :stores, shallow: true do

@@ -38,6 +38,7 @@ class Admin::TransactionsController < Admin::BaseController
 
   end
 
+
   def edit
   end
 
@@ -61,6 +62,7 @@ class Admin::TransactionsController < Admin::BaseController
   def modify
     @transaction.modify!
     render 'edit'
+<<<<<<< HEAD
   end
 
   def reject
@@ -68,6 +70,15 @@ class Admin::TransactionsController < Admin::BaseController
     render 'state_change'
   end
 
+=======
+  end
+
+  def reject
+    @transaction.reject!
+    render 'state_change'
+  end
+
+>>>>>>> ba90186e912b2cb08ee20ba8470fbd823d087d32
   def pick
     @transaction.pick!
     render 'state_change'
