@@ -7,12 +7,20 @@ class Transaction < ApplicationRecord
 
   acts_as_paranoid
 
-  enum state: %i[pending waiting_pick_up rejected closed canceled]
+  enum state: %i[draft pending waiting_pick_up rejected closed canceled]
   aasm column: 'state' do
     state :pending, initial: true
-    state :accepted, :waiting_pick_up, :rejected, :closed, :canceled
+    state :draft, :accepted, :waiting_pick_up, :rejected, :closed, :canceled
 
     # TODO 進入 pending 的時候 callback job 讓他倒數五分鐘
+    event :save_draft do
+      transitions from: :draft, to: :pending
+    end
+
+    event :modify do
+      transitions from: :pending, to: :draft
+    end
+
     event :accept do
       transitions from: :pending, to: :waiting_pick_up
     end
@@ -23,11 +31,6 @@ class Transaction < ApplicationRecord
 
     event :cancel do
       transitions from: %i[pending waiting_pick_up], to: :canceled
-    end
-
-    # FIXME 店家可以不經過客戶同意自己修改訂單，再自己接受
-    event :modify do
-      transitions from: %i[pending waiting_pick_up], to: :pending
     end
 
     event :reject do

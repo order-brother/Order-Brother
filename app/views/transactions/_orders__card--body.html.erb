@@ -1,0 +1,20 @@
+<div class='orders__card--info'>
+  <p>訂單編號：<%= t.serial_number %> ｜ 訂單狀態：<%= t.state %> ｜ 預計取餐時間：<%= t.pick_up_time %></p>
+  <p>商店名稱：<%= t.store.name %> ｜ 聯絡電話：<%= t.store.tel %></p>
+  <p>訂單備註：<%= t.description %></p>
+</div>
+<div class='orders__card--items__list row col-12'>
+  <% t.transaction_items.each do |ti| %>
+    <div class='transaction_items__detail'>
+    <p>
+      <span><%= ti.dish.name %>（<%= ti.item_price.round %>元）* <%= ti.dish_count %> 份</span> |
+    </p>
+  </div>
+  <% end %>
+  <p class='row col-12'><strong>訂單總額：<%= t.total_price %></strong></p>
+</div>
+<div class='orders__card--function_buttons row col-12 mb-2'>
+  <%= link_to '確認送出', save_draft_transaction_path(t), method: 'patch', remote: true, class: 'btn btn-success mr-2' if t.may_save_draft? %>
+  <%= link_to '修改', modify_transaction_path(t), method: 'patch', remote: true, class: 'btn btn-warning mr-2' if t.may_modify? %>
+  <%= link_to '取消', cancel_transaction_path(t), method: 'patch', remote: true, class: 'btn btn-danger mr-2' if t.may_cancel? %>
+</div>
