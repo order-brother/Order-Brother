@@ -51,17 +51,11 @@
                   <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#featured'>精選</button></li>
                   <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#support_me'>幫我挑</button></li> -->
                   <li>
-                    <div class='input-group'>
-                      <input class=' form-control form-control-sm form-control-borderless' type='search' placeholder='搜尋'>
-                      <div class='input-group-append'>
-                        <button class='btn btn-sm btn-outline-secondary dropdown-toggle' type='submit'
-                          data-toggle='dropdown'>Search</button>
-                        <div class='dropdown-menu'>
-                          <a class='dropdown-item' href='#'>Action</a>
-                          <a class='dropdown-item' href='#'>Another action</a>
-                          <a class='dropdown-item' href='#'>Something else here</a>
-                        </div>
-                      </div>
+                    <div class='search-form'>
+                      <%= form_tag stores_path, method: 'get' do %>
+                        <%= text_field_tag :search, params[:search], placeholder: '搜尋' %>
+                        <%= submit_tag 'search', name: nil, class: 'btn btn-sm btn-outline-secondary' %>
+                      <% end %>
                     </div>
                   </li>
                   <% if user_signed_in? %>
