@@ -11,6 +11,8 @@ class TransactionsController < ApplicationController
     @transaction = @store.transactions.create(user: current_user, total_price: 0)
 
     @transaction.pick_up_time = default_pick_up_time(params[:time])
+    
+    @transaction.description = (params[:description])
     @transaction.save
 
     build_dish_item.each do |_index, col|
