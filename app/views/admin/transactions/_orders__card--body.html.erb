@@ -2,26 +2,20 @@
   <p>訂單編號：<%= t.serial_number %> ｜ 訂單狀態：<%= t.state %> ｜ 預計取餐時間：<%= t.pick_up_time %></p>
   <p>客戶名稱：<%= t.user.name %> ｜ 聯絡電話：<%= t.user.phone %></p>
   <p>訂單備註：<%= t.description %></p>
-
-  <div class='orders__card--items__list'>
-    <div class='row'>
-      <% t.transaction_items.each do |ti| %>
-      <div class='transaction_items__detail col-12'>
-        <p>
-          <span><%= ti.dish.name %> （<%= ti.item_price.round %>元）* <%= ti.dish_count %> 份</span>
-        </p>
-        <p class='row col-12'><strong>應收總額：<%= t.total_price %></strong></p>
-      </div>
-      <% end %>
+</div>
+<div class='orders__card--items__list row col-12'>
+  <% t.transaction_items.each do |ti| %>
+    <div class='transaction_items__detail'>
+      <p>
+        <span><%= ti.dish.name %> （<%= ti.item_price.round %>元）* <%= ti.dish_count %> 份</span>
+      </p>
     </div>
-  </div>
-
-  <div class='row'>
-    <div class='orders__card--function_buttons col-12 mb-2'>
-      <%= link_to '接受', act_admin_transaction_path(t, act: 'accept'), method: 'patch', remote: true, class: 'btn btn-success mr-2' if t.may_accept? %>
-      <%= link_to '修改', act_admin_transaction_path(t, act: 'modify'), method: 'patch', remote: true, class: 'btn btn-warning mr-2' if t.may_modify? %>
-      <%= link_to '拒絕', act_admin_transaction_path(t, act: 'reject'), method: 'patch', remote: true, class: 'btn btn-danger mr-2' if t.may_reject? %>
-      <%= link_to '客戶已取餐/結案', act_admin_transaction_path(t, act: 'pick'), method: 'patch', remote: true, class: 'btn btn-info' if t.may_pick? %>
-    </div>
-  </div>
+  <% end %>
+  <p class='row col-12'><strong>應收總額：<%= t.total_price %></strong></p>
+</div>
+<div class='orders__card--function_buttons row col-12 mb-2'>
+  <%= link_to '接受', accept_admin_transaction_path(t), method: 'patch', remote: true, class: 'btn btn-success mr-2' if t.may_accept? %>
+  <%= link_to '修改', modify_admin_transaction_path(t), method: 'patch', remote: true, class: 'btn btn-warning mr-2' if t.may_modify? %>
+  <%= link_to '拒絕', reject_admin_transaction_path(t), method: 'patch', remote: true, class: 'btn btn-danger mr-2' if t.may_reject? %>
+  <%= link_to '客戶已取餐/結案', pick_admin_transaction_path(t), method: 'patch', remote: true, class: 'btn btn-info' if t.may_pick? %>
 </div>

@@ -5,6 +5,8 @@ module Admin
     # layout 'admin/application' # uncomment if different layout from frontend demanding.
     before_action :configure_permitted_parameters, if: :devise_controller?
 
+    # TODO 驗證是否為管理員或 店老闆，否則引導回前台 controllers
+
     protected
 
     # Setting strong parameters for user sign_in of devise gem

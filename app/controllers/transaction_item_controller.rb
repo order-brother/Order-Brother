@@ -3,7 +3,5 @@ class TransactionItemsController < ApplicationController
   transactionsItem_helper
   transactionsitemHelper
   before_action :authenticate_user!
-  
-end
-  
 
+end

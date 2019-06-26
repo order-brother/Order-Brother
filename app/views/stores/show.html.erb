@@ -67,7 +67,7 @@
         </div>
       </div>
       <div style="display: none">
-        <%= form_tag admin_store_transactions_path(@store) do %>
+        <%= form_tag store_transactions_path(@store) do %>
           <%= hidden_field_tag 'store_id', @store.id %>
           <%= hidden_field_tag 'dishes', '', id: 'js-dishes' %>
           <%= hidden_field_tag 'description', '', id: 'js-description' %>
