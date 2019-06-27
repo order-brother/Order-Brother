@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/address', to: 'address#index'
   mount RailsAdmin::Engine => '/backstage', as: 'rails_admin'
 
-  resources :stores, shallow: true, only: [:show] do
+  resources :stores, shallow: true, only: %i[index show] do
     # Frontend transaction pages
     resources :transactions, only: %i[new create] do
       member do

@@ -1,8 +1,8 @@
 <!-- 側邊功能列 -->
 <aside class='CheckboxList col-md-3'>
-  <%= link_to'取得位置?', address_path, class: 'btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
-  <div class='form-group'>
-    <label for='datetimepicker1' class='btn mt-3 mb-0 btn-sm col-md-12 btn-outline-secondary'>取餐時間：</label>
+  <%= link_to'取得位置?', address_path, class: 'color-btn btn mt-3 btn-sm col-md-12 btn-outline-secondary' %>
+  <div class='form-group mt-3'>
+    <label for='datetimepicker1' class='color-btn mb-0 btn-sm col-md-12 btn-outline-secondary'>取餐時間：</label>
     <div class='input-group date' id='datetimepicker1' data-target-input='nearest'>
       <input type='text' class='form-control datetimepicker-input' data-target='#datetimepicker1' value="<%= default_pick_up_time %>"/>
       <div class='input-group-append' data-target='#datetimepicker1' data-toggle='datetimepicker'>
@@ -10,7 +10,7 @@
       </div>
     </div>
   </div>
-  <button class='btn mt-3 btn-sm col-md-12' type='button' data-toggle='collapse' data-target='#collapse'
+  <button class='color-btn btn mt-3 btn-sm col-md-12' type='button' data-toggle='collapse' data-target='#collapse'
     aria-expanded='false' aria-controls='collapse'>
     類別
   </button>
@@ -71,12 +71,12 @@
   <!-- 排序搜尋功能區 -->
   <div class='tag-arear col-md-12 d-flex'>
     <div class='tag-arear-show col-md-10 d-flex justify-content-start align-items-start'>
-      <button type='button' class=' btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
-      <button type='button' class=' btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
-      <button type='button' class=' btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
+      <button type='button' class=' color-btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
+      <button type='button' class=' color-btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
+      <button type='button' class=' color-btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
     </div>
     <div class='input-group-append col-md-2 d-flex'>
-      <button class='btn btn-sm btn-outline-secondary dropdown-toggle' type='button'
+      <button class='color-btn btn btn-sm btn-outline-secondary dropdown-toggle' type='button'
         data-toggle='dropdown'>排序</button>
       <div class='dropdown-menu'>
         <a class='dropdown-item' href='#'>Action</a>
@@ -89,24 +89,32 @@
 
   <!-- Store list -->
   <section class='store__list d-flex justify-content-around'>
-    <% @stores.each do |store| %>
-    <div class='store__list--item col-md-4 col-sm-6 mb-2 row'>
-      <div class='card store__card'>
-        <div class='store__card--img'>
-          <% if store.main_img? %>
-          <%= link_to image_tag(store.main_img_url, class: 'card-img-top'), store %>
-          <% else %>
-          <%= link_to image_tag('bg_default', class: 'card-img-top'), store %>
-          <% end %>
-        </div>
-        <div class='card-body'>
-          <h5 class='card-title'><%= store.name %></h5>
-          <p class=''><%= store.tel %></p>
-          <p class=''><%= store.description %></p>
-          <%= link_to '進入店家', store, class: 'btn btn-info' %>
+    <% if @stores.present? %>
+      <% @stores.each do |store| %>
+      <div class='store__list--item col-md-4 col-sm-6 mb-2 row'>
+        <div class='card store__card'>
+          <div class='store__card--img'>
+            <% if store.main_img? %>
+            <%= link_to image_tag(store.main_img_url, class: 'card-img-top'), store %>
+            <% else %>
+            <%= link_to image_tag('bg_default', class: 'card-img-top'), store %>
+            <% end %>
+          </div>
+          <div class='card-body'>
+            <h5 class='card-title'><%= store.name %></h5>
+            <p class=''><%= store.tel %></p>
+            <p class=''><%= store.description %></p>
+            <%= link_to '進入店家', store, class: 'btn btn-info' %>
+          </div>
         </div>
       </div>
-    </div>
+      <% end %>
+    <% else %>
+      <div class="search-message">
+        <p>
+          很抱歉，查無商店 :(
+        </p>
+      </div>
     <% end %>
   </section>
   <!-- Store list End -->
