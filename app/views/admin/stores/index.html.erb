@@ -1,15 +1,17 @@
-<h1>我的商店</h1>
-<% if user_signed_in? %>
-  <%#= link_to '我的商店', admin_store_path(), class: 'btn btn-info' %>
-  <%= link_to '建立商店', new_admin_store_path, class: 'btn btn-info' %>
-<% end %>
+<div class="my_store">  
+  <h1>我的商店</h1>
+  <% if user_signed_in? %>
+    <%#= link_to '我的商店', admin_store_path(), class: 'btn btn-info' %>
+    <%= link_to '建立商店', new_admin_store_path, class: 'btn btn-info' %>
+  <% end %>
+</div> 
 <div class='store__list container d-flex flex-wrap justify-content-center'>
   <% @stores.each do |store| %>
     <div class='store__list--item col-md-4 col-sm-6 mb-2 row'>
       <div class="card store__card">
         <div class='store__card--img'>
           <% if store.main_img? %>
-          <%= link_to image_tag(store.main_img_url, class: 'card-img-top'), store %>
+          <%= link_to image_tag(store.main_img_url, class: 'card-img-top' ), store %>
           <% else %>
           <%= link_to image_tag('bg_default', class: 'card-img-top'), store %>
           <% end %>
@@ -18,10 +20,12 @@
           <h3 class='card-title'><%= store.name %></h3>
           <p>描述：<%= store.description %></p>
           <p>地址：<%= store.location %></p>
-          <p>電話：<%= store.tel %></p>
-          <%= link_to '查看', admin_store_path(store), class: 'btn btn-info' %>
-          <%= link_to '編輯商店', edit_admin_store_path(store), class: 'btn btn-warning' if policy(store).edit? %>
-          <%= link_to '關店', admin_store_path(store), method: 'delete', class: 'btn btn-danger', data: { confirm: '確認關店？'} if policy(store).destroy? %>
+          <p>電話：<%= store.tel %></p><br />
+          <div class="admin_store_btn">
+            <%= link_to '查看', admin_store_path(store), class: 'btn btn-info' %>
+            <%= link_to '編輯商店', edit_admin_store_path(store), class: 'btn btn-warning' if policy(store).edit? %>
+            <%= link_to '關店', admin_store_path(store), method: 'delete', class: 'btn btn-danger', data: { confirm: '確認關店？'} if policy(store).destroy? %>
+          </div>
         </div>
       </div>
     </div>
