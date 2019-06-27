@@ -1,27 +1,12 @@
 .show--store__info {
   .show--store__main_img {
-    width: 300;
-    height: 300;
     padding: 5px;
     img {
-      width: 100%;
+      width: 20vw;
       display: inline-block
     }
   }
 }
-
-// .admin-store__list {
-//   width: 960px;
-//   height: 80vh;
-//   overflow: auto;
-  
-//   .store__list--item {
-//     background-color: #fff;
-//     max-width: 300px;
-//     margin: 5px 5px;
-//     padding-top: 5px;
-//   }
-// }
 .dishes__list {
   max-width: 720px;
   min-width: 300px;
@@ -36,7 +21,6 @@
     display: inline-block;
   }
 }
-
 .dishes__card {
   width: 270px;
   height: auto;
@@ -91,6 +75,5 @@
 }
 
 .store_page{
-  background-color: red;
   height: 600px;
 }

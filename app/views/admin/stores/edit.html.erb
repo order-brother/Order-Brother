@@ -1,5 +1,8 @@
-<h1>編輯商店</h1>
-
-<%#= link_to "建立商店", new_admin_store_path, class: 'btn btn-info' %>
-<%= link_to "返回", admin_store_path(@store), class: 'btn btn-info' %>
-<%= render 'form', store: @store %>
+<div class="edit_store_page">   
+  <h1>編輯商店</h1>
+  <div class="edit_st_list">
+  <%#= link_to "建立商店", new_admin_store_path, class: 'btn btn-info' %>
+    <%= render 'form', store: @store %>
+    <%= link_to "返回", admin_store_path(@store), class: 'btn btn-info' %>
+  </div>
+</div>

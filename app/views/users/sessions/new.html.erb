@@ -1,30 +1,31 @@
-<h2>登 入</h2>
+<div class="sign-in">
+  <h2>登 入</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<div class="form-group">
-  <%= error_block(resource) %>
-  <%= f.label :login, "帳號：電話號碼或 Email", class: 'col-4 col-form-label' %>
-  <div class="col-8">
-    <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    <%= f.text_field :login, autofocus: true, class: 'form-control' %>
-  </div>
-
-  <%= f.label :password, "密碼", class: 'col-4 col-form-label' %>
-  <div class="col-8">
-  <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="col-12">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me, "勿忘我" %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="form-group">
+    <%= error_block(resource) %>
+    <%= f.label :login, "帳號：電話號碼或 Email", class: 'col-12 col-form-label' %>
+    <div class="col-10">
+      <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.text_field :login, autofocus: true, class: 'form-control' %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "登入", class: 'btn btn-info' %>
+    <%= f.label :password, "密碼", class: 'col-4 col-form-label' %>
+    <div class="col-10">
+    <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="col-12">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me, "勿忘我" %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "登入", class: 'btn btn-info' %>
+    </div>
+    <%= render "users/shared/links" %>
   </div>
-  <%= render "users/shared/links" %>
+  <% end %>
 </div>
-<% end %>
-
