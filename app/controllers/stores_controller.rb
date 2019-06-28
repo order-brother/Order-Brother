@@ -2,11 +2,9 @@ class StoresController < ApplicationController
   before_action :find_store, only: [:show]
 
   def index
-    if params[:search]
-      @stores = Store.where('name LIKE ?', "%#{params[:search]}%")
-    else
-      @stores = Store.all
-    end
+    # Fuzzy search "ILIKE" is pg only
+    # search: # => keyword argument
+    @stores = list_stores(search: params[:search])
     render 'page/index'
   end
 
@@ -16,6 +14,12 @@ class StoresController < ApplicationController
   end
 
   private
+
+  def list_stores(search: nil)
+    return Store.all if search.nil?
+
+    Store.where('name ILIKE ?', "%#{params[:search]}%")
+  end
 
   def find_store
     @store = Store.find_by(id: params[:id])
