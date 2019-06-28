@@ -9,9 +9,8 @@ just don't waste your time to wait in line.
 
 > Order brother, help you out like your older brother.
 
----
-
 ## Table of content
+
 [Requirements](#Requirements)  
 [Usage](#Usage)  
   - [Install Dependency](#Install-Dependency)  
@@ -26,15 +25,12 @@ just don't waste your time to wait in line.
   - [Manage orders if your owner](#Manage-orders-if-your-owner)
   - [Make order if your hunger](#Make-order-if-your-hunger)
 
----
-
 ## Requirements
 
 - Ruby version 2.6.0
 - Rails version 5.2.3
 - PostgreSQL 11.3
 
----
 ## Usage
 
 ### Install Dependency
@@ -79,7 +75,6 @@ $ rails routes
 | User sign up:   | new_user_registration | `/users/sign_up(.:format)` |
 | User sing in:   | new_user_session      | `/users/sign_in(.:format)` |
 
----
 
 ## Membership System
 
