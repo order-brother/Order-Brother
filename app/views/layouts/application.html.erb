@@ -1,83 +1,110 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>OrderBrother</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= favicon_link_tag asset_path('icon/favicon.ico') %>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KGQ52FX');
+  </script>
+  <!-- End Google Tag Manager -->
+  <title>OrderBrother</title>
+  <%= favicon_link_tag asset_path('icon/favicon.ico') %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <div class="container">
-      <%#= render 'shared/nav' %>
-      <%= render 'shared/flash' %>
-      <div class='container-fluid'>
-          <div class='row'>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-            <!-- 彈出式功能視窗 -->
-            <input type='checkbox' id='pop_up_control'>
-            <nav id='pop_up_menu'>
-              <ul class='links mt-5'>
-                <li><a href='javascript:window._pxOpen('TARGET.html');'>Elements</a></li>
-              </ul>
-              <ul class='links stacked'>
-              <% if user_signed_in?  %>
-                <!-- TODO 加入修改帳戶資料功能 -->
-                <li><%= link_to '修改個人資料', url: '#' %></li>
-                <li>
-                  <%= link_to '登出', destroy_user_session_path,
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KGQ52FX" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <div class="container">
+    <%#= render 'shared/nav' %>
+    <%= render 'shared/flash' %>
+    <div class='container-fluid'>
+      <div class='row'>
+
+        <!-- 彈出式功能視窗 -->
+        <input type='checkbox' id='pop_up_control'>
+        <nav id='pop_up_menu'>
+          <ul class='links mt-5'>
+            <li><a href='javascript:window._pxOpen(' TARGET.html');'>Elements</a></li>
+          </ul>
+          <ul class='links stacked'>
+            <% if user_signed_in?  %>
+            <!-- TODO 加入修改帳戶資料功能 -->
+            <li><%= link_to '修改個人資料', url: '#' %></li>
+            <li>
+              <%= link_to '登出', destroy_user_session_path,
                                       method: 'delete',
                                       data: { confirm: '確定登出？' },
                                       class: 'button' %>
-                </li>
-                <li><%= link_to '訂單記錄', transactions_path(current_user), class: 'button' %></li>
-              <% else %>
-                <li><%= link_to '登入', new_user_session_path, class: 'button' %></li>
-                <li><%= link_to '註冊', new_user_registration_path, class: 'button' %></li>
-              <% end %>
-              </ul>
-              <label for='pop_up_control' class='close'><%= fa_icon('close') %></label>
-            </nav>
-            <!-- 彈出式功能視窗 結束 -->
-        
-            <div class='row main'>
-              <!-- 主要導覽列 -->
-              <nav class='p-2 topnav col-md-12 d-flex justify-content-between align-items-center'>
-                <li><%= link_to '首頁', root_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
-                <div class='d-flex justify-content-end align-items-center'>
-                  <!-- <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#category'>分類</button></li>
+            </li>
+            <li><%= link_to '訂單記錄', transactions_path(current_user), class: 'button' %></li>
+            <% else %>
+            <li><%= link_to '登入', new_user_session_path, class: 'button' %></li>
+            <li><%= link_to '註冊', new_user_registration_path, class: 'button' %></li>
+            <% end %>
+          </ul>
+          <label for='pop_up_control' class='close'><%= fa_icon('close') %></label>
+        </nav>
+        <!-- 彈出式功能視窗 結束 -->
+
+        <div class='row main'>
+          <!-- 主要導覽列 -->
+          <nav class='p-2 topnav col-md-12 d-flex justify-content-between align-items-center'>
+            <li><%= link_to '首頁', root_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
+            <div class='d-flex justify-content-end align-items-center'>
+              <!-- <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#category'>分類</button></li>
                   <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#featured'>精選</button></li>
                   <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#support_me'>幫我挑</button></li> -->
-                  <li>
-                    <div class='search-form'>
-                      <%= form_tag stores_path, method: 'get' do %>
-                        <%= text_field_tag :search, params[:search], placeholder: '搜尋' %>
-                        <%= submit_tag 'search', name: nil, class: 'btn btn-sm btn-outline-secondary' %>
-                      <% end %>
-                    </div>
-                  </li>
-                  <% if user_signed_in? %>
-                    <li class='mx-2'>使用者： <%= current_user.phone %> 你好！</li>
-                    <li><%= link_to '我的店舖', admin_stores_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
+              <li>
+                <div class='search-form'>
+                  <%= form_tag stores_path, method: 'get' do %>
+                  <%= text_field_tag :search, params[:search], placeholder: '搜尋' %>
+                  <%= submit_tag 'search', name: nil, class: 'btn btn-sm btn-outline-secondary' %>
                   <% end %>
-                  <!-- 控制: 彈出功能列 -->
-                  <label class='m-1 btn btn-sm btn-outline-secondary pop_up_control_label' for='pop_up_control'></label>
                 </div>
-              </nav>
-              <!-- 主要導覽列 結束 -->
-              <%= yield %>
-              </main>
-        
-              <footer class='footer__section col-md-12'>
-                © 2019 Orderbrother
-              </footer>
+              </li>
+              <% if user_signed_in? %>
+              <li class='mx-2'>使用者： <%= current_user.phone %> 你好！</li>
+              <li><%= link_to '我的店舖', admin_stores_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
+              <% end %>
+              <!-- 控制: 彈出功能列 -->
+              <label class='m-1 btn btn-sm btn-outline-secondary pop_up_control_label' for='pop_up_control'></label>
             </div>
-          </div>
+          </nav>
+          <!-- 主要導覽列 結束 -->
+          <%= yield %>
+          </main>
+
+          <footer class='footer__section col-md-12'>
+            © 2019 Orderbrother
+          </footer>
         </div>
+      </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>
