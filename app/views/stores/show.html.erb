@@ -54,10 +54,14 @@
                 <br /><b style="color:#00f;">pick_up_time:</b>
           
                 <%= select_tag(:time, options_for_select(pick_up_time), id: 'transacion_time')%>
-
-                <%= button_tag '確認送出', type: 'submit', class: 'btn btn-primary', id: 'submit_transaction' %>
+                <!-- * 判斷使用者有沒有登入 -->
+                <% if current_user %>
+                  <%= button_tag '確認送出', type: 'submit', class: 'btn btn-primary', id: 'submit_transaction' %>
                 <%# <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">送出</button> %>
-
+                <% else %>
+                <!-- 如果沒登入的話： -->
+                  <%= button_tag '確認送出', type: 'submit', class: 'disable btn btn-primary', id: 'suggest_user_sign_up' %>
+                <% end %>
               </div>
             </div>
           </div>
@@ -108,6 +112,26 @@
         </div><!-- /.modal-dialog -->
       </div>
       
+      <div class="success-modal" id="remind-sign-in" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel"
+        aria-hidden="true"></span>
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="confirmModalLabel">Order Brother</h4>
+              <button type="button" class="close" onclick="$('#remind-sign-in').hide()">×</button>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h2>請先登入</h2>
+            </div>
+            <div class="modal-footer">
+              <%= link_to '登入', new_user_session_path, class: 'btn btn-info' %>
+              <button class='btn btn-danger' onclick="$('#remind-sign-in').hide()">關閉</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       
     </div>
   </div>
@@ -117,6 +141,8 @@
 $('#transacion_time').on('change', function(){
   $('#transacion_time_value').val($('#transacion_time').val())
 })
+
+// 送出訂單按鈕
 $('#submit_transaction').click(function(){
   $('#js-dishes').val(fns.cart2json());
   $('#js-description').val($('#Remark').val());
@@ -125,8 +151,16 @@ $('#submit_transaction').click(function(){
 
   $('#show-modal').click();
   $('#confirmModalCenter').show();
-})
-  
+});
+
+// 沒登入的訂單按鈕，按下後會先用 modal 提醒用戶轉到登入頁
+// 
+$('#suggest_user_sign_up').click(function() {
+  // 彈出 modal
+  $('#show-modal').click();
+  $('#remind-sign-in').show();
+});
+
 let b = 1, total = 0, cart = {}
 var fns = {
   add2cart: function(item) {

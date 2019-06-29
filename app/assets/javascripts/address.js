@@ -1,8 +1,4 @@
 var map;
-$(document).on("turbolinks:load", function() {
-  console.log("JS ttttriggered");
-  initMap();
-});
 
 // document.addEventListener('turbolinks:load', function() {
 
@@ -146,11 +142,10 @@ function initMap() {
 
 // FIXME submit button function not define yet.
 $("#submit").on("click", function() {});
-
-// WIP -------------------------- 從地址取得經緯度功能
+// debugger
   // geocodeAddress(geocoder, map);
   // function searchAddress() {
-  let searchLocation = document.getElementById("address").value;
+  // let searchLocation = document.getElementById("address").value;
   // document.getElementById('address').value = '';
   // }
   // searchAddress();
