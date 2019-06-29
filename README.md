@@ -22,8 +22,8 @@ just don't waste your time to wait in line.
   - [Pop-up button](#Pop-up-menu)
   - [Build your own store](#Build-your-own-store)
   - [Create dishes](#Create-dishes)
-  - [Manage orders if your owner](#Manage-orders-if-your-owner)
-  - [Make order if your hunger](#Make-order-if-your-hunger)
+  - [Manage orders if you are owner](#Manage-orders-if-you-are-owner)
+  - [Make order if you are hunger](#Make-order-if-you-are-hunger)
 
 ## Requirements
 
@@ -99,11 +99,11 @@ Open pop-up menu by the icon on top right side, the sign-up button is right insi
 <!-- - 只能在自己的店面上架、編輯產品   -->
   Once your store be created, you can add merchendise easily in your store page.
 
-### Manage orders if your owner
+### Manage orders if you are owner
 
 The list button below store information section let you manage orders which belongs to the current store, you can change state of orders in list page.
 
-### Make order if your hunger
+### Make order if you are hunger
 
 You can easily find stores, click into one of the store pages, choose your time preference to pick up and select dishes you want, the shopping cart section on the right side will shows current amount price immediatily.
 
