@@ -10,9 +10,9 @@ h1{
 }
 .store_page {
   // background-color: #f2f2f2;
-  height: 100vh;
+  // height: 100vh;
   margin-right: 0;
-  .left-part{
+  .menu{
     padding: 4px;
     border: 1px solid #ededed;
     .dish-list{
@@ -40,8 +40,9 @@ h1{
       }
     }
   }
-  .right-part{
-    margin: 16px 8px;
+ .order_area{
+    // margin: 16px 8px;
+    margin: 0;
  .top-info{
    padding: 24px;
    border: 1px solid #000;
@@ -122,8 +123,10 @@ h1{
 }
 .description{
   height: 15vh;
-  width: 20vw;
+  // width: 20vw;
 }
+
+
 
 
 

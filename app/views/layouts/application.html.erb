@@ -45,31 +45,37 @@
         
             <div class='row main'>
               <!-- 主要導覽列 -->
-              <nav class='p-2 topnav col-md-12 d-flex justify-content-between align-items-center'>
-                <li><%= link_to '首頁', root_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
-                <div class='d-flex justify-content-end align-items-center'>
-                  <!-- <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#category'>分類</button></li>
-                  <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#featured'>精選</button></li>
-                  <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#support_me'>幫我挑</button></li> -->
-                  <li>
-                    <div class='search-form'>
-                      <%= form_tag stores_path, method: 'get' do %>
-                        <%= text_field_tag :search, params[:search], placeholder: '搜尋' %>
-                        <%= submit_tag 'search', name: nil, class: 'btn btn-sm btn-outline-secondary' %>
-                      <% end %>
-                    </div>
-                  </li>
-                  <% if user_signed_in? %>
-                    <li class='mx-2'>使用者： <%= current_user.phone %> 你好！</li>
-                    <li><%= link_to '我的店舖', admin_stores_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
-                  <% end %>
-                  <!-- 控制: 彈出功能列 -->
-                  <label class='m-1 btn btn-sm btn-outline-secondary pop_up_control_label' for='pop_up_control'></label>
+              <nav class='p-2 topnav col-12'>
+                <div class="row nav col-12 col-xl-6">
+                  <div class="home-bot col-12 col d-flex justify-content-between">
+                    <li><%= link_to '首頁', root_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
+                      <!-- <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#category'>分類</button></li>
+                      <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#featured'>精選</button></li>
+                      <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#support_me'>幫我挑</button></li> -->
+                      <li>
+                        <div class='search-form'>
+                          <%= form_tag stores_path, method: 'get' do %>
+                            <%= text_field_tag :search, params[:search], placeholder: '搜尋' %>
+                            <%= submit_tag 'search', name: nil, class: 'btn btn-sm btn-outline-secondary' %>
+                          <% end %>
+                        </div>
+                      </li>
+                  </div>
+                </div>
+                <div class="login_nav row col-12 col-xl-6">
+                  <div class="col-12 col">
+                    <% if user_signed_in? %>
+                      <li class='mx-2'><%= current_user.phone %> 你好！</li>
+                      <li><%= link_to '我的店舖', admin_stores_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
+                    <% end %>
+                    <!-- 控制: 彈出功能列 -->
+                    <label class='m-1 btn btn-sm btn-outline-secondary pop_up_control_label' for='pop_up_control'></label>
+                  </div>
                 </div>
               </nav>
               <!-- 主要導覽列 結束 -->
               <%= yield %>
-              </main>
+              
         
               <footer class='footer__section col-md-12'>
                 © 2019 Orderbrother

@@ -67,9 +67,9 @@
 </aside>
 <!-- 側邊功能列 結束 -->
 
-<main class='col-md-9 justify-content-around row'>
+<main class='col-md-9 justify-content-around flex-wrap'>
   <!-- 排序搜尋功能區 -->
-  <div class='tag-arear col-md-12 d-flex'>
+  <%# <div class='tag-arear col-md-12 d-flex'>
     <div class='tag-arear-show col-md-10 d-flex justify-content-start align-items-start'>
       <button type='button' class=' color-btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
       <button type='button' class=' color-btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
@@ -84,30 +84,32 @@
         <a class='dropdown-item' href='#'>Something else here</a>
       </div>
     </div>
-  </div>
+  </div> %>
   <!-- 排序搜尋功能區 結束 -->
 
   <!-- Store list -->
-  <section class='store__list d-flex justify-content-around'>
+  <section class='store__list '>
     <% if @stores.present? %>
       <% @stores.each do |store| %>
-      <div class='store__list--item col-md-4 col-sm-6 mb-2 row'>
-        <div class='card store__card'>
-          <div class='store__card--img'>
-            <% if store.main_img? %>
-            <%= link_to image_tag(store.main_img_url, class: 'card-img-top'), store %>
-            <% else %>
-            <%= link_to image_tag('bg_default', class: 'card-img-top'), store %>
-            <% end %>
-          </div>
-          <div class='card-body'>
-            <h5 class='card-title'><%= store.name %></h5>
-            <p class=''><%= store.tel %></p>
-            <p class=''><%= store.description %></p>
-            <%= link_to '進入店家', store, class: 'btn btn-info' %>
+      <%# <div class="row"> %>
+        <div class='store__list--item col-md-4 col-sm-6 mb-2'>
+          <div class='card store__card'>
+            <div class='store__card--img'>
+              <% if store.main_img? %>
+              <%= link_to image_tag(store.main_img_url, class: 'card-img-top'), store %>
+              <% else %>
+              <%= link_to image_tag('bg_default', class: 'card-img-top'), store %>
+              <% end %>
+            </div>
+            <div class='card-body'>
+              <h5 class='card-title'><%= store.name %></h5>
+              <p class=''><%= store.tel %></p>
+              <p class=''><%= store.description %></p>
+              <%= link_to '進入店家', store, class: 'btn btn-info' %>
+            </div>
           </div>
         </div>
-      </div>
+      <%# </div> %>
       <% end %>
     <% else %>
       <div class="search-message">

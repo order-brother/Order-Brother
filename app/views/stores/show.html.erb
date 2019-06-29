@@ -4,10 +4,9 @@
 <%# 讀取餐點所有資訊%>
 <div class="container-fluid store_page">
   <div class="row">
-    <div class="col-7">
-      <div class="left-part">
+    <div class="menu col-12 col-xl-6">
         <div class="dish-list">
-          <div class="row">
+          <div>
             <% @store.dishes.each do |dish| %>
             <div class="row">
               <div class="show--store__body col-8">
@@ -32,10 +31,9 @@
             <% end %>
           </div>
         </div>
-      </div>
+      
     </div>
-    <div class="col-5">
-      <div class="right-part">
+    <div class="order_area col-12 col-xl-6">
         <div class="top-info ">
           <div class="show--store__main_img">
             <h4><%= @store.name %> Page</h4>
@@ -65,7 +63,7 @@
 
           <textarea class="description" id="Remark" type="textarea" value="訂單備註" placeholder="訂單備註" ></textarea><br />
         </div>
-      </div>
+      
       <div style="display: none">
         <%= form_tag store_transactions_path(@store) do %>
           <%= hidden_field_tag 'store_id', @store.id %>
@@ -101,7 +99,7 @@
             </div>
             <div class="modal-footer">
               <%# <button onclick="$('.success-modal').hide();return false;"></button> %>
-              <%= link_to '關閉', transactions_path(current_user), class: 'button'%>
+              <%= link_to '查看訂單', transactions_path(current_user), class: 'button'%>
               
             </div>
           </div>
