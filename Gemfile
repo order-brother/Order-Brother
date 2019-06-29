@@ -64,7 +64,8 @@ gem 'paranoia', '~> 2.4', '>= 2.4.2'
 # 狀態機
 gem 'aasm', '~> 5.0', '>= 5.0.5'
 
-gem 'simple_form', '~> 4.1'
+# 還沒開始用
+# gem 'simple_form', '~> 4.1'
 
 # Moment.js for bootstrap 4 datetime picker
 gem 'momentjs-rails', '~> 2.20', '>= 2.20.1'

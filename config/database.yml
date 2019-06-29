@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: order-brother_production
-  username: order-brother
-  password: <%= ENV['ORDER-BROTHER_DATABASE_PASSWORD'] %>
