@@ -69,7 +69,7 @@
 
 <main class='col-md-9 justify-content-around flex-wrap'>
   <!-- 排序搜尋功能區 -->
-  <%# <div class='tag-arear col-md-12 d-flex'>
+  <!-- <div class='tag-arear col-md-12 d-flex'>
     <div class='tag-arear-show col-md-10 d-flex justify-content-start align-items-start'>
       <button type='button' class=' color-btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
       <button type='button' class=' color-btn btn-sm btn-outline-secondary' href='#support_me'>tag</button>
@@ -84,14 +84,13 @@
         <a class='dropdown-item' href='#'>Something else here</a>
       </div>
     </div>
-  </div> %>
+  </div> -->
   <!-- 排序搜尋功能區 結束 -->
 
   <!-- Store list -->
   <section class='store__list '>
     <% if @stores.present? %>
       <% @stores.each do |store| %>
-      <%# <div class="row"> %>
         <div class='store__list--item col-md-4 col-sm-6 mb-2'>
           <div class='card store__card'>
             <div class='store__card--img'>
@@ -109,7 +108,6 @@
             </div>
           </div>
         </div>
-      <%# </div> %>
       <% end %>
     <% else %>
       <div class="search-message">
