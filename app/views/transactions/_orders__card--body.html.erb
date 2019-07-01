@@ -7,7 +7,7 @@
   <% t.transaction_items.each do |ti| %>
     <div class='transaction_items__detail'>
     <p>
-      <span><%= ti.dish.name %>（<%= ti.item_price.round %>元）* <%= ti.dish_count %> 份</span> |
+      <span><%= ti.dish.name %>（<%= ti.item_price.round %>元）* <%= ti.dish_count %> 份</span>
     </p>
   </div>
   <% end %>
