@@ -9,58 +9,67 @@ h1{
   }
 }
 .store_page {
-  // background-color: #f2f2f2;
-  height: 100vh;
   margin-right: 0;
-  .left-part{
+  .menu{
     padding: 4px;
     border: 1px solid #ededed;
-    .dish-list{
-      margin: 4px;
-    }
-    .dish-card{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 150px;
-      width: calc ( 100% -10px );
-      margin: 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      .info{
-          img{
-            margin: 16px;
-            width: 50px;
-            height: 50px;
-          }
-      }
-      .item-info{
-        display: flex;
-        align-items: center;
-      }
-    }
   }
-  .right-part{
-    margin: 16px 8px;
- .top-info{
-   padding: 24px;
-   border: 1px solid #000;
-   border-radius: 4px;
-   .show--store__main_img{
-     img{width: 20vw;}
-   }
- }
- img{
-      // padding-left: 16px;
-      // height: 160px;
-      // width: 200px;
+}  
+.dish-list{
+  margin: 4px;
+}
+.dish-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: calc ( 100% -10px );
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.info{
+    img{
+      margin: 16px;
+      width: 50px;
+      height: 50px;
     }
-  }
-  span{
-    display: block;
-    width: 100%;
+}
+.item-info{
+  display: flex;
+  align-items: center;
+}
+.add_dish_to_cart{
+  color: fff;
+  background-color: #007bff;
+  border-color: #007bff; 
+}
+.show--store__header{
+  span{color: #000;}
+  
+}
+.order_area{
+  // margin: 16px 8px;
+  margin: 0;
+.top-info{
+  padding: 24px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  .show--store__main_img{
+    img{width: 20vw;}
   }
 }
+img{
+    // padding-left: 16px;
+    // height: 160px;
+    // width: 200px;
+  }
+}
+span{
+  display: block;
+  width: 100%;
+}
+
 
 // .modal{
 //   display:none;
@@ -121,8 +130,14 @@ h1{
 }
 .description{
   height: 15vh;
-  width: 20vw;
+  // width: 20vw;
 }
+.order_area {
+  color: #000;
+  h4{color: #6c757d}
+}
+
+
 
 
 

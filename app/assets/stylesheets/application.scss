@@ -59,14 +59,23 @@ textarea {
   }
 }
 
+// .store_page{
+//   height: 100vh;
+// }
+
 .store__list {
   height: 87vh;
   overflow: auto;
 }
 
 .store__card {
-  max-width: 220px;
-
+  margin-left:2px;
+  margin-right: 2px;
+  width: 100%;
+}
+.login_nav{
+  padding-right:11px;
+  text-align: right;
 }
 
 .store__card--img {
@@ -109,3 +118,38 @@ textarea {
     font-weight: 700;
   }
 }
+
+@media screen and (max-width:375px){
+  // 手機用的 nav 排版 
+  .main{
+    margin-left:0;
+    margin-right: 0;
+   }
+  .login_nav {
+    padding-left:0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0; 
+
+  }
+  .nav{
+    padding-left:0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0; 
+
+  }
+  .success-modal h4.modal-title{
+    margin-left: 0;
+  }
+  .container{
+    padding-left: 0;
+    padding-right: 0;
+  }
+  
+}
+.btn-sm{
+  color: #fff;
+  border-color:#fff;
+}
+
