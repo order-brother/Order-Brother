@@ -135,7 +135,7 @@
   </div>
 </div>
 <script>
-
+$(document).on('page:change, turbolinks:load', function(){
 $('#transacion_time').on('change', function(){
   $('#transacion_time_value').val($('#transacion_time').val())
 })
@@ -292,4 +292,5 @@ $('.add_dish_to_cart').on('click',function(){
     fns.sub2cart(dish_dom);
     $('.js-calc-rs').html(fns.buildCartList());
   })
+});
 </script>
