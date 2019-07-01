@@ -22,9 +22,15 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit "登入", class: 'btn btn-info' %>
+      <%= f.submit "登入", class: 'btn btn-info', id: 'sign-in-button' %>
     </div>
     <%= render "users/shared/links" %>
   </div>
   <% end %>
 </div>
+
+<script>
+  $('#sign-in-button').on("click", function(){
+    
+  });
+</script>

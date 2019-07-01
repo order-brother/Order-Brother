@@ -1,3 +1,4 @@
+<%# byebug %>
 $('#dish_id_<%= @dish.id %>').removeClass('dish_state_0').html('<%= j render "form", id: @dish.store.id, url: @url, method: @method %>')
 
 <% @dish.errors.full_messages.each do |message| %>

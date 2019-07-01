@@ -1,6 +1,6 @@
 class Admin::DishesController < Admin::BaseController
-  before_action :find_store, only: [:new, :create]
-  before_action :find_dish, only: %i(edit update cancel destroy)
+  before_action :find_store, only: %i[new create]
+  before_action :find_dish, only: %i[edit update cancel destroy]
 
   def index
     @dish = Dish.all
