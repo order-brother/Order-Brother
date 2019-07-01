@@ -2,7 +2,6 @@
 
 <div class="container">
   <div class="show--store__header col-12">
-    <%# <h1><%= @store.name</h1> %>
     <p>店家資訊 ：<%= @store.description %></p>
     <p>店家地址 ：<%= @store.location %></p>
   </div>
@@ -12,7 +11,7 @@
       <section class="dishes">
         <div class="dishes__list">
           <%= render 'dish_list_items' %>
-          <%= render './admin/dishes/new_dishes_card' if policy(@store).edit? %>
+          <%= render './admin/dishes/new_dish_card' if policy(@store).edit? %>
         </div>
       </section>
     </div>
