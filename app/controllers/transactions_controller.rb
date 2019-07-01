@@ -6,9 +6,6 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    # WIP 加入 驗證登入的使用者才能建立訂單
-    # render 'users/sessions/new', alert: '請先登入' if !current_user
-
     @store = Store.find(params[:store_id])
     @transaction = @store.transactions.create(user: current_user, total_price: 0)
 
