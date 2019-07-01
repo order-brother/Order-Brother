@@ -2,9 +2,9 @@
   <h2>註 冊</h2>
   <div class="sign-up-list"> 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <!-- 停用 devise 內建錯誤訊息   -->
+      <!-- 停用 devise 內建錯誤訊息 -->
       <%#= render "devise/shared/error_messages", resource: resource %>
-      
+      <!-- call error_block helper method -->
       <%= error_block(resource) %>
       <div class="field">
         <%= f.label :phone, "電話(十位數字) *必填" %><br />
@@ -31,8 +31,6 @@
 
       <div class="actions">
         <%= f.submit "註冊" %>
-      
-    
 
       <%= render "users/shared/links" %>
     </div>
