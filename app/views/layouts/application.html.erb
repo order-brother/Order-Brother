@@ -47,13 +47,13 @@
         <!-- 彈出式功能視窗 -->
         <input type='checkbox' id='pop_up_control'>
         <nav id='pop_up_menu'>
-          <ul class='links mt-5'>
-            <li><a href='javascript:window._pxOpen(' TARGET.html');'>Elements</a></li>
-          </ul>
+          <!-- <ul class='links mt-5'> -->
+            <!-- <li><a href='javascript:window._pxOpen(' TARGET.html');'>Elements</a></li> -->
+          <!-- </ul> -->
           <ul class='links stacked'>
             <% if user_signed_in?  %>
             <!-- TODO 加入修改帳戶資料功能 -->
-            <li><%= link_to '修改個人資料', url: '#' %></li>
+            <!-- <li><%#= link_to '修改個人資料', url: '#' %></li> -->
             <li>
               <%= link_to '登出', destroy_user_session_path,
                                 method: 'delete',
@@ -92,7 +92,7 @@
                 <div class="login_nav row col-12 col-xl-6">
                   <div class="col-12 col">
                     <% if user_signed_in? %>
-                      <li class='mx-2'><%= current_user.phone %> 你好！</li>
+                      <li class='mx-2'><i class="fa fa-user"></i> <%= current_user.phone %> 你好！</li>
                       <li><%= link_to '我的店舖', admin_stores_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
                     <% end %>
                     <!-- 控制: 彈出功能列 -->

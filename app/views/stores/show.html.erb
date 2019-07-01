@@ -21,7 +21,7 @@
                         <%= image_tag dish.main_img_url if dish.main_img? %>
                       </div>
                       <% if dish.state == 1 %>
-                      <input id="add_dish_<%= dish.id %>" class="btn add_dish_to_cart" type="button" value="加入" >
+                      <input id="add_dish_<%= dish.id %>" class="btn btn-outline-info add_dish_to_cart" type="button" value="加入" >
                       <% end%>
                     </div> 
                   </div>
@@ -54,11 +54,11 @@
                 <%= select_tag(:time, options_for_select(pick_up_time), id: 'transacion_time')%>
                 <!-- * 判斷使用者有沒有登入 -->
                 <% if current_user %>
-                  <%= button_tag '確認送出', type: 'submit', class: 'btn btn-primary', id: 'submit_transaction' %>
+                  <%= button_tag '確認送出', type: 'submit', class: 'btn btn-info', id: 'submit_transaction' %>
                 <%# <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">送出</button> %>
                 <% else %>
                 <!-- 如果沒登入的話： -->
-                  <%= button_tag '確認送出', type: 'submit', class: 'disable btn btn-primary', id: 'suggest_user_sign_up' %>
+                  <%= button_tag '確認送出', type: 'submit', class: 'disable btn btn-outline-info', id: 'suggest_user_sign_up' %>
                 <% end %>
               </div>
             </div>
@@ -93,7 +93,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title" id="confirmModalLabel">Order Brother</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <button type="button" class="btn btn-outline-info close" data-dismiss="modal" aria-hidden="true">×</button>
               </button>
             </div>
             <div class="modal-body">
