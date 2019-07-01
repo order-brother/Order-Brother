@@ -10,7 +10,13 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require address
+ *= require admin/transactions
+ *= require admin/admin_store
  *= require font-awesome
+ *= require page
+ *= require stores
+ *= require stores/show
  *= require_self
  *= require_tree .
  */
@@ -27,9 +33,7 @@ body {
   padding: 0;
   color: #6c757d;
   background-attachment: scroll, fixed;
-  // background-image: url(background00.jpg);
-  background-image: url('paula-vermeulen-URjZkhqsuBk-unsplash.jpg');
-  // background-image: url('https://pixelarity.com/items/demos/transit/magenta/images/bg.jpg');
+  background-image: image-url('paula-vermeulen-URjZkhqsuBk-unsplash.jpg');
   background-position: top left, top center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -107,6 +111,7 @@ textarea {
     border-color: red;
     border-width: 2px;
   }
+
   label {
     color: rgb(165, 23, 23);
     font-weight: 700;

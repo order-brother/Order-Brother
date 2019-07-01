@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
   include Pundit
-  protect_from_forgery
-  
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  
+
   protected
+
+  protect_from_forgery
 
   def user_not_authorized
     flash[:alert] = '權限不足'
@@ -14,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   # Setting strong parameters for user sign_in of devise gem
   def configure_permitted_parameters
-    added_attrs = [:phone, :email, :password_confirmation, :remember_me]
+    added_attrs = %i[phone email password_confirmation remember_me]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
