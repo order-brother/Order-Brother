@@ -29,15 +29,36 @@ html {
 }
 
 body {
-  margin: 1.5rem 0;
   padding: 0;
   color: #6c757d;
   background-attachment: scroll, fixed;
-  background-image: image-url('paula-vermeulen-URjZkhqsuBk-unsplash.jpg');
   background-position: top left, top center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+
+  &:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    
+    display: block;
+    background-image: image-url('paula-vermeulen-URjZkhqsuBk-unsplash.jpg');
+    width: auto;
+    height: 100%;
+    
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px);
+    -ms-filter: blur(3px);
+    filter: blur(3px);
+    background-position: top left, top center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 }
 
 body,
@@ -88,9 +109,10 @@ textarea {
   img {
     display: inline-block;
     height: 100%;
-    width: 100%;
+    // width: 100%;
+    // width: auto;
+    max-width: 240px;
     vertical-align: middle;
-    width: auto;
     transition: all .2s ease-in-out;
 
     &:hover {

@@ -23,7 +23,7 @@ class ApplicationPolicy
   end
 
   def update?
-    user && (user.id == record.user_id)
+    user && (user.role == 'admin' || user.id == record.user_id)
   end
 
   def edit?
