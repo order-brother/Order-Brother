@@ -33,8 +33,12 @@ RSpec.describe Transaction, type: :model do
         t = transaction.transaction_items.new(col)
         t.save!
       end
+
+      item1_amount = return_order[:transaction_item][:item1]['dish_count'] * d1.price
+      item2_amount = return_order[:transaction_item][:item2]['dish_count'] * d2.price
+
       expect(transaction.save!).to be true
-      expect(transaction.total_price).to eq 600
+      expect(transaction.total_price).to eq (item1_amount + item2_amount)
     end
   end
 
