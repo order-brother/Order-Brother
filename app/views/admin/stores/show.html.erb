@@ -7,7 +7,7 @@
   </div>
 
   <div class="row">
-    <div class="show--store__body col-8">
+    <div class="show--store__body col-12 col-md-8">
       <section class="dishes">
         <div class="dishes__list">
           <%= render 'dish_list_items' %>
@@ -15,7 +15,7 @@
         </div>
       </section>
     </div>
-    <div class="show--store__info col-4">
+    <div class="show--store__info col-12 col-md-4">
       <div class="show--store__main_img">
         <%= image_tag @store.main_img_url if @store.main_img? %>
       </div>

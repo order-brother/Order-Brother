@@ -72,7 +72,7 @@
         <div class='row main'>
           <!-- 主要導覽列 -->
           <nav class='p-2 topnav col-12'>
-                <div class="row nav col-12 col-xl-6">
+                <div class="row nav col-12 col-lg-6 col-xl-6">
                   <div class="home-bot col-12 col d-flex justify-content-between">
                     <li><%= link_to '首頁', root_path, class: 'm-1 btn btn-sm btn-outline-secondary' %></li>
                       <!-- <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#category'>分類</button></li>
@@ -88,7 +88,7 @@
                       </li>
                   </div>
                 </div>
-                <div class="login_nav row col-12 col-xl-6">
+                <div class="login_nav row col-12 col-lg-6 col-xl-6">
                   <div class="col-12 col">
                     <% if user_signed_in? %>
                       <li class='mx-2'><i class="fa fa-user"></i> <%= current_user.phone %> 你好！</li>

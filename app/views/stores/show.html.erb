@@ -6,31 +6,31 @@
   <div class="row">
     <div class="menu col-12 col-xl-6">
         <div class="dish-list">
-          <div>
-            <% @store.dishes.each do |dish| %>
+          <%# <div> %>
             <div class="row">
-              <div class="show--store__body col-8">
-                <section class="dishes">
-                  <div class="dishes__list">
-                    <div id="dish_id_<%= dish.id %>" class="dishes__card dish_state_<%= dish.state %>">
-                      <div class="dishes__card--desc">
-                        <span class="dish_name"value="<%= dish.name %>"><%= dish.name %></span>
-                        <span class="dish_price" value="<%= dish.price %>"><%= dish.price %>元</span>
-                      </div>
-                      <div class="dish__img">
-                        <%= image_tag dish.main_img_url if dish.main_img? %>
-                      </div>
-                      <% if dish.state == 1 %>
-                      <input id="add_dish_<%= dish.id %>" class="btn btn-outline-info add_dish_to_cart" type="button" value="加入" >
-                      <% end%>
-                    </div> 
-                  </div>
-                </section>
-              </div>
+              <% @store.dishes.each do |dish| %>
+                <div class="show--store__body col-12 col-md-6">
+                  <%# <section class="dishes"> %>
+                    <div class="dishes__list">
+                      <div id="dish_id_<%= dish.id %>" class="dishes__card dish_state_<%= dish.state %>">
+                        <div class="dishes__card--desc">
+                          <span class="dish_name"value="<%= dish.name %>"><%= dish.name %></span>
+                          <span class="dish_price" value="<%= dish.price %>"><%= dish.price %>元</span>
+                        </div>
+                        <div class="dish__img">
+                          <%= image_tag dish.main_img_url if dish.main_img? %>
+                        </div>
+                        <% if dish.state == 1 %>
+                        <input id="add_dish_<%= dish.id %>" class="btn btn-outline-info add_dish_to_cart" type="button" value="加入" >
+                        <% end%>
+                      </div> 
+                    </div>
+                  <%# </section> %>
+                </div>
+              <% end %>
             </div>
-            <% end %>
           </div>
-        </div>
+        <%# </div> %>
       
     </div>
     <div class="order_area col-12 col-xl-6">
