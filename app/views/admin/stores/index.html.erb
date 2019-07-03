@@ -12,9 +12,9 @@
       <div class="card store__card">
         <div class='store__card--img'>
           <% if store.main_img? %>
-          <%= link_to image_tag(store.main_img_url, class: 'card-img-top' ), store %>
+          <%= link_to image_tag(store.main_img_url, class: 'card-img-top' ), admin_store_path(store) %>
           <% else %>
-          <%= link_to image_tag('bg_default.jpg', class: 'card-img-top'), store %>
+          <%= link_to image_tag('bg_default.jpg', class: 'card-img-top'), admin_store_path(store) %>
           <% end %>
         </div>
         <div class='store-detail card-body'>
