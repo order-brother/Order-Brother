@@ -2,7 +2,7 @@
   .show--store__main_img {
     padding: 5px;
     img {
-      width: 20vw;
+      width: 100%;
       max-width: 280px;
       display: inline-block
     }
@@ -49,16 +49,18 @@
     display: inline-block;
     width: 100px;
 
-    .btn-add {
-    }
-    .fa{
+  }
+  .dishes__card--btn {
+    width: 31px;
+  }
+  .edit-btn {
       color: #000;
-    }
-    .trash-btn{
+  }
+  .trash-btn {
       width: 31px;
-    }
-  };
-  
+      color: #fff;
+  }
+
   .dish__img {
     box-sizing: border-box;
     display: inline-block;
@@ -67,6 +69,7 @@
 
     img {
       width: 100%;
+      height: 100%;
     }
   }
   
