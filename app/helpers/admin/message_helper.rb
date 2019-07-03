@@ -6,12 +6,12 @@ module Admin
         %Q(<p class="#{msg_type} error_messages">#{flash[msg_type]}</p>).html_safe
     end
 
-    def error_block(store)
+    def error_block(messages)
       # msg = ['<p class="error_messages">TEST message_helper</p>']
       msg = []
-      if store.errors.any?
+      if messages.errors.any?
         msg << '<ul class="error_messages">'
-        store.errors.full_messages.each do |message|
+        messages.errors.full_messages.each do |message|
           msg << "<li class='alert alert-danger'>#{message}</li>"
         end
         msg << '</ul>'

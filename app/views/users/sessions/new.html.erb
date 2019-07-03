@@ -3,7 +3,6 @@
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-group">
-    <%= error_block(resource) %>
     <%= f.label :login, "帳號：電話號碼或 Email", class: 'col-12 col-form-label' %>
     <div class="col-10">
       <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -23,9 +22,15 @@
     <% end %>
 
     <div class="actions">
-      <%= f.submit "登入", class: 'btn btn-info' %>
+      <%= f.submit "登入", class: 'btn btn-info', id: 'sign-in-button' %>
     </div>
     <%= render "users/shared/links" %>
   </div>
   <% end %>
 </div>
+
+<script>
+  $('#sign-in-button').on("click", function(){
+    
+  });
+</script>

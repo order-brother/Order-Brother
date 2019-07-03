@@ -1,5 +1,6 @@
 <%#= form_for @dish, url: url, method: method, html: { remote: true, class: 'add_dish_form form-control-sm' } do |f| %>
 <!-- refactor with form_with -->
+<%# byebug %>
 <%= form_with model: @dish, url: url, method: method, class: 'add_dish_form form-control-sm' do |f| %>
 
 <div class="dish--name">
@@ -20,7 +21,20 @@
   <%= f.label :prepare_time, "準備時間（分鐘）：" %>
   <%= f.number_field :prepare_time, in: 1..60, step: 0.5 %>
 </div>
-<%= f.submit "確認", class: 'btn btn-success' %>
-<%#= link_to '取消', cancel_admin_dish_path(@dish), remote: true, class: 'btn btn-danger' %>
+<%= f.submit "確認", class: 'btn btn-outline-success' %>
+<% if @dish.id %>
+  <%= link_to '取消', cancel_admin_dish_path(@dish), remote: true, class: 'btn btn-outline-danger' %>
+  <% else %>
+  <button id="cancel_add_dish" class="btn btn-outline-danger">取消</button>
+<% end %>
 <span id="helpBlock" class="help-block error_messages"></span>
 <% end %>
+
+<script>
+  $('#cancel_add_dish').on('click', function(){
+    // 按下取消按鈕後，將 "新增商品卡片" render 替換回來
+    // $('#new_dish_card').html('<%= j render "new_dish_card" %>')
+    $('.dishes__card').last().remove();
+    $('.dishes__list').append('<%= j render "new_dish_card" %>');
+  });
+</script>

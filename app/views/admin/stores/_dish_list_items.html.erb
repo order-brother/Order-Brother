@@ -1,5 +1,5 @@
 <% @store.dishes.each do |dish| %>
-  <div id="dish_id_<%= dish.id %>" class="dishes__card dish_state_<%= dish.state %>">
+  <div id="dish_id_<%= dish.id %>" class="col-12 col-md-5 dishes__card dish_state_<%= dish.state %>">
     <div class="dishes__card--desc">
       <p><%= dish.name %></p>
       <p><%= dish.price %></p>
@@ -7,7 +7,9 @@
     <div class="dish__img">
       <%= image_tag dish.main_img_url if dish.main_img? %>
     </div>
-    <%= link_to fa_icon('edit'), edit_admin_dish_path(dish), remote: true, class: 'btn btn-warning btn--function' if policy(@store).edit? %>
-    <%= link_to fa_icon('trash'), admin_dish_path(dish), method: 'delete', remote: true, data: { confirm: '確認刪除商品？' }, class: 'btn btn-danger btn--function' if policy(@store).edit? %>
+    <div class="dishes__card--btn" >
+      <%= link_to fa_icon('edit'), edit_admin_dish_path(dish), remote: true, class: 'btn btn-sm btn-warning btn--function edit-btn' if policy(@store).edit? %>
+      <%= link_to fa_icon('trash'), admin_dish_path(dish), method: 'delete', remote: true, data: { confirm: '確認刪除商品？' }, class: 'btn btn-sm btn-danger btn--function trash-btn' if policy(@store).edit? %>
+  </div>
   </div>
 <% end %>

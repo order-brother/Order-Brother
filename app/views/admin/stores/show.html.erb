@@ -1,26 +1,25 @@
-<h1><%= @store.name %> 店舖</h1>
+<h1><%= @store.name %></h1>
 
 <div class="container">
   <div class="show--store__header col-12">
-    <%# <h1><%= @store.name</h1> %>
     <p>店家資訊 ：<%= @store.description %></p>
     <p>店家地址 ：<%= @store.location %></p>
   </div>
 
   <div class="row">
-    <div class="show--store__body col-8">
+    <div class="show--store__body col-12 col-md-8">
       <section class="dishes">
         <div class="dishes__list">
           <%= render 'dish_list_items' %>
-          <%= render './admin/dishes/new_dishes_card' if policy(@store).edit? %>
+          <%= render './admin/dishes/new_dish_card' if policy(@store).edit? %>
         </div>
       </section>
     </div>
-    <div class="show--store__info col-4">
+    <div class="show--store__info col-12 col-md-4">
       <div class="show--store__main_img">
         <%= image_tag @store.main_img_url if @store.main_img? %>
       </div>
-      <%= link_to fa_icon('clipboard-list', text: '查看訂單'), admin_store_transactions_path(@store), class: 'btn btn-info' if policy(@store).edit? %>
+      <%= link_to fa_icon('eye', text: '查看訂單'), admin_store_transactions_path(@store), class: 'btn btn-info' if policy(@store).edit? %>
       <%= link_to fa_icon("edit", text: "編輯店面", right: true), edit_admin_store_path(@store), class: 'btn btn-warning' if policy(@store).edit? %>
     </div>
   </div>

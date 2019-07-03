@@ -1,0 +1,9 @@
+<div id="new_dish_card" class="col-12 col-md-5 dishes__card add_new_dish">
+  <div class="dishes__card--desc">
+    <!-- 因為從不同位置 render, 參數傳遞會需要檢查 -->
+    <!-- 方法一 -->
+    <%= link_to "新增商品", new_admin_store_dish_path(store_id: @store.try(:id) || @dish.store.id), remote: true, id: 'new_dish_button', class: 'btn btn-success btn--add_dish' %>
+    <!-- 方法二 -->
+    <%#= link_to "新增商品", new_admin_store_dish_path(store_id: @store&.id  || @dish.store.id), remote: true,id: 'new_dish_button', class: 'btn btn-success btn--add_dish' %>
+  </div>
+</div>
