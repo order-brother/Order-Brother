@@ -2,7 +2,6 @@
   .show--store__main_img {
     padding: 5px;
     img {
-      width: 20vw;
       display: inline-block
     }
   }
@@ -14,6 +13,7 @@
   flex-flow: row wrap;
   justify-content: flex-start;
   justify-content: space-around;
+  text-align: center;
   .dish_state_0::before {
     content: '售完';
     color: crimson;
@@ -23,7 +23,9 @@
   }
 }
 .dishes__card {
-  width: 270px;
+  width: 100%;
+  // 限制卡片最小寬度
+  min-width: 200px;
   height: auto;
   background-color: #fff;
   display: flex;
@@ -36,12 +38,22 @@
   border: 1px solid salmon;
   .btn--function {
     // border-radius: 50%;
+    margin-right: 10px;
+    width: 31px;
+    color: #383d41;
   }
   
   .dishes__card--desc {
     display: inline-block;
+    width: 100px;
 
     .btn-add {
+    }
+    .fa{
+      color: #000;
+    }
+    .trash-btn{
+      width: 31px;
     }
   };
   
@@ -55,6 +67,7 @@
       width: 100%;
     }
   }
+  
 }
 
 .add_dish_form.form-control-sm {
