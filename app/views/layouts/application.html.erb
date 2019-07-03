@@ -52,7 +52,6 @@
           <!-- </ul> -->
           <ul class='links stacked'>
             <% if user_signed_in?  %>
-            <!-- TODO 加入修改帳戶資料功能 -->
             <!-- <li><%#= link_to '修改個人資料', url: '#' %></li> -->
             <li>
               <%= link_to '登出', destroy_user_session_path,
@@ -66,7 +65,7 @@
             <li><%= link_to '註冊', new_user_registration_path, class: 'button' %></li>
             <% end %>
           </ul>
-          <label for='pop_up_control' class='close'><%= fa_icon('close') %></label>
+          <label for='pop_up_control' class='close'><%= fa_icon('close', class: 'close') %></label>
         </nav>
         <!-- 彈出式功能視窗 結束 -->
 
@@ -106,6 +105,12 @@
           <footer class='footer__section col-md-12'>
             © 2019 Orderbrother
           </footer>
+          <script>
+
+            $('.close').on('click', function(){
+              $('#pop_up_control').click();
+            });
+          </script>
         </div>
       </div>
     </div>
