@@ -65,7 +65,7 @@
             <li><%= link_to '註冊', new_user_registration_path, class: 'button' %></li>
             <% end %>
           </ul>
-          <label for='pop_up_control' class=''><%= fa_icon('close', class: 'close') %></label>
+          <label for='pop_up_control' class='close'><%= fa_icon('close', class: 'close') %></label>
         </nav>
         <!-- 彈出式功能視窗 結束 -->
 
@@ -106,8 +106,8 @@
             © 2019 Orderbrother
           </footer>
           <script>
+
             $('.close').on('click', function(){
-              console.log("TCL: close", close);
               $('#pop_up_control').click();
             });
           </script>
