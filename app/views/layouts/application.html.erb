@@ -79,12 +79,12 @@
                       <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#featured'>精選</button></li>
                       <li><button type='button' class='m-1 btn btn-sm btn-outline-secondary' href='#support_me'>幫我挑</button></li> -->
                       <li>
-                        <div class='search-form'>
-                          <%= form_tag stores_path, method: 'get' do %>
-                            <%= text_field_tag :search, params[:search], placeholder: '搜尋' %>
-                            <%= submit_tag 'search', name: nil, class: 'btn btn-sm btn-outline-secondary' %>
+                        <!-- <div class='search-form'> -->
+                          <%= form_tag stores_path, method: 'get', class: 'active-pink-4' do %>
+                            <%= text_field_tag :search, params[:search], placeholder: '搜尋', class: 'form-control' %>
+                            <!-- <%= submit_tag 'search', name: nil, class: 'btn btn-sm btn-outline-secondary' %> -->
                           <% end %>
-                        </div>
+                        <!-- </div> -->
                       </li>
                   </div>
                 </div>
