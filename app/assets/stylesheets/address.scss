@@ -5,10 +5,7 @@ body {
   padding: 0;
 }
 
-input::placeholder{ /* Chrome, Firefox, Opera, Safari 10.1+ */
+input::placeholder {
   color: red;
-  opacity: 1; /* Firefox */
+  opacity: 1; 
 }
-
-
-
