@@ -1,29 +1,19 @@
 // Place all the styles related to the Store controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.count-down{
+.count-down {
   border-radius: 50px;
-  background-color: #FFB326;
+  background-color: #ffb326;
   margin: 2px;
 }
-.count-up{
+.count-up {
   border-radius: 50px;
-  background-color: #FFB326;
+  background-color: #ffb326;
   margin: 2px;
 }
-.row .js-calc-rs div{
-    display: inline;
-
+.row .js-calc-rs div {
+  display: inline;
 }
-.row .js-calc-rs div:hover{
-  .xx{
-    display: block !important;
-  }
+.add_dish_to_cart {
+  flex: none;
 }
-
-.add_dish_to_cart { flex: none; }
-
-
-
-
-

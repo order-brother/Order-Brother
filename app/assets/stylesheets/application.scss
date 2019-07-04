@@ -45,7 +45,7 @@ body {
     z-index: -1;
 
     display: block;
-    background-image: image-url('paula-vermeulen-URjZkhqsuBk-unsplash.jpg');
+    background-image: image-url("paula-vermeulen-URjZkhqsuBk-unsplash.jpg");
     width: auto;
     height: 100%;
 
@@ -79,10 +79,6 @@ textarea {
     display: inline-block;
   }
 }
-
-// .store_page{
-//   height: 100vh;
-// }
 
 .store__list {
   height: 87vh;
@@ -134,7 +130,7 @@ textarea {
     // width: auto;
     max-width: 240px;
     vertical-align: middle;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     &:hover {
       transform: scale(1.2);
@@ -162,41 +158,32 @@ textarea {
   }
 }
 
-@media screen and (max-width:375px) {
-
-  // 手機用的 nav 排版 
+@media screen and (max-width: 375px) {
+  // 手機用的 nav 排版
   .main {
     margin-left: 0;
     margin-right: 0;
   }
-
   .login_nav {
     padding-left: 0;
     padding-right: 0;
     margin-left: 0;
     margin-right: 0;
-
   }
-
   .nav {
     padding-left: 0;
     padding-right: 0;
     margin-left: 0;
     margin-right: 0;
-
   }
-
   .success-modal h4.modal-title {
     margin-left: 0;
   }
-
   .container {
     padding-left: 0;
     padding-right: 0;
   }
-
 }
-
 .btn-sm {
   color: #fff;
   border-color: #fff;
