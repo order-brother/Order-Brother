@@ -89,11 +89,30 @@ textarea {
   overflow: auto;
 }
 
-.store__card {
-  margin-left:2px;
-  margin-right: 2px;
+.store__list--item {
   width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 13rem;
+
+  .store__card {
+    margin-left:2px;
+    margin-right: 2px;
+    width: 100%;
+    .card-body {
+      .card-title {
+        height: 50px;
+        margin-bottom: 0;
+      }
+    }
+  }
+  .card-desc {
+    height: 50px;
+    overflow: auto;
+    word-wrap: break-word;
+  }
 }
+
 .login_nav{
   padding-right:11px;
   text-align: right;

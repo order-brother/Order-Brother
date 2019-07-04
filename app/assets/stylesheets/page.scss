@@ -1,12 +1,14 @@
-.show--store__header{
-  p{
+.show--store__header {
+  p {
     font-size: 20px;
     color: #000;
   }
 }
-.color-btn{
+
+.color-btn {
   text-align: center;
 }
+
 .nav {
   display: block;
 }
@@ -39,6 +41,7 @@ nav.topnav {
   border-top-right-radius: 0.5rem;
   background-color: #937f8f80;
   background-image: linear-gradient(90deg, #937f8f80, #5a6284);
+
   .home-bot {
     flex-flow: row nowrap;
   }
@@ -81,12 +84,16 @@ nav.topnav {
 
   .card-body {
     padding: 4px;
+
     li {
       display: block;
     }
   }
 }
-.tag-arear{height: 30px;}
+
+.tag-arear {
+  height: 30px;
+}
 
 .form-group {
   background-color: rgba(255, 226, 226, 0.603);
@@ -96,6 +103,7 @@ nav.topnav {
   border: solid 1px #d5d5d5;
   border-radius: 2px;
   padding: 2px;
+
   input {
     display: inline-block;
   }
@@ -124,21 +132,21 @@ main {
     display: flex;
     flex-wrap: wrap;
 
-    .store__list--item {
-      width: 100%;
-      border-radius: 8px;
-      overflow: hidden;
-      min-height: 13rem;
+    // .store__list--item {
+    //   width: 100%;
+    //   border-radius: 8px;
+    //   overflow: hidden;
+    //   min-height: 13rem;
 
-      .card-title {
-        margin-bottom: 0;
-      }
+    //   .card-title {
+    //     margin-bottom: 0;
+    //   }
 
-      .card-text {
-        overflow: auto;
-        word-wrap: break-word;
-      }
-    }
+    //   .card-text {
+    //     overflow: auto;
+    //     word-wrap: break-word;
+    //   }
+    // }
   }
 }
 
@@ -245,6 +253,7 @@ main {
 @media screen and (max-width: 736px) {
   #menu {
     padding: 2.5rem 1.75rem;
+
     .close {
       height: 4rem;
       line-height: 4rem;
@@ -261,6 +270,7 @@ main {
     transform: translateX(0);
   }
 }
+
 .pop_up_control_label {
   position: relative;
   width: 40px;
@@ -281,27 +291,33 @@ main {
 }
 
 // 登入頁面
-.sign-in{
+.sign-in {
   margin: auto;
   width: 40vw;
   min-width: 250px;
 }
-.actions{
+
+.actions {
   display: inline;
   margin: 45px;
 }
-.form-group{border-radius: 5px;}
+
+.form-group {
+  border-radius: 5px;
+}
 
 // 註冊頁面
-.sign-up{
+.sign-up {
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
   width: 40vw;
-  .actions{
+
+  .actions {
     display: inline;
     margin: 45px;
-    input{
+
+    input {
       color: #fff;
       background-color: #17a2b8;
       border-color: #17a2b8;
@@ -312,36 +328,68 @@ main {
       border-radius: 0.25rem;
       margin-right: 60px;
       margin-top: 10px;
-      }
+    }
   }
-  .field{
-    input{width: 80%;} 
+
+  .field {
+    input {
+      width: 80%;
+    }
   }
-  .sign-up-list{
+
+  .sign-up-list {
     background-color: rgba(255, 226, 226, 0.603);
-    padding:10px 20px;
+    padding: 10px 20px;
     border-radius: 5px;
   }
 }
 
 // 我的商店
-.my_store{
+.my_store {
   width: 100%;
-  h1{text-align: center;}
- .btn{margin:10px 20px;}
- 
+
+  h1 {
+    text-align: center;
+  }
+
+  .btn {
+    margin: 10px 20px;
+  }
+
 }
-.store__list{text-align: center;}
-.store-detail{padding: 0;}
+
+.store__list {
+  text-align: center;
+}
+
+.store-detail {
+  padding: 0;
+}
 
 // 編輯商店
-.edit_store{display: inline;}
-.edit_store_page{
+.edit_store {
+  display: inline;
+}
+
+.edit_store_page {
   margin: auto;
-  #description{width: 70%;margin-left: 10px;}
-  label{display: block;margin-left: 10px;}
-  input{width: 70%;margin-left: 10px;}
-  .btn{
+
+  #description {
+    width: 70%;
+    margin-left: 10px;
+  }
+
+  label {
+    display: block;
+    margin-left: 10px;
+  }
+
+  input {
+    width: 70%;
+    margin-left: 10px;
+  }
+
+  .btn {
     color: #fff;
     background-color: #17a2b8;
     border-color: #17a2b8;
@@ -349,33 +397,47 @@ main {
     margin-top: 10px;
     margin-right: 20px;
     margin-bottom: 10px;
-    } 
+  }
 }
-.edit_st_list{
-  background-color:rgba(255, 226, 226, 0.603);
+
+.edit_st_list {
+  background-color: rgba(255, 226, 226, 0.603);
   margin-left: 0 20px;
   width: 50vw;
-  border-radius:5px; 
-  }
+  border-radius: 5px;
+}
 
 // 建立商店
-.add_store_page{
-  #description{width: 70%;margin-left: 10px;}
+.add_store_page {
+  #description {
+    width: 70%;
+    margin-left: 10px;
+  }
+
   margin: auto;
-  label{display: block;margin-left: 10px;}
-  input{width: 70%;margin-left: 10px;}
-  .btn{
+
+  label {
+    display: block;
+    margin-left: 10px;
+  }
+
+  input {
+    width: 70%;
+    margin-left: 10px;
+  }
+
+  .btn {
     color: #fff;
     background-color: #17a2b8;
     border-color: #17a2b8;
     width: 120px;
     margin: 10px 8px;
-    }
+  }
 }
-.add_st_list{
+
+.add_st_list {
   background-color: rgba(255, 226, 226, 0.603);
   width: 50vw;
-  border-radius:5px;
-  margin-bottom:10px; 
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
-  
