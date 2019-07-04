@@ -95,6 +95,7 @@ textarea {
     margin-left: 2px;
     margin-right: 2px;
     width: 100%;
+
     .card-body {
       .card-title {
         height: 50px;
@@ -102,6 +103,7 @@ textarea {
       }
     }
   }
+
   .card-desc {
     height: 50px;
     overflow: auto;
@@ -185,4 +187,12 @@ textarea {
 .btn-sm {
   color: #fff;
   border-color: #fff;
+}
+
+.search-bar {
+  color: #fff;
+
+  &:focus {
+    color: #fff;
+  }
 }
