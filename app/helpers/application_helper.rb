@@ -5,8 +5,8 @@ module ApplicationHelper
     link_to label, url, method: 'delete, data: { confirm: "確認刪除？" }, class: "btn btn-danger"'
   end
 
-  def default_pick_up_time(current_time = Time.now + 30.minutes)
-    current_time ||= Time.now + 30.minutes
+  def default_pick_up_time(current_time = Time.zone.now + 30.minutes)
+    current_time ||= Time.zone.now + 30.minutes
     current_time.strftime('%Y-%m-%dT%H:%M')
   end
 
@@ -18,10 +18,10 @@ module ApplicationHelper
   def pick_up_time
     result = []
     10.times { |index| 
-      result << generate_pick_up_time(Time.now, 10.minutes * index)
+      result << generate_pick_up_time(Time.zone.now, 10.minutes * index)
     }
   #   2.times { |index|
-  # result << generate_pick_up_time(Time.now, 30.minutes * index)
+  # result << generate_pick_up_time(Time.zone.now, 30.minutes * index)
   #   }
     result
   end

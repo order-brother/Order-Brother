@@ -65,12 +65,6 @@ class TransactionsController < ApplicationController
     rs
   end
 
-  def default_pick_up_time(current_time = Time.now + 30.minutes)
-    current_time = Time.parse(current_time)
-    current_time ||= Time.now + 30.minutes
-    current_time.strftime("%Y-%m-%dT%H:%M")
-  end
-
   def transaction_params
     params.require(:transaction).permit(:description, :pick_up_time)
   end

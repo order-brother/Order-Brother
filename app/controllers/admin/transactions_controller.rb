@@ -77,12 +77,6 @@ class Admin::TransactionsController < Admin::BaseController
 
   private
 
-  def default_pick_up_time(current_time = Time.now + 30.minutes)
-    current_time = Time.parse(current_time)
-    current_time ||= Time.now + 30.minutes
-    current_time.strftime("%Y-%m-%dT%H:%M")
-  end
-
   def find_store
     @store = Store.includes(transactions: [:user, transaction_items: [:dish]]).find(params[:store_id])
   end
