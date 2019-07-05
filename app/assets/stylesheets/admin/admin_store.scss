@@ -1,6 +1,7 @@
 .show--store__info {
   .show--store__main_img {
     padding: 5px;
+
     img {
       width: 100%;
       max-width: 280px;
@@ -8,6 +9,7 @@
     }
   }
 }
+
 .dishes__list {
   max-width: 720px;
   // min-width: 300px;
@@ -16,6 +18,7 @@
   justify-content: flex-start;
   justify-content: space-around;
   text-align: center;
+
   .dish_state_0::before {
     content: '售完';
     color: crimson;
@@ -24,6 +27,7 @@
     display: inline-block;
   }
 }
+
 .dishes__card {
   width: 100%;
   // 限制卡片最小寬度
@@ -38,27 +42,31 @@
   margin: 5px;
   flex-flow: row nowrap;
   border: 1px solid salmon;
+
   .btn--function {
     // border-radius: 50%;
     margin-right: 10px;
     width: 31px;
     color: #383d41;
   }
-  
+
   .dishes__card--desc {
     display: inline-block;
     width: 100px;
 
   }
+
   .dishes__card--btn {
     width: 31px;
   }
+
   .edit-btn {
-      color: #000;
+    color: #000;
   }
+
   .trash-btn {
-      width: 31px;
-      color: #fff;
+    width: 31px;
+    color: #fff;
   }
 
   .dish__img {
@@ -72,23 +80,33 @@
       height: 100%;
     }
   }
-  
+
 }
 
 .add_dish_form.form-control-sm {
   height: auto;
   margin: 0;
-  background-color:rgba(255, 226, 226, 0.603);
+  background-color: rgba(255, 226, 226, 0.603);
+
   input[type="file"] {
     font-size: 12px;
   }
 }
+
 .orders__container {
   background-color: rgba(255, 255, 255, 0.735);
+
   .orders__card {
-    background-color: #fff;
     box-sizing: border-box;
     margin: 10px 5px;
     border: 1px dashed #000000;
+  }
+
+  .user-orders__card {
+    background-color: #fff;
+  }
+
+  .admin-orders__card {
+    background-color: rgb(250, 205, 175);
   }
 }
