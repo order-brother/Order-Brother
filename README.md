@@ -108,3 +108,12 @@ The list button below store information section let you manage orders which belo
 You can easily find stores, click into one of the store pages, choose your time preference to pick up and select dishes you want, the shopping cart section on the right side will shows current amount price immediatily.
 
 > Check orders you made anytime from [Pop-up menu](#Pop-up-menu)
+
+## Entity-Relation Model
+
+![Entity-relation Model](https://order-brother.s3-ap-northeast-1.amazonaws.com/Entity-relation+model.png)
+
+## The order state machine
+
+Orders' state can only change by the flow that defined in Transaction model, you could redefine the state you want in `app/models/transaction.rb`, here's the sample of transaction flow:
+![Transaction flow](https://order-brother.s3-ap-northeast-1.amazonaws.com/order_flow.png)
