@@ -17,7 +17,7 @@
     </div>
     <div class="show--store__info col-12 col-md-4">
       <div class="show--store__main_img">
-        <%= image_tag @store.main_img_url if @store.main_img? %>
+        <%= image_tag @store.main_img.thumb.url if @store.main_img? %>
       </div>
       <%= link_to fa_icon('eye', text: '查看訂單'), admin_store_transactions_path(@store), class: 'btn btn-info' if policy(@store).edit? %>
       <%= link_to fa_icon("edit", text: "編輯店面", right: true), edit_admin_store_path(@store), class: 'btn btn-warning' if policy(@store).edit? %>

@@ -86,6 +86,6 @@ class Admin::TransactionsController < Admin::BaseController
   end
 
   def find_transaction
-    @transaction = Transaction.find(params[:id])
+    @transaction = Transaction.includes(:users, :dishes).find(params[:id])
   end
 end
