@@ -48,7 +48,7 @@ gem 'devise', '~> 4.7'
 
 # 圖片上傳套件
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
-gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+gem 'mini_magick', '~> 4.9'
 gem 'fog-aws', '~> 3.5', '>= 3.5.1'
 
 # 機密資訊傳遞套件
