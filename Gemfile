@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+# gem 'mini_magick', '>= 4.9.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -44,7 +44,7 @@ gem 'jquery-rails'
 gem 'rails_admin', '~> 1.4', '>= 1.4.2'
 
 # 使用者認證套件
-gem 'devise', '~> 4.6', '>= 4.6.2'
+gem 'devise', '>= 4.7.1'
 
 # 圖片上傳套件
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
