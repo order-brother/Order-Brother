@@ -41,7 +41,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails'
 
 # 後台管理工具
-gem 'rails_admin', '~> 1.4', '>= 1.4.2'
+gem 'rails_admin', '~> 1.4'
 
 # 使用者認證套件
 gem 'devise', '~> 4.7'
