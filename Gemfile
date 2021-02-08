@@ -47,7 +47,7 @@ gem 'rails_admin', '~> 1.4', '>= 1.4.2'
 gem 'devise', '~> 4.7'
 
 # 圖片上傳套件
-gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+gem 'carrierwave', '~> 1.3'
 gem 'mini_magick', '~> 4.9'
 gem 'fog-aws', '~> 3.5', '>= 3.5.1'
 
